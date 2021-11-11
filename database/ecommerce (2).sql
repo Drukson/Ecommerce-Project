@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2021 at 04:32 PM
+-- Generation Time: Nov 11, 2021 at 12:56 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -114,6 +114,29 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dzongkhags`
+--
+
+CREATE TABLE `dzongkhags` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dzongkhag_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dzongkhags`
+--
+
+INSERT INTO `dzongkhags` (`id`, `dzongkhag_name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'Dagana', 'dagana', '2021-11-11 02:19:02', '2021-11-11 02:37:07'),
+(3, 'Zhemgang', 'zhemgang', '2021-11-11 02:38:54', NULL),
+(4, 'Trashigang', 'trashigang', '2021-11-11 03:30:15', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -126,6 +149,66 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gewogs`
+--
+
+CREATE TABLE `gewogs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dzongkhag_id` int(11) NOT NULL,
+  `gewog_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `gewogs`
+--
+
+INSERT INTO `gewogs` (`id`, `dzongkhag_id`, `gewog_name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Dorona', 'dorona', '2021-11-11 03:16:06', NULL),
+(3, 1, 'Drukjeygang', 'drukjeygang', '2021-11-11 03:26:50', NULL),
+(4, 1, 'Gesarling', 'gesarling', '2021-11-11 03:27:03', NULL),
+(5, 1, 'Gozhi', 'gozhi', '2021-11-11 03:27:11', NULL),
+(6, 1, 'Karna', 'karna', '2021-11-11 03:27:22', NULL),
+(7, 1, 'Karmaling', 'karmaling', '2021-11-11 03:27:37', NULL),
+(8, 1, 'Khebisa', 'khebisa', '2021-11-11 03:27:47', NULL),
+(9, 1, 'Largyab', 'largyab', '2021-11-11 03:28:04', NULL),
+(10, 1, 'Lhamoi Dzingkha', 'lhamoi-dzingkha', '2021-11-11 03:28:24', NULL),
+(11, 1, 'Nichula', 'nichula', '2021-11-11 03:28:35', NULL),
+(12, 1, 'Tashiding', 'tashiding', '2021-11-11 03:28:46', NULL),
+(13, 1, 'Tsangkha', 'tsangkha', '2021-11-11 03:28:58', NULL),
+(14, 1, 'Tsenda-Gang', 'tsenda-gang', '2021-11-11 03:29:12', NULL),
+(15, 1, 'Tseza', 'tseza', '2021-11-11 03:29:21', NULL),
+(16, 1, 'Daga-Thromde', 'daga-thromde', '2021-11-11 03:29:33', NULL),
+(17, 4, 'Bartsham', 'bartsham', '2021-11-11 03:30:29', NULL),
+(18, 4, 'Bidoong', 'bidoong', '2021-11-11 03:30:38', NULL),
+(19, 4, 'Kanglung', 'kanglung', '2021-11-11 03:30:45', NULL),
+(20, 4, 'Kangpar', 'kangpar', '2021-11-11 03:30:57', NULL),
+(21, 4, 'Khaling', 'khaling', '2021-11-11 03:31:05', NULL),
+(22, 4, 'Lumang', 'lumang', '2021-11-11 03:31:13', NULL),
+(23, 4, 'Merag', 'merag', '2021-11-11 03:31:21', NULL),
+(24, 4, 'Phongmed', 'phongmed', '2021-11-11 03:31:35', NULL),
+(25, 4, 'Radhi', 'radhi', '2021-11-11 03:31:42', NULL),
+(26, 4, 'Sagteng', 'sagteng', '2021-11-11 03:32:06', NULL),
+(27, 4, 'Samkhar', 'samkhar', '2021-11-11 03:32:13', NULL),
+(28, 4, 'Shongphu', 'shongphu', '2021-11-11 03:32:21', NULL),
+(29, 4, 'Thrimsing', 'thrimsing', '2021-11-11 03:32:31', NULL),
+(30, 4, 'Udzorong', 'udzorong', '2021-11-11 03:32:43', NULL),
+(31, 4, 'Yangnyer', 'yangnyer', '2021-11-11 03:32:53', NULL),
+(32, 3, 'Bardo', 'bardo', '2021-11-11 03:33:40', NULL),
+(33, 3, 'Bjoka', 'bjoka', '2021-11-11 03:33:50', NULL),
+(34, 3, 'Goshing', 'goshing', '2021-11-11 03:34:02', NULL),
+(35, 3, 'Nangkor', 'nangkor', '2021-11-11 03:34:19', NULL),
+(36, 3, 'Ngangla', 'ngangla', '2021-11-11 03:34:33', NULL),
+(37, 3, 'Phangkhar', 'phangkhar', '2021-11-11 03:34:43', NULL),
+(38, 3, 'Shingkhar', 'shingkhar', '2021-11-11 03:35:13', NULL),
+(39, 3, 'Trong', 'trong', '2021-11-11 03:35:18', NULL),
+(40, 3, 'Zhemgang-Thromde', 'zhemgang-thromde', '2021-11-11 03:35:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -291,7 +374,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2021_10_31_124413_create_homestay_images_table', 10),
 (20, '2021_11_01_135456_create_handicrafts_table', 11),
 (21, '2021_11_01_135928_create_handicraft_images_table', 11),
-(22, '2021_11_08_110906_create_wishlists_table', 12);
+(22, '2021_11_08_110906_create_wishlists_table', 12),
+(23, '2021_11_11_075748_create_dzongkhags_table', 13),
+(24, '2021_11_11_084049_create_gewogs_table', 14),
+(25, '2021_11_11_094718_create_villages_table', 15);
 
 -- --------------------------------------------------------
 
@@ -382,10 +468,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('alHacM7wU89X3BLqot1ix6FOLTeEZLRa7QQ3qxrI', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVnJtUnk4OTVnSnlIQkJIYXIwczJOUURXOXJKd0QweXhlUWcwdmFINCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1636555113),
-('baK7Np6ZJlB7YHFsxGzaI3qP3oBa0dv6ZBDwl0Ez', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibmpqeVBhY2sxWjZpV3E2NDNDZHgzSkJUSXVsU3RTcm1QS21uYldFdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1636555113),
-('it3F8YlPQFECFIUKs2Dz26Nr0fSwXTbLGgbBGiet', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiOVlJT2Y2TElLa0dNcDI2dHdxMXRQNjBseDNLSEVZQUdUUWhzQUxOciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcHJvZHVjdHMvYWdyby9hbGwiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO3M6MjoiaWQiO3M6MjoiMTAiO3M6MzoicXR5IjtzOjE6IjEiO3M6NDoibmFtZSI7czo5OiJQaW5lYXBwbGUiO3M6NToicHJpY2UiO2Q6MTgwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czo1OiJpbWFnZSI7czo0NzoidXBsb2Fkcy9wcm9kdWN0cy90aHVtYm5haWwvMTcxNDk1MDk2MTA5OTg2Ny5qcGciO319czo3OiJ0YXhSYXRlIjtpOjA7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX19fX0=', 1636557278),
-('zJljh5YCvl4jY0NaEWm3z8ikCNhUzEQhp6pARWMN', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOHR2cGdRRXJEYTNxWk0xUWxwenZFUjRDTkIwRE80d2FabjRWWkVReSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1636555113);
+('9nd9Q0HQX1pWq2o3qhojHAWTOSPykVeuACcrI2LR', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZGJpaGxsc1RBQkgxTVMwSE1FZUFWejdPVTA2NWg1TjFXWVI0NERQaSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTA6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvZHpvbmdraGFnL3ZpbGxhZ2UvYWxsIjt9fQ==', 1636631482);
 
 -- --------------------------------------------------------
 
@@ -524,6 +607,30 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `passw
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `villages`
+--
+
+CREATE TABLE `villages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dzongkhag_id` int(11) NOT NULL,
+  `gewog_id` int(11) NOT NULL,
+  `village_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `villages`
+--
+
+INSERT INTO `villages` (`id`, `dzongkhag_id`, `gewog_id`, `village_name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Dorona Village', 'dorona-village', '2021-11-11 04:50:25', NULL),
+(2, 1, 3, 'Drukjegang Village', 'drukjegang-village', '2021-11-11 05:37:40', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `wishlists`
 --
 
@@ -566,11 +673,23 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dzongkhags`
+--
+ALTER TABLE `dzongkhags`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `gewogs`
+--
+ALTER TABLE `gewogs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `handicrafts`
@@ -662,6 +781,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `villages`
+--
+ALTER TABLE `villages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `wishlists`
 --
 ALTER TABLE `wishlists`
@@ -690,10 +815,22 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `dzongkhags`
+--
+ALTER TABLE `dzongkhags`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gewogs`
+--
+ALTER TABLE `gewogs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `handicrafts`
@@ -723,7 +860,7 @@ ALTER TABLE `homestay_images`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
@@ -766,6 +903,12 @@ ALTER TABLE `sub_sub_categories`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `villages`
+--
+ALTER TABLE `villages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wishlists`

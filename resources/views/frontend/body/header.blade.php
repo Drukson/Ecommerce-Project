@@ -10,12 +10,12 @@
                         <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="{{route('mycart')}}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+                        <li><a href="{{route('seller_registration')}}"><i class="icon fa fa-lock"></i>Seller Register</a></li>
                         <li>
                             @auth
                                 <a href="{{route('login')}}"><i class="icon fa fa-user"></i>User Profile</a>
                             @else
                                 <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login|Register</a>
-                                <a href="{{route('seller_registration_index')}}"><i class="icon fa fa-lock"></i>Seller Register</a>
                             @endauth
                         </li>
                     </ul>

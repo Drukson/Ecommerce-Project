@@ -52,6 +52,13 @@ Route::post('/user/profile/update', [\App\Http\Controllers\Frontend\IndexControl
 Route::get('/user/password/change', [\App\Http\Controllers\Frontend\IndexController::class, 'UserPasswordChange'])->name('user.password.change');
 Route::post('/user/password/update', [\App\Http\Controllers\Frontend\IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
+// SELLER ROUTE
+Route::prefix('seller')->group(function (){
+    Route::get('/registration', [\App\Http\Controllers\Seller\SellerController::class, 'Registration'])->name('seller_registration');
+
+});
+
+
 // Sponsors Section Route
 Route::prefix('sponsors')->group(function (){
     Route::get('/view', [\App\Http\Controllers\Backend\SponsorController::class, 'SponsorView'])->name('all.sponsors');
@@ -69,8 +76,6 @@ Route::prefix('category')->group(function (){
     Route::get('/edit/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'EditCategory'])->name('edit.category');
     Route::post('/update/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'UpdateCategory'])->name('update.category');
     Route::get('/delete/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'DeleteCategory'])->name('delete.category');
-
-
 
 //Sub Category
     Route::get('/sub/all', [\App\Http\Controllers\Backend\SubCategoryController::class, 'SubCategoryView'])->name('all.subcategory');
@@ -210,4 +215,29 @@ Route::get('/cart-increment/{rowId}', [\App\Http\Controllers\User\CartPageContro
 Route::get('/cart-decrement/{rowId}', [\App\Http\Controllers\User\CartPageController::class, 'CartDecrement']);
 
 
+// DZONGKHAG CATEGORY ROUTE
+Route::prefix('dzongkhag')->group(function (){
+    Route::get('/all', [\App\Http\Controllers\Seller\DzongkhagController::class, 'DzongkhagView'])->name('all.dzongkhag');
+    Route::post('/add', [\App\Http\Controllers\Seller\DzongkhagController::class, 'AddDzongkhag'])->name('add.dzongkhags');
+    Route::get('/edit/{id}', [\App\Http\Controllers\Seller\DzongkhagController::class, 'EditDzongkhag'])->name('edit.dzongkhags');
+    Route::post('/update/{id}', [\App\Http\Controllers\Seller\DzongkhagController::class, 'UpdateDzongkhag'])->name('update.dzongkhags');
+    Route::get('/delete/{id}', [\App\Http\Controllers\Seller\DzongkhagController::class, 'DeleteDzongkhag'])->name('delete.dzongkhags');
 
+//GEWOG ROUTE
+    Route::get('/gewog/all', [\App\Http\Controllers\Seller\GewogController::class, 'GewogView'])->name('all.gewog');
+    Route::post('/gewog/add', [\App\Http\Controllers\Seller\GewogController::class, 'AddGewog'])->name('add.gewog');
+    Route::get('/gewog/edit/{id}', [\App\Http\Controllers\Seller\GewogController::class, 'EditGewog'])->name('edit.gewog');
+    Route::post('/gewog/update/{id}', [\App\Http\Controllers\Seller\GewogController::class, 'UpdateGewog'])->name('update.gewog');
+    Route::get('/gewog/delete/{id}', [\App\Http\Controllers\Seller\GewogController::class, 'DeleteGewog'])->name('delete.gewog');
+
+//VILLAGE RUTE
+    Route::get('/village/all', [\App\Http\Controllers\Seller\VillageController::class, 'VillageView'])->name('all.village');
+    Route::post('/village/add', [\App\Http\Controllers\Seller\VillageController::class, 'AddVillage'])->name('add.village');
+    Route::get('/village/edit/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'EditVillage'])->name('edit.village');
+    /*Route::post('/village/update/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'UpdateVillage'])->name('update.village');
+    Route::get('/village/delete/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'DeleteVillage'])->name('delete.village'); */
+
+    //Gewog autoload
+    Route::get('/gewog/ajax/{dzongkhag_id}', [\App\Http\Controllers\Seller\VillageController::class, 'GetGewog']);
+
+});

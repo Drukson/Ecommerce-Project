@@ -9,7 +9,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Implementing Partners</h3>
+                            <h3 class="box-title">Dzongkhags</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -18,24 +18,20 @@
                                     <thead>
                                     <tr>
                                         <th>Sl.No</th>
-                                        <th>Icon</th>
-                                        <th>Name</th>
+                                        <th>Dzongkhag Name</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @php($i=1)
-                                    @foreach ($category as $sponsers )
+                                    @foreach ($dzongkhag as $sponsers )
                                         <tr>
                                             <td>{{$i++}}</td>
-                                            <td><span>
-                                            <i class="{{$sponsers->icon}}"></i>
-                                            </span></td>
-                                            <td>{{$sponsers->name}}</td>
+                                            <td>{{$sponsers->dzongkhag_name}}</td>
                                             <td>
-                                                <a href="{{route('edit.category', $sponsers->id) }}" class="btn btn-info" title="Edit">
+                                                <a href="{{route('edit.dzongkhags', $sponsers->id) }}" class="btn btn-info" title="Edit">
                                                     <i class="fa fa-pencil"> </i></a>
-                                                <a href="{{route('delete.category', $sponsers->id) }}" class="btn btn-danger" id="delete" title="Delete">
+                                                <a href="{{route('delete.dzongkhags', $sponsers->id) }}" class="btn btn-danger" id="delete" title="Delete">
                                                     <i class="fa fa-pencil"></i></a>
                                             </td>
 
@@ -50,34 +46,26 @@
                 <div class="col-4">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Category</h3>
+                            <h3 class="box-title">Add Dzongkhags</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form action="{{route('add.category')}}" method="post">
+                                <form action="{{route('add.dzongkhags')}}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <h5>Category Name <span class="text-danger">*</span></h5>
+                                        <h5>Dzongkhag Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" id="name" name="name"
+                                            <input type="text" id="dzongkhag_name" name="dzongkhag_name"
                                                    class="form-control" data-validation-required-message="This field is required">
-                                            @error('name')
+                                            @error('dzongkhag_name')
                                             <span class="text-danger">{{$message}}</span>
                                             @enderror
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <h5>Category Icon <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input id="icon" name="icon" type="text"
-                                                   class="form-control" data-validation-required-message="This field is required">
-                                        </div>
-                                    </div>
-
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Category" >
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Dzongkhags" >
                                     </div>
                                 </form>
                             </div>

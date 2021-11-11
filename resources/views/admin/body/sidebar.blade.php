@@ -74,6 +74,25 @@
                 </ul>
             </li>
 
+            <li class="treeview {{($route == 'all.dzongkhag') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Dzongkhags</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'all.dzongkhag') ? 'active':''}}">
+                        <a href="{{route('all.dzongkhag')}}"><i class="ti-more"></i>All Dzongkhags</a></li>
+                    <li class="{{($route == 'all.gewog') ? 'active':''}}">
+                        <a href="{{route('all.gewog')}}"><i class="ti-more"></i>Gewog</a>
+                    </li>
+                    <li class="{{($route == 'all.village') ? 'active':''}}">
+                        <a href="{{route('all.village')}}"><i class="ti-more"></i>Village</a></li>
+                    <li>
+                </ul>
+            </li>
+
             <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="file"></i>
