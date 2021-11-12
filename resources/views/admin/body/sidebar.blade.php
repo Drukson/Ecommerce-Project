@@ -106,6 +106,25 @@
                 </ul>
             </li>
 
+            <li class="treeview {{($route == 'division_view') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Shipping Area</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'division_view') ? 'active':''}}">
+                        <a href="{{route('division_view')}}"><i class="ti-more"></i>Dzongkhags</a></li>
+                    <li class="{{($route == 'subdistrict_view') ? 'active':''}}">
+                        <a href="{{route('subdistrict_view')}}"><i class="ti-more"></i>Places</a>
+                    </li>
+                    <li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
+                        <a href="{{route('all.subsubcategory')}}"><i class="ti-more"></i>Sub Sub Category</a></li>
+                    <li>
+                </ul>
+            </li>
+
             <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="file"></i>

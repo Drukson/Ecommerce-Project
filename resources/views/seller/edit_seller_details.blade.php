@@ -122,7 +122,6 @@
                             </div>
                         </div>
 
-
                         <div class="row">
                             <div class="col-md-4">
                                 <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Update Sellers</button>

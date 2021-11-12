@@ -247,3 +247,22 @@ Route::prefix('dzongkhag')->group(function (){
     //VILLAGE AUTOLOAD
     Route::get('/village/ajax/{gewog_id}', [\App\Http\Controllers\Seller\VillageController::class, 'GetVillage']);
 });
+
+//ADMIN SHIPPING DIVISION ROUTE
+
+Route::prefix('shipping')->group(function (){
+    Route::get('/division/view', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'DivisionView'])->name('division_view');
+    Route::post('/division/add', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'AddDivision'])->name('add.division');
+    Route::get('/division/edit/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'EditDivision'])->name('edit.division');
+    Route::post('/division/update/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'UpdateDivision'])->name('update.division');
+    Route::get('/division/delete/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'DeleteDivision'])->name('delete.division');
+
+    /* SUB DISTRICTS */
+    Route::get('/subdistrict/view', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'SubDistrictView'])->name('subdistrict_view');
+    Route::post('/subdistrict/add', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'AddSubDistrict'])->name('add.subdistrict');
+    Route::get('/subdistrict/edit/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'EditSubDistrict'])->name('edit.subdistrict');
+    Route::post('/subdistrict/update/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'UpdateSubDistrict'])->name('update.subdistrict');
+    Route::get('/subdistrict/delete/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'DeleteSubDistrict'])->name('delete.subdistrict');
+
+
+});
