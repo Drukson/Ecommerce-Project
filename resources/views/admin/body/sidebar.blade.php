@@ -25,6 +25,19 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>Sellers</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu ">
+                    <li class="{{($route == 'all_sellers') ? 'active':''}}">
+                        <a href="{{route('all_sellers')}}"><i class="ti-more"></i>All Sellers</a></li>
+                </ul>
+            </li>
 
             <li class="treeview {{($route == 'all.slider') ? 'active':''}}">
                 <a href="#">

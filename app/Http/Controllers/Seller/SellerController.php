@@ -7,9 +7,11 @@ use App\Models\Category;
 use App\Models\Dzongkhag;
 use App\Models\Gewog;
 use App\Models\Seller;
+use App\Models\SubCategory;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
@@ -26,6 +28,33 @@ class SellerController extends Controller
         return view('seller.seller_registration_index',
             compact('dzongkhag', 'gewog', 'village', 'category'));
     }
+
+    /*DISPLAY YALL SELLER IN THE ADMIN*/
+    public function SellerDetails()
+    {
+        $seller = Seller::latest()->get();
+        $dzongkhag = Dzongkhag::orderBy('dzongkhag_name', 'ASC')->get();
+        $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();
+        $village = Village::orderBy('village_name', 'ASC')->get();
+        $category = Category::orderBy('name', 'ASC')->get();
+
+        return view('seller.seller_details',
+            compact('dzongkhag', 'gewog', 'village', 'category', 'seller'));
+    }
+
+    public function EditSellerDetails($id)
+    {
+        $seller = Seller::find($id);
+        $subcategory = SubCategory::find($id);
+        $dzongkhag = Dzongkhag::orderBy('dzongkhag_name', 'ASC')->get();
+        $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();
+        $village = Village::orderBy('village_name', 'ASC')->get();
+        $category = Category::orderBy('name', 'ASC')->get();
+
+        return view('seller.edit_seller_details',
+            compact('seller', 'dzongkhag', 'gewog', 'village', 'category', 'subcategory'));
+    }
+
     public function GetVillage($gewog_id){
         $sub = Village::where('gewog_id',$gewog_id)->orderBy('village_name','ASC')->get();
         return json_encode($sub);
@@ -48,6 +77,7 @@ class SellerController extends Controller
             'village_id' => $request->village_id,
             'category_id' => $request->category_id,
             'status' => 0,
+            'remarks' => $request->remarks,
             'password' => Hash::make($request['password']),
             'created_at' => Carbon::now()
         ]);

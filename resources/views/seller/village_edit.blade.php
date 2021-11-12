@@ -64,7 +64,7 @@
                                     </div>
 
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Village" >
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Village" >
                                     </div>
                                 </form>
                             </div>
