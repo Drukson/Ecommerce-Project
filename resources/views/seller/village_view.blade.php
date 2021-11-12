@@ -37,8 +37,8 @@
                                             <td>
                                                 <a href="{{route('edit.village', $sponsers->id) }}" class="btn btn-info" title="Edit">
                                                     <i class="fa fa-pencil"> </i></a>
-                                                <a href="{{route('delete.subsubcategory', $sponsers->id) }}" class="btn btn-danger" id="delete" title="Delete">
-                                                    <i class="fa fa-pencil"></i></a>
+                                                <a href="{{route('delete.village', $sponsers->id) }}" class="btn btn-danger" id="delete" title="Delete">
+                                                    <i class="fa fa-desktop"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -59,7 +59,7 @@
                                 <form action="{{route('add.village')}}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <h5>Select Category<span class="text-danger">*</span></h5>
+                                        <h5>Dzongkhag<span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="dzongkhag_id" class="form-control">
                                                 <option value="" selected="" disabled="">Select Dzongkhag</option>
@@ -84,9 +84,8 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <h5>Sub-SubCategory <span class="text-danger">*</span></h5>
+                                        <h5>Village <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" id="village_name" name="village_name"
                                                    class="form-control" data-validation-required-message="This field is required">

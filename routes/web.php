@@ -55,6 +55,7 @@ Route::post('/user/password/update', [\App\Http\Controllers\Frontend\IndexContro
 // SELLER ROUTE
 Route::prefix('seller')->group(function (){
     Route::get('/registration', [\App\Http\Controllers\Seller\SellerController::class, 'Registration'])->name('seller_registration');
+    Route::post('/add', [\App\Http\Controllers\Seller\SellerController::class, 'StoreSellers'])->name('store_seller');
 
 });
 
@@ -223,21 +224,23 @@ Route::prefix('dzongkhag')->group(function (){
     Route::post('/update/{id}', [\App\Http\Controllers\Seller\DzongkhagController::class, 'UpdateDzongkhag'])->name('update.dzongkhags');
     Route::get('/delete/{id}', [\App\Http\Controllers\Seller\DzongkhagController::class, 'DeleteDzongkhag'])->name('delete.dzongkhags');
 
-//GEWOG ROUTE
+    //GEWOG ROUTE
     Route::get('/gewog/all', [\App\Http\Controllers\Seller\GewogController::class, 'GewogView'])->name('all.gewog');
     Route::post('/gewog/add', [\App\Http\Controllers\Seller\GewogController::class, 'AddGewog'])->name('add.gewog');
     Route::get('/gewog/edit/{id}', [\App\Http\Controllers\Seller\GewogController::class, 'EditGewog'])->name('edit.gewog');
     Route::post('/gewog/update/{id}', [\App\Http\Controllers\Seller\GewogController::class, 'UpdateGewog'])->name('update.gewog');
     Route::get('/gewog/delete/{id}', [\App\Http\Controllers\Seller\GewogController::class, 'DeleteGewog'])->name('delete.gewog');
 
-//VILLAGE RUTE
+    //VILLAGE ROUTE
     Route::get('/village/all', [\App\Http\Controllers\Seller\VillageController::class, 'VillageView'])->name('all.village');
     Route::post('/village/add', [\App\Http\Controllers\Seller\VillageController::class, 'AddVillage'])->name('add.village');
     Route::get('/village/edit/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'EditVillage'])->name('edit.village');
-    /*Route::post('/village/update/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'UpdateVillage'])->name('update.village');
-    Route::get('/village/delete/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'DeleteVillage'])->name('delete.village'); */
+    Route::post('/village/update/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'UpdateVillage'])->name('update.village');
+    Route::get('/village/delete/{id}', [\App\Http\Controllers\Seller\VillageController::class, 'DeleteVillage'])->name('delete.village');
 
     //Gewog autoload
     Route::get('/gewog/ajax/{dzongkhag_id}', [\App\Http\Controllers\Seller\VillageController::class, 'GetGewog']);
 
+    //VILLAGE AUTOLOAD
+    Route::get('/village/ajax/{gewog_id}', [\App\Http\Controllers\Seller\VillageController::class, 'GetVillage']);
 });

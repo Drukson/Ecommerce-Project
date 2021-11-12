@@ -30,6 +30,12 @@ class VillageController extends Controller
         return json_encode($subcat);
     }
 
+    // DISPLAYING AUTOLOAD VILLAGE DETAILS
+    public function GetVillage($gewog_id){
+        $sub = Village::where('gewog_id',$gewog_id)->orderBy('village_name','ASC')->get();
+        return json_encode($sub);
+    }
+
     public function AddVillage(Request $request){
 
         Village::insert([
@@ -53,6 +59,33 @@ class VillageController extends Controller
        // $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();
         return view('seller.village_edit',
             compact('village', 'dzongkhag','gewog'));
+    }
+
+    public function UpdateVillage(Request $request, $id){
+
+        Village::find($id)->update([
+            'dzongkhag_id' => $request->dzongkhag_id,
+            'gewog_id' => $request->gewog_id,
+            'village_name' => $request->village_name,
+            'slug' => strtolower(str_replace(' ', '-', $request->village_name)),
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Village Updated',
+            'alert-type' => 'success'
+        );
+        return Redirect::route('all.village')->with($notification);
+    }
+    public function DeleteVillage($id)
+    {
+        $village = Village::find($id);
+        $village->delete();
+
+        $notification = array(
+            'message' => 'Village Deleted',
+            'alert-type' => 'success'
+        );
+        return Redirect::route('all.village')->with($notification);
     }
 
 

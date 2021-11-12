@@ -16,7 +16,7 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form action="{{route('add.village', $village->id)}}" method="post">
+                                <form action="{{route('update.village', $village->id)}}" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <h5>Select Dzongkhag<span class="text-danger">*</span></h5>
@@ -64,7 +64,7 @@
                                     </div>
 
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Village" >
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Village" >
                                     </div>
                                 </form>
                             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2021 at 12:56 PM
+-- Generation Time: Nov 12, 2021 at 09:12 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -377,7 +377,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2021_11_08_110906_create_wishlists_table', 12),
 (23, '2021_11_11_075748_create_dzongkhags_table', 13),
 (24, '2021_11_11_084049_create_gewogs_table', 14),
-(25, '2021_11_11_094718_create_villages_table', 15);
+(25, '2021_11_11_094718_create_villages_table', 15),
+(26, '2021_11_12_052916_create_sellers_table', 16);
 
 -- --------------------------------------------------------
 
@@ -451,6 +452,39 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sellers`
+--
+
+CREATE TABLE `sellers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` int(11) NOT NULL,
+  `dzongkhag_id` int(11) NOT NULL,
+  `gewog_id` int(11) NOT NULL,
+  `village_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `profile_pic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remarks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sellers`
+--
+
+INSERT INTO `sellers` (`id`, `name`, `email`, `phone`, `dzongkhag_id`, `gewog_id`, `village_id`, `category_id`, `password`, `status`, `profile_pic`, `remarks`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 'asdasdasd asdasdsa', 'mike@gmail.com', 121212, 1, 1, 3, 4, '$2y$10$3/DgdGGrxHuMfXUeCU3frevW26AYFnPMOhzMshgKpO1IC7TTAVOtO', 0, NULL, NULL, NULL, '2021-11-12 01:00:47', NULL),
+(2, 'asdasdasd asdasdsa', 'rock@gmail.com', 121212, 1, 1, 4, 1, '$2y$10$onEMXPDbifAMgm/Dj437be5EfOyFEHXRvhgsDu8lCBXgoHt5fjIwe', 0, NULL, NULL, NULL, '2021-11-12 01:04:18', NULL),
+(4, 'asdasdasd asdasdsa', 'zamin@gmail.com', 121212, 1, 1, 3, 5, '$2y$10$TyUVTvPH7BoM9gQlrTRtpeVvdhBamXlG7gxnc6r7Wn9EFRSzXQ9AC', 0, NULL, NULL, NULL, '2021-11-12 01:09:54', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -468,7 +502,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('9nd9Q0HQX1pWq2o3qhojHAWTOSPykVeuACcrI2LR', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZGJpaGxsc1RBQkgxTVMwSE1FZUFWejdPVTA2NWg1TjFXWVI0NERQaSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTA6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvZHpvbmdraGFnL3ZpbGxhZ2UvYWxsIjt9fQ==', 1636631482);
+('G7cUISZOJ49DBB91m9pm7sddbuSletfHylS5Gsth', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicDM4Q3hqMGd1cUlTWGlseEtoMUtUY2lLZTI0Z0U5RWtHcWk0NmdFSyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO319', 1636701009),
+('glQyi6ty9kKWMbVsKBSDgzNClnaqT2JDZFl6Chef', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiaGpabWt2WGpqdjE2T2MyVzFkb0J0WmE1UXo3MVc4c1NXZjFTZEZFMCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636694361),
+('TeSEjFuaKE8ySp7snYGu9jWuo7QBm6l4CXef8Pon', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoic1FQMkJCcndyYnVETGV6U0M5TEIxdVp3c3dlTUtMeWFqdDNESlZUTCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636694361);
 
 -- --------------------------------------------------------
 
@@ -626,7 +662,8 @@ CREATE TABLE `villages` (
 
 INSERT INTO `villages` (`id`, `dzongkhag_id`, `gewog_id`, `village_name`, `slug`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Dorona Village', 'dorona-village', '2021-11-11 04:50:25', NULL),
-(2, 1, 3, 'Drukjegang Village', 'drukjegang-village', '2021-11-11 05:37:40', NULL);
+(3, 1, 1, 'Dorona Village1', 'dorona-village1', '2021-11-12 00:33:12', NULL),
+(4, 1, 1, 'Dorona Village2', 'dorona-village2', '2021-11-12 00:33:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -740,6 +777,13 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `sellers`
+--
+ALTER TABLE `sellers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sellers_email_unique` (`email`);
 
 --
 -- Indexes for table `sessions`
@@ -860,7 +904,7 @@ ALTER TABLE `homestay_images`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
@@ -873,6 +917,12 @@ ALTER TABLE `multi_imgs`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sellers`
+--
+ALTER TABLE `sellers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -908,7 +958,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `villages`
 --
 ALTER TABLE `villages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
