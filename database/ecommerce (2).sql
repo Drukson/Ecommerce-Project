@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2021 at 09:12 AM
+-- Generation Time: Nov 13, 2021 at 10:41 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -378,7 +378,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2021_11_11_075748_create_dzongkhags_table', 13),
 (24, '2021_11_11_084049_create_gewogs_table', 14),
 (25, '2021_11_11_094718_create_villages_table', 15),
-(26, '2021_11_12_052916_create_sellers_table', 16);
+(26, '2021_11_12_052916_create_sellers_table', 16),
+(27, '2021_11_12_111745_create_ship_divisions_table', 17),
+(28, '2021_11_12_124918_create_ship_districts_table', 18),
+(29, '2021_11_13_060941_create_shippings_table', 19);
 
 -- --------------------------------------------------------
 
@@ -478,7 +481,7 @@ CREATE TABLE `sellers` (
 --
 
 INSERT INTO `sellers` (`id`, `name`, `email`, `phone`, `dzongkhag_id`, `gewog_id`, `village_id`, `category_id`, `password`, `status`, `profile_pic`, `remarks`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 'asdasdasd asdasdsa', 'mike@gmail.com', 121212, 1, 1, 3, 4, '$2y$10$3/DgdGGrxHuMfXUeCU3frevW26AYFnPMOhzMshgKpO1IC7TTAVOtO', 0, NULL, NULL, NULL, '2021-11-12 01:00:47', NULL),
+(1, 'asdasdasd asdasdsa', 'mike@gmail.com', 121212, 1, 1, 3, 4, '$2y$10$3/DgdGGrxHuMfXUeCU3frevW26AYFnPMOhzMshgKpO1IC7TTAVOtO', 0, NULL, 'Helloas asdasdas', NULL, '2021-11-12 01:00:47', NULL),
 (2, 'asdasdasd asdasdsa', 'rock@gmail.com', 121212, 1, 1, 4, 1, '$2y$10$onEMXPDbifAMgm/Dj437be5EfOyFEHXRvhgsDu8lCBXgoHt5fjIwe', 0, NULL, NULL, NULL, '2021-11-12 01:04:18', NULL),
 (4, 'asdasdasd asdasdsa', 'zamin@gmail.com', 121212, 1, 1, 3, 5, '$2y$10$TyUVTvPH7BoM9gQlrTRtpeVvdhBamXlG7gxnc6r7Wn9EFRSzXQ9AC', 0, NULL, NULL, NULL, '2021-11-12 01:09:54', NULL);
 
@@ -502,9 +505,95 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('G7cUISZOJ49DBB91m9pm7sddbuSletfHylS5Gsth', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicDM4Q3hqMGd1cUlTWGlseEtoMUtUY2lLZTI0Z0U5RWtHcWk0NmdFSyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO319', 1636701009),
-('glQyi6ty9kKWMbVsKBSDgzNClnaqT2JDZFl6Chef', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiaGpabWt2WGpqdjE2T2MyVzFkb0J0WmE1UXo3MVc4c1NXZjFTZEZFMCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636694361),
-('TeSEjFuaKE8ySp7snYGu9jWuo7QBm6l4CXef8Pon', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoic1FQMkJCcndyYnVETGV6U0M5TEIxdVp3c3dlTUtMeWFqdDNESlZUTCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636694361);
+('3qi0PL5tbg78AN70PTWLgNhpBY4UN7JQZtdZVGbI', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiRm1iZGJIbjVxWmFJV2UzdjR4MVZhdmNwQWZjRDluTG1ycmhjUnhCZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636778987),
+('4AcwcyCW3Jj7i1afIRWZ1OqgCk9cBOYFi6X6zDJm', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNlV0VUI3OVFCcnBON01KekRQQkR5RHhUT2t0b3loN3ZjMWJOamVydyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozODoiaHR0cDovL2xvY2FsaG9zdC9lY29tL3B1YmxpYy9kYXNoYm9hcmQiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo0ODoiaHR0cDovL2xvY2FsaG9zdC9lY29tL3B1YmxpYy9zZWxsZXIvcmVnaXN0cmF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636792301),
+('db5KCD4AqD04X80j0tORqAE76zxwlMvuZaBshY42', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiRUJkc3FFZlVudkNaZndXanU0ekdhR29GT0lhUHAweDJ1eUlvb2xMcCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvY2hlY2tvdXQiO31zOjQ6ImNhcnQiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcQ29sbGVjdGlvbiI6MTp7czo4OiIAKgBpdGVtcyI7YToyOntzOjMyOiI5MmI4OTgxNTUyMzUwNDFkYTEyZjg5OTJkMTMyY2E4ZSI7TzozMjoiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0iOjEwOntzOjU6InJvd0lkIjtzOjMyOiI5MmI4OTgxNTUyMzUwNDFkYTEyZjg5OTJkMTMyY2E4ZSI7czoyOiJpZCI7czoyOiIxMCI7czozOiJxdHkiO3M6MToiMSI7czo0OiJuYW1lIjtzOjk6IlBpbmVhcHBsZSI7czo1OiJwcmljZSI7ZDoxODA7czo2OiJ3ZWlnaHQiO2Q6MTtzOjc6Im9wdGlvbnMiO086Mzk6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtT3B0aW9ucyI6MTp7czo4OiIAKgBpdGVtcyI7YToxOntzOjU6ImltYWdlIjtzOjQ3OiJ1cGxvYWRzL3Byb2R1Y3RzL3RodW1ibmFpbC8xNzE0OTUwOTYxMDk5ODY3LmpwZyI7fX1zOjc6InRheFJhdGUiO2k6MDtzOjQ5OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AYXNzb2NpYXRlZE1vZGVsIjtOO3M6NDY6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBkaXNjb3VudFJhdGUiO2k6MDt9czozMjoiNDU5MDZkN2I4NGIyZjYyZDdlZjUwOTJkODI2NjBjZTgiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiNDU5MDZkN2I4NGIyZjYyZDdlZjUwOTJkODI2NjBjZTgiO3M6MjoiaWQiO3M6MToiNyI7czozOiJxdHkiO3M6MToiMiI7czo0OiJuYW1lIjtzOjU6IkFwcGxlIjtzOjU6InByaWNlIjtkOjE4MDtzOjY6IndlaWdodCI7ZDoxO3M6Nzoib3B0aW9ucyI7TzozOToiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW1PcHRpb25zIjoxOntzOjg6IgAqAGl0ZW1zIjthOjE6e3M6NToiaW1hZ2UiO3M6NDc6InVwbG9hZHMvcHJvZHVjdHMvdGh1bWJuYWlsLzE3MTQ4NzQ2OTMyMjIzMTEuanBnIjt9fXM6NzoidGF4UmF0ZSI7aTowO3M6NDk6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBhc3NvY2lhdGVkTW9kZWwiO047czo0NjoiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGRpc2NvdW50UmF0ZSI7aTowO319fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTVZYLkM4N2NWeDhGS1NJWmxBYmhxZVEwWkE2TzNIenpYUFpidEdSTzcwQWNQeHNhREE0QW0iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjt9', 1636796423),
+('z7HaqcuAFV2dEukNB2g5REj51dfUbqZWv7smx8Hy', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiSmF4dDkySDN1b0w0THdmeGtFUmczRUlFYndRM28wVElwT0d6NjR0UyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1636778987);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shippings`
+--
+
+CREATE TABLE `shippings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` bigint(20) UNSIGNED NOT NULL,
+  `shipping_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_districts`
+--
+
+CREATE TABLE `ship_districts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `district_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_districts`
+--
+
+INSERT INTO `ship_districts` (`id`, `division_id`, `district_name`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Kabisa', '2021-11-12 08:57:07', NULL),
+(2, '1', 'Dechencholing', '2021-11-12 08:57:24', NULL),
+(3, '1', 'Changteygang', '2021-11-12 08:57:42', NULL),
+(4, '1', 'Taba', '2021-11-12 08:57:52', NULL),
+(5, '1', 'Hejo', '2021-11-12 08:58:09', NULL),
+(6, '1', 'Main Town', '2021-11-12 08:58:32', NULL),
+(7, '1', 'Motithang', '2021-11-12 08:58:52', '2021-11-12 09:14:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_divisions`
+--
+
+CREATE TABLE `ship_divisions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_divisions`
+--
+
+INSERT INTO `ship_divisions` (`id`, `division_name`, `created_at`, `updated_at`) VALUES
+(1, 'Thimphu', '2021-11-12 05:45:20', NULL),
+(2, 'Phuntsholing', '2021-11-12 05:46:01', NULL),
+(3, 'Paro', '2021-11-12 05:46:37', NULL),
+(4, 'Punakha', '2021-11-12 05:51:05', NULL),
+(5, 'Haa', '2021-11-12 05:51:19', NULL),
+(6, 'Wangdue', '2021-11-12 05:51:27', NULL),
+(7, 'Dagana', '2021-11-12 05:51:44', NULL),
+(8, 'Tsirang', '2021-11-12 05:52:43', NULL),
+(9, 'Chukha', '2021-11-12 05:53:01', NULL),
+(10, 'Sarpang', '2021-11-12 05:53:11', NULL),
+(11, 'Trongsa', '2021-11-12 05:53:16', NULL),
+(12, 'Bumthang', '2021-11-12 05:53:25', NULL),
+(13, 'Zhemgang', '2021-11-12 05:53:31', NULL),
+(14, 'Lhuntse', '2021-11-12 05:53:41', NULL),
+(15, 'Mongar', '2021-11-12 05:53:50', NULL),
+(16, 'Pema Gatshel', '2021-11-12 05:53:57', NULL),
+(17, 'Trashiyangtse', '2021-11-12 05:54:14', NULL),
+(18, 'Trashigang', '2021-11-12 05:54:20', NULL),
+(19, 'Samdrup Jongkhar', '2021-11-12 05:54:34', NULL),
+(20, 'Samtse', '2021-11-12 05:54:45', '2021-11-12 06:04:04');
 
 -- --------------------------------------------------------
 
@@ -635,7 +724,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Drukson', 'drukzim@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, '2021-10-19 09:21:45', '2021-10-19 09:21:45'),
+(1, 'Drukson', 'drukzim@gmail.com', '77364409', NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, '2021-10-19 09:21:45', '2021-11-13 00:25:31'),
 (2, 'Rocky', 'rocky@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, '2021-10-20 04:41:31', '2021-10-20 04:41:31'),
 (3, 'Kinley Yangden', 'zamin@gmail.com', '77446960', NULL, '$2y$10$Rf5qlhrZcEGrzOIioJ26FOkNLiwqs5y5cPn7G86cfHzdW3uIxp6DG', NULL, NULL, 'TdLj93eSz95wS0uC7xtxENYaWBrFdATn9518iMohbRiGz8ReudZleOoZOslZ', NULL, '202110220626user-profile.png', '2021-10-21 09:53:28', '2021-10-22 00:26:14'),
 (5, 'Jigme Lhaden', 'jigme@gmail.com', '77446960', NULL, '$2y$10$eEI5aFHiTen225czdVQKvuvt9bBW7CRlp1m0zx6EZaNvnTppe73Ty', NULL, NULL, NULL, NULL, '202110220709jigme.png', '2021-10-22 01:08:09', '2021-10-22 02:25:04');
@@ -663,7 +752,8 @@ CREATE TABLE `villages` (
 INSERT INTO `villages` (`id`, `dzongkhag_id`, `gewog_id`, `village_name`, `slug`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Dorona Village', 'dorona-village', '2021-11-11 04:50:25', NULL),
 (3, 1, 1, 'Dorona Village1', 'dorona-village1', '2021-11-12 00:33:12', NULL),
-(4, 1, 1, 'Dorona Village2', 'dorona-village2', '2021-11-12 00:33:18', NULL);
+(4, 1, 1, 'Dorona Village2', 'dorona-village2', '2021-11-12 00:33:18', NULL),
+(5, 1, 16, 'Daga1', 'daga1', '2021-11-13 02:30:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -794,6 +884,24 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `shippings`
+--
+ALTER TABLE `shippings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship_districts`
+--
+ALTER TABLE `ship_districts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship_divisions`
+--
+ALTER TABLE `ship_divisions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sliders`
 --
 ALTER TABLE `sliders`
@@ -904,7 +1012,7 @@ ALTER TABLE `homestay_images`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
@@ -923,6 +1031,24 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `sellers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `shippings`
+--
+ALTER TABLE `shippings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ship_districts`
+--
+ALTER TABLE `ship_districts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `ship_divisions`
+--
+ALTER TABLE `ship_divisions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -958,7 +1084,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `villages`
 --
 ALTER TABLE `villages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `wishlists`

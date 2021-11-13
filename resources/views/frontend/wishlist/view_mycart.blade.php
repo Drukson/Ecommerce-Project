@@ -39,6 +39,45 @@
                         </table>
                     </div>
                 </div>
+
+                {{--SUB TOTAL--}}
+                <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                </div>
+                <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                </div>
+                <div class="col-md-4 col-sm-12 cart-shopping-total">
+                    <table class="table">
+                        <thead id="couponCalField">
+
+                        <th>
+                            <div class="cart-sub-total">
+                                Subtotal<span class="inner-left-md">Nu. {{Cart::total();}}</span>
+                            </div>
+                            <div class="cart-grand-total">
+                                Grand Total<span class="inner-left-md">Nu. {{Cart::total();}}</span>
+                            </div>
+                        </th>
+
+                        </thead><!-- /thead -->
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="cart-checkout-btn pull-right">
+
+                                    <a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</a>
+
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody><!-- /tbody -->
+                    </table><!-- /table -->
+                </div><!-- /.cart-shopping-total -->
+                {{--END SUB TOTAL--}}
+
+
+
+
+
             </div><!-- /.row -->
         </div><!-- /.sigin-in-->
 

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AgroProduct;
-
+use App\Models\ShipDistrict;
+use App\Models\ShipDivision;
 use App\Models\Wishlist;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -85,5 +86,44 @@ class CartController extends Controller
             return response()->json(['error' => 'Please Login to Continue']);
         }
     }
+
+    //CHECKOUT PAGE
+    public function CheckoutCreate()
+    {
+        if (Auth::check()) {
+            if (Cart::total() > 0) {
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::total();
+
+                //PASSING DIVISION AND DISTRICT VALUES TO THE VIEW PAGE
+                $division = ShipDivision::orderBy('division_name', 'ASC')->get();
+
+                return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal', 'division'));
+
+            }else{
+                $notification = array(
+                    'message' => 'Shop At list One Product',
+                    'alert-type' => 'error'
+                );
+                return redirect()->to('/')->with($notification);
+            }
+        }else{
+            $notification = array(
+                'message' => 'You Need to Login First',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
+        }
+
+    }
+
+    // DISPLAYING AUTOLOAD DISTRICT DETAILS
+    public function GetDistrict($division_id){
+        $subcat = ShipDistrict::where('division_id',$division_id)->orderBy('district_name','ASC')->get();
+        return json_encode($subcat);
+    }
+
+
 
 }

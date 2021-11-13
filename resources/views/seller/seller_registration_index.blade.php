@@ -167,6 +167,7 @@
                         type:"GET",
                         dataType:"json",
                         success:function(data) {
+                            //var d =$('select[name="village_id"]').empty();
                             var d =$('select[name="gewog_id"]').empty();
                             $.each(data, function(key, value){
                                 $('select[name="gewog_id"]').append('<option value="'+ value.id +'">' + value.gewog_name + '</option>');

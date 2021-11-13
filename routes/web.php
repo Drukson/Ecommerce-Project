@@ -264,5 +264,11 @@ Route::prefix('shipping')->group(function (){
     Route::post('/subdistrict/update/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'UpdateSubDistrict'])->name('update.subdistrict');
     Route::get('/subdistrict/delete/{id}', [\App\Http\Controllers\Backend\ShippingAreaController::class, 'DeleteSubDistrict'])->name('delete.subdistrict');
 
-
 });
+
+// Checkout Routes
+Route::get('/checkout', [\App\Http\Controllers\Frontend\CartController::class, 'CheckoutCreate'])->name('checkout');
+//District autoload
+Route::get('/district/ajax/{division_id}', [\App\Http\Controllers\Frontend\CartController::class, 'GetDistrict']);
+//Checkout Route
+/*Route::post('/checkout/store', [Che::class, 'CheckoutStore'])->name('checkout.store');*/
