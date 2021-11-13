@@ -271,4 +271,4 @@ Route::get('/checkout', [\App\Http\Controllers\Frontend\CartController::class, '
 //District autoload
 Route::get('/district/ajax/{division_id}', [\App\Http\Controllers\Frontend\CartController::class, 'GetDistrict']);
 //Checkout Route
-/*Route::post('/checkout/store', [Che::class, 'CheckoutStore'])->name('checkout.store');*/
+Route::post('/checkout/store', [\App\Http\Controllers\User\CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
