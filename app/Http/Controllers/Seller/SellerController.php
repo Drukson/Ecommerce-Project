@@ -66,8 +66,14 @@ class SellerController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'category_id' => 'required',
         ]);
-
+        $cat="";
+        if(isset($request->category_id) && $request->category_id!=null && $request->category_id!="" && sizeof($request->category_id)>0){
+            foreach ($request->category_id as $ca){
+                $cat=$cat.$ca.', ';
+            }
+        }
         Seller::insert([
             'name' => $request->name,
             'email' => $request->email,
@@ -75,7 +81,7 @@ class SellerController extends Controller
             'dzongkhag_id' => $request->dzongkhag_id,
             'gewog_id' => $request->gewog_id,
             'village_id' => $request->village_id,
-            'category_id' => $request->category_id,
+            'category_id' => $cat,
             'status' => 0,
             'remarks' => $request->remarks,
             'password' => Hash::make($request['password']),

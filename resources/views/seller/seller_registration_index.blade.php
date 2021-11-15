@@ -100,14 +100,11 @@
                                 <div class="form-group">
                                     <h5>Category<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="category_id" class="form-control">
-                                            <option value="" selected="" disabled="">Select Category</option>
-                                            @foreach($category as $details)
-                                                <option value="{{$details->id}}">{{$details->name}}</option>
-                                            @endforeach
-                                        </select>
+                                        @foreach($category as $details)
+                                            <input type="checkbox" name="category_id[]" value="{{$details->id}}"> {{$details->name}}
+                                        @endforeach
                                         @error('category_id')
-                                        <span class="text-danger">{{$message}}</span>
+                                            <br><span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>
