@@ -208,6 +208,14 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist', [\App\Http\Controllers\User\WishlistController::class, 'ViewWishlist'])->name('wishlist');
     Route::get('/get-wishlist-product', [\App\Http\Controllers\User\WishlistController::class, 'GetWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [\App\Http\Controllers\User\WishlistController::class, 'RemoveWishlistProduct']);
+
+//STRIP ORDER Route
+    Route::post('/stripe/order', [\App\Http\Controllers\User\StripeController::class, 'StripeOrder'])->name('stripe.order');
+//USER DASHBOARD MY ORDER PAGE
+    Route::get('/my/orders', [\App\Http\Controllers\User\AllUserController::class, 'MyOrders'])->name('my.orders');
+//USER DASHBOARD ORDER VIEW PAGE
+    Route::get('/order_details/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'OrderDetails']);
+
 });
 
 // MYCART DETAILS ALL ROUTE
@@ -272,3 +280,4 @@ Route::get('/checkout', [\App\Http\Controllers\Frontend\CartController::class, '
 Route::get('/district/ajax/{division_id}', [\App\Http\Controllers\Frontend\CartController::class, 'GetDistrict']);
 //Checkout Route
 Route::post('/checkout/store', [\App\Http\Controllers\User\CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
+

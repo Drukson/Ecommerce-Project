@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dzongkhag;
-use App\Models\Gewog;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Carbon\Carbon;
