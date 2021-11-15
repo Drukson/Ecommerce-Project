@@ -211,7 +211,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 
 //STRIP ORDER Route
     Route::post('/stripe/order', [\App\Http\Controllers\User\StripeController::class, 'StripeOrder'])->name('stripe.order');
-
+//USER DASHBOARD MY ORDER PAGE
+    Route::get('/my/orders', [\App\Http\Controllers\User\AllUserController::class, 'MyOrders'])->name('my.orders');
+//USER DASHBOARD ORDER VIEW PAGE
+    Route::get('/order_details/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'OrderDetails']);
 
 });
 

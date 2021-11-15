@@ -55,12 +55,10 @@
                                                                     <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
 
                                                                     </td>
-
                                                                     <td> Invoice No : {{ $order['invoice_no'] }}</td>
                                                                     <td> Amount : {{ $order['amount'] }}</td>
                                                                     <td> Name : {{ $order['name'] }}</td>
                                                                     <td> Email : {{ $order['email'] }}</td>
-
                                                                 </tr>
                                                             </table>
                                                         </td>
