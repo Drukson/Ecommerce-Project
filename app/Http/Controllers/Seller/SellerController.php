@@ -64,7 +64,7 @@ class SellerController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required | email|unique:sellers,email',
             'phone' => 'required',
         ]);
 
@@ -85,9 +85,7 @@ class SellerController extends Controller
             'message' => 'Please wait for Account verification',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return view('seller.registration_acknowledgement')->with($notification);
     }
-
-
 
 }
