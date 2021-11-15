@@ -1,13 +1,21 @@
 @extends('frontend.main_master')
 @section('content')
 
+    <style type="text/css">
+        .table > tbody > tr > th, .table > tfoot > tr > th{
+            vertical-align: middle;
+            border: none;
+            padding: 10px;
+        }
+    </style>
+
     <div class="body-content">
         <div class="container">
             <div class="row">
                 @include('frontend.common.user_sidebar')
-
+                <hr>
                 <div class="col-md-5">
-                    <div class="card">
+                    <div class="card ">
                         <div class="card-header"><h4>Shipping Details</h4></div>
                         <hr>
                         <div class="card-body" style="background: #E9EBEC;">
@@ -119,7 +127,7 @@
                                 <label for=""> {{ $item->qty }}</label>
                             </td>
                             <td class="col-md-2">
-                                <label for=""> ${{ $item->price }}  ( $ {{ $item->price * $item->qty}} ) </label>
+                                <label for=""> Nu.{{ $item->price }}  ( Nu. {{ $item->price * $item->qty}} ) </label>
                             </td>
                         </tr>
                     @endforeach

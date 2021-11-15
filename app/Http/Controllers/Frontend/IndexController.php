@@ -43,6 +43,10 @@ class IndexController extends Controller
         'skip_category_handicraft', 'skip_product_handicraft'));
     }
 
+    /*private function getsummproduct($type="", $limit= '' ){
+        return AgroProduct::where('type')->limit($limit)->get();
+    }*/
+
     public function destroy(){
         Auth::logout();
         $notification = array(
