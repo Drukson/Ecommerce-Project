@@ -25,7 +25,7 @@
                                             <div class="form-group">
                                                 <h5>Select Category<span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <select name="category_id" class="form-control">
+                                                    <select name="category_id" class="form-control" onchange="showfields('category_id')" id="category_id">
                                                         <option value="" selected=""  disabled="">Select Category</option>
                                                         @foreach($category as $details)
                                                             <option value="{{$details->id}}">
@@ -38,7 +38,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_cat_seciton">
                                             <div class="form-group">
                                                 <h5>Sub-Category<span class="text-danger">*</span></h5>
                                                 <div class="controls">
@@ -237,6 +237,13 @@
     <!-- /.content -->
 </div>
     <script type="text/javascript">
+        function showfields(id){
+            if($('#'+id).val()==1){
+                $('#sub_cat_seciton').hide();
+            }else{
+                $('#sub_cat_seciton').show();
+            }
+        }
         $(document).ready(function() {
             $('select[name="category_id"]').on('change', function(){
                 var category_id = $(this).val();

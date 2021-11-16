@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 10:24 AM
+-- Generation Time: Nov 16, 2021 at 10:02 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -72,6 +72,11 @@ CREATE TABLE `agro_products` (
   `special_offers` int(11) DEFAULT NULL,
   `special_deals` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
+  `no_of_rooms` int(11) DEFAULT NULL,
+  `available_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `available_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_weight` int(255) DEFAULT NULL,
+  `seller_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -80,12 +85,13 @@ CREATE TABLE `agro_products` (
 -- Dumping data for table `agro_products`
 --
 
-INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `product_thumbnail`, `hot_deals`, `featured_deals`, `special_offers`, `special_deals`, `status`, `created_at`, `updated_at`) VALUES
-(4, 4, 1, 'Cucumber', 'cucumber', 'asasd', '10', 'vegetables', 200, 180, 'asdasd', '<p>sdasdasdasd</p>', 'uploads/products/thumbnail/1714873847055284.jpg', NULL, NULL, NULL, NULL, 1, '2021-10-28 08:25:43', '2021-11-04 01:59:40'),
-(5, 4, 1, 'Chilli', 'chilli', 'App1', '10', 'vegetables', 200, 100, 'Sas', '<p>ASasAS</p>', 'uploads/products/thumbnail/1714873934289969.jpg', NULL, NULL, NULL, NULL, 1, '2021-10-28 08:27:07', '2021-11-04 01:59:48'),
-(7, 4, 4, 'Apple', 'apple', 'zxczxczxc', '10', 'fruits, apple', 250, 180, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', 'uploads/products/thumbnail/1714874693222311.jpg', NULL, 1, NULL, NULL, 1, '2021-10-28 08:39:10', '2021-11-04 22:34:18'),
-(9, 4, 1, 'Pea', 'pea', 'pea1', '50', 'Vegetables', 120, NULL, 'Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.', '<p>asdasdasd</p>', 'uploads/products/thumbnail/1714877316202855.jpg', NULL, 1, NULL, NULL, 1, '2021-10-28 09:20:52', '2021-11-04 09:58:25'),
-(10, 4, 4, 'Pineapple', 'pineapple', 'App1', '20', 'fruits, pineapple', 200, 180, 'asxas', '<p>asxasx</p>', 'uploads/products/thumbnail/1714950961099867.jpg', NULL, 1, NULL, NULL, 1, '2021-10-28 09:22:58', '2021-11-05 08:24:26');
+INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `product_thumbnail`, `hot_deals`, `featured_deals`, `special_offers`, `special_deals`, `status`, `no_of_rooms`, `available_from`, `available_to`, `product_weight`, `seller_id`, `created_at`, `updated_at`) VALUES
+(4, 4, 1, 'Cucumber', 'cucumber', 'asasd', '10', 'vegetables', 200, 180, 'asdasd', '<p>sdasdasdasd</p>', 'uploads/products/thumbnail/1714873847055284.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:25:43', '2021-11-04 01:59:40'),
+(5, 4, 1, 'Chilli', 'chilli', 'App1', '10', 'vegetables', 200, 100, 'Sas', '<p>ASasAS</p>', 'uploads/products/thumbnail/1714873934289969.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:27:07', '2021-11-04 01:59:48'),
+(7, 4, 4, 'Apple', 'apple', 'zxczxczxc', '10', 'fruits, apple', 250, 180, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', 'uploads/products/thumbnail/1714874693222311.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:39:10', '2021-11-04 22:34:18'),
+(9, 4, 1, 'Pea', 'pea', 'pea1', '50', 'Vegetables', 120, NULL, 'Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.', '<p>asdasdasd</p>', 'uploads/products/thumbnail/1714877316202855.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 09:20:52', '2021-11-04 09:58:25'),
+(10, 4, 4, 'Pineapple', 'pineapple', 'App1', '20', 'fruits, pineapple', 200, 180, 'asxas', '<p>asxasx</p>', 'uploads/products/thumbnail/1714950961099867.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 09:22:58', '2021-11-05 08:24:26'),
+(13, 5, 8, 'Wooden Mask', 'wooden mask', 'Mask1', '20', 'mask', 2500, 2000, 'sdfsdfsdf', '<p>sdfsdfsdfsdfsdf</p>', 'uploads/products/thumbnail/1716564075967090.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-11-16 00:11:11', '2021-11-16 00:16:27');
 
 -- --------------------------------------------------------
 
@@ -304,7 +310,7 @@ CREATE TABLE `homestays` (
 
 INSERT INTO `homestays` (`id`, `category_id`, `name`, `slug`, `no_of_rooms`, `available_from`, `available_to`, `selling_price`, `discount_price`, `homestay_tag`, `short_desc`, `long_desc`, `homestay_thumbnail`, `status`, `created_at`, `updated_at`) VALUES
 (7, 1, 'Pempa Homestay', 'pempa-homestay', 6, '2021-10-07', '2021-10-08', 2500, 2000, 'Homestay', 'I enjoy meeting people from all around the globe and sharing good times with them.', '<p>With our guests, we enjoy talking, exchanging cultures and sometimes partying or eating out.&nbsp;I hope all our guests know more about our culture and like our country even better.</p>\r\n\r\n<h3>Meals</h3>\r\n\r\n<p>Hosts can offer a complimentary light breakfast at their discretion. All other meals, including a full breakfast, might incur an additional cost, if offered. Meals and any additional payment should be arranged directly with your host.</p>\r\n\r\n<h5>INCLUDED IN THE STAY</h5>\r\n\r\n<ul>\r\n	<li>Complimentary Light Breakfast</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Use of Kitchen</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>\r\n\r\n<h5>AVAILABLE ON REQUEST AT AN EXTRA COST</h5>\r\n\r\n<ul>\r\n	<li>Full Board</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>\r\n\r\n<h5>DIET TYPE AVAILABLE ON REQUEST</h5>\r\n\r\n<ul>\r\n	<li>Vegetarian</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Vegan</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Lactose Intolerant</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Nut Allergies</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>', 'uploads/homestay/thumbnail/1715153364991097.jpg', 1, '2021-10-31 10:28:33', '2021-11-02 23:37:44'),
-(9, 1, 'Gangtey Bhutan', 'gangtey-bhutan', 4, '2021-11-11', '2021-11-19', 1800, 100, 'Homestay', 'Phobjikha Valley Homestay', '<p>zxczxc</p>', 'uploads/homestay/thumbnail/1715231332367648.jpg', 1, '2021-11-01 07:07:48', '2021-11-02 23:36:34');
+(9, 1, 'Gangtey Bhutan', 'gangtey-bhutan', 4, '2021-11-11', '2021-11-19', 1800, 100, 'Homestay', 'Phobjikha Valley Homestay', '<p>zxczxc</p>', 'uploads/homestay/thumbnail/1715231332367648.jpg', 1, '2021-11-01 07:07:48', '2021-11-16 00:16:09');
 
 -- --------------------------------------------------------
 
@@ -422,7 +428,11 @@ INSERT INTO `multi_imgs` (`id`, `product_id`, `photo_name`, `created_at`, `updat
 (31, 10, 'uploads/products/multiimage/1714877448342232.jpg', '2021-10-28 09:22:58', NULL),
 (32, 10, 'uploads/products/multiimage/1714877448611614.jpg', '2021-10-28 09:22:58', NULL),
 (33, 10, 'uploads/products/multiimage/1714877448940678.jpg', '2021-10-28 09:22:59', NULL),
-(34, 10, 'uploads/products/multiimage/1714877449230851.jpg', '2021-10-28 09:22:59', NULL);
+(34, 10, 'uploads/products/multiimage/1714877449230851.jpg', '2021-10-28 09:22:59', NULL),
+(42, 13, 'uploads/products/multiimage/1716564076123668.jpg', '2021-11-16 00:11:12', NULL),
+(43, 13, 'uploads/products/multiimage/1716564076361158.jpg', '2021-11-16 00:11:12', NULL),
+(44, 13, 'uploads/products/multiimage/1716564076550286.jpg', '2021-11-16 00:11:12', NULL),
+(45, 13, 'uploads/products/multiimage/1716564076761203.jpg', '2021-11-16 00:11:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -467,7 +477,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `email`, `phone`, `address`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 03:20:09', NULL);
+(1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 03:20:09', NULL),
+(2, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw1zvBc8CCIWLpyCx2uFBV5', 'Stripe', 'txn_3Jw1zwBc8CCIWLpy1PdCrDB9', 'usd', 360.00, '61922fe7b3e19', 'EOS40001339', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:13', NULL),
+(3, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw20eBc8CCIWLpyPqkN6CYo', 'Stripe', 'txn_3Jw20fBc8CCIWLpy0wenl8ts', 'usd', 360.00, '6192301482836', 'EOS79609017', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:58', NULL),
+(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 06:34:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -490,7 +503,9 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `qty`, `price`, `created_at`, `updated_at`) VALUES
-(1, 1, 7, '2', 180.00, '2021-11-15 03:20:09', NULL);
+(1, 1, 7, '2', 180.00, '2021-11-15 03:20:09', NULL),
+(2, 3, 10, '2', 180.00, '2021-11-15 04:02:04', NULL),
+(3, 4, 10, '4', 180.00, '2021-11-15 06:34:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -503,6 +518,13 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('drukzim@gmail.com', '$2y$10$cFToaKbmwH1RbdTOURQ2POZH7f7UvwYUDBuxC2ex67sx42wPTYfLC', '2021-11-15 03:28:59');
 
 -- --------------------------------------------------------
 
@@ -579,7 +601,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('NcL8CfsJIVgURRkStA2V7QfqI51aGlv4MxuLRmKL', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiNjZDUWh1RkZMZVpxNjFsZ2h1WlFiN2o5Wk05RndlUUtqYmdheFBFMyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTVZYLkM4N2NWeDhGS1NJWmxBYmhxZVEwWkE2TzNIenpYUFpidEdSTzcwQWNQeHNhREE0QW0iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjQ6ImNhcnQiO2E6MDp7fX0=', 1636968019);
+('2PhPZNDFms8n6N5AZ59IgDbuufEvUkJS1BtPaeYi', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2dYSlNzOFc1VVBOenh4V1hmV3E1M1hsTTl1cjRqVEtnVVdpR3Z3dSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTA6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvb3JkZXJzL3NoaXBwZWQvb3JkZXJzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO3M6MjoiaWQiO3M6MjoiMTAiO3M6MzoicXR5IjtzOjE6IjIiO3M6NDoibmFtZSI7czo5OiJQaW5lYXBwbGUiO3M6NToicHJpY2UiO2Q6MTgwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czo1OiJpbWFnZSI7czo0NzoidXBsb2Fkcy9wcm9kdWN0cy90aHVtYm5haWwvMTcxNDk1MDk2MTA5OTg2Ny5qcGciO319czo3OiJ0YXhSYXRlIjtpOjA7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX19fX0=', 1637052200);
 
 -- --------------------------------------------------------
 
@@ -795,7 +817,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Drukson', 'drukzim@gmail.com', '77364409', NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, '2021-10-19 09:21:45', '2021-11-13 00:25:31'),
+(1, 'Drukson', 'drukzim@gmail.com', '77364409', NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, '202111151103pea4.jpg', '2021-10-19 09:21:45', '2021-11-15 05:03:55'),
 (2, 'Rocky', 'rocky@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, '2021-10-20 04:41:31', '2021-10-20 04:41:31'),
 (3, 'Kinley Yangden', 'zamin@gmail.com', '77446960', NULL, '$2y$10$Rf5qlhrZcEGrzOIioJ26FOkNLiwqs5y5cPn7G86cfHzdW3uIxp6DG', NULL, NULL, 'TdLj93eSz95wS0uC7xtxENYaWBrFdATn9518iMohbRiGz8ReudZleOoZOslZ', NULL, '202110220626user-profile.png', '2021-10-21 09:53:28', '2021-10-22 00:26:14'),
 (5, 'Jigme Lhaden', 'jigme@gmail.com', '77446960', NULL, '$2y$10$eEI5aFHiTen225czdVQKvuvt9bBW7CRlp1m0zx6EZaNvnTppe73Ty', NULL, NULL, NULL, NULL, '202110220709jigme.png', '2021-10-22 01:08:09', '2021-10-22 02:25:04');
@@ -1042,7 +1064,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `agro_products`
 --
 ALTER TABLE `agro_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1102,19 +1124,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `multi_imgs`
 --
 ALTER TABLE `multi_imgs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

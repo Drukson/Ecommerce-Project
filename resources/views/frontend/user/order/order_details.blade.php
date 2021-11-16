@@ -90,7 +90,7 @@
             </div>
 
             <div class="row">
-        <div class="col-md-12">
+                <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table">
                     <tbody>
@@ -135,11 +135,20 @@
                 </table>
             </div>
         </div>
-        <!-- / end col md 12 -->
-     </div>
+                <!-- / end col md 12 -->
+            </div>
+
+            @if($order->status !== "delivered")
+
+            @else
+                <div class="form-group">
+                    <label for="label"> Order Return Reason:</label>
+                    <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Return Reason</textarea>
+
+                </div>
+            @endif
 
         </div> <!-- // END ORDER ITEM ROW -->
-
     </div> <!-- // end row -->
 
 
