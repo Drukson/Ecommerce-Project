@@ -47,6 +47,11 @@ class IndexController extends Controller
         return AgroProduct::where('type')->limit($limit)->get();
     }*/
 
+    /*private function getHandicraft($name="")
+    {
+        return Category::where('handicrafts', $name)->orderBy('id', 'DESC')->limit(3)->get();
+    }*/
+
     public function destroy(){
         Auth::logout();
         $notification = array(

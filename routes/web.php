@@ -216,6 +216,12 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 //USER DASHBOARD ORDER VIEW PAGE
     Route::get('/order_details/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'OrderDetails']);
 
+    //USER DASHBOARD INVOICE DOWNLOAD
+    Route::get('/invoice_download/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'InvoiceDownload']);
+
+
+
+
 });
 
 // MYCART DETAILS ALL ROUTE
