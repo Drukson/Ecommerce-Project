@@ -36,7 +36,7 @@ class AgroProductController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace('', ' - ', $request->product_name)),
+            'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'product_code' => $request->product_code,
             'product_qty' => $request->product_qty,
             'product_tag' => $request->	product_tag,
@@ -48,6 +48,8 @@ class AgroProductController extends Controller
             'featured_deals' => $request->featured_deals,
             'special_offers' => $request->special_offers,
             'special_deals' => $request->special_deals,
+            'available_from' => $request->available_from,
+            'available_to' => $request->available_to,
 
             'product_thumbnail' => $filePath,
             'status' => 1,
@@ -97,7 +99,7 @@ class AgroProductController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace('', ' - ', $request->product_name)),
+            'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'product_code' => $request->product_code,
             'product_qty' => $request->product_qty,
             'product_tag' => $request->	product_tag,
@@ -109,6 +111,9 @@ class AgroProductController extends Controller
             'featured_deals' => $request->featured_deals,
             'special_offers' => $request->special_offers,
             'special_deals' => $request->special_deals,
+
+            'available_from' => $request->available_from,
+            'available_to' => $request->available_to,
 
             'status' => 1,
             'updated_at' => Carbon::now(),

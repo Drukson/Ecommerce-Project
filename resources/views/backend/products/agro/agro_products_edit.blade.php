@@ -25,7 +25,7 @@
                                                 <div class="form-group">
                                                     <h5>Select Category<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="category_id" class="form-control">
+                                                        <select name="category_id" class="form-control" onchange="showfields('category_id')" id="category_id">
                                                             <option value="" selected="" disabled="">Select Category</option>
                                                             @foreach($category as $details)
                                                                 <option value="{{$details->id}}" {{ $details->id == $agroProduct->category_id ? 'selected':''}}>
@@ -38,7 +38,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" id="sub_cat_seciton">
                                                 <div class="form-group">
                                                     <h5>Sub-Category<span class="text-danger">*</span></h5>
                                                     <div class="controls">
@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Product Title <span class="text-danger">*</span></h5>
+                                                    <h5>Name <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" id="product_name" name="product_name"
                                                                class="form-control" value="{{$agroProduct->product_name}}">
@@ -122,7 +122,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Product Tags <span class="text-danger">*</span></h5>
+                                                    <h5>Tags <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" id="product_tag" name="product_tag"
                                                                class="form-control" value="{{$agroProduct->product_tag}}" data-role="tagsinput">
@@ -137,34 +137,7 @@
                                         </div>
                                         {{--{{       Third Row Ends     }}--}}
                                         {{--{{       Fouth Row Starts     }}--}}
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <h5>Product Thumbnail <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="file" id="product_thumbnail" onChange="mainThamUrl(this)" name="product_thumbnail" class="form-control">
-                                                        @error('product_thumbnail')
-                                                        <span class="text-danger">{{$message}}</span>
-                                                        @enderror
-                                                        <img src="{{asset($agroProduct->product_thumbnail)}}" style="height: 80px;" id="mainThmb">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-group">
-                                                    <h5>Product Images <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="file" name="multi_img[]" class="form-control" multiple="" id="multiImg">
-                                                        @error('multi_img')
-                                                        <span class="text-danger">{{$message}}</span>
-                                                        @enderror
-                                                        <div class="row" id="preview_img" ></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                            </div>
-                                        </div>
+
                                         {{--{{       Fouth Row Ends    }}--}}
                                         {{--{{       Fouth Row Starts     }}--}}
                                         <div class="row">
@@ -328,6 +301,31 @@
 
     </div>
     <script type="text/javascript">
+
+        function showfields(id){
+            if($('#'+id).val()==1){
+                $('#sub_cat_seciton').hide();
+                $('#product_code').hide();
+            }else{
+                $('#sub_cat_seciton').show();
+                $('#product_code').show();
+            }
+
+            if($('#'+id).val()==4){
+                $('#available_from').hide();
+                $('#available_to').hide();
+            }else{
+                $('#available_from').show();
+                $('#available_to').show();
+            }
+            if($('#'+id).val()==5){
+                $('#available_from').hide();
+                $('#available_to').hide();
+            }else{
+
+            }
+        }
+
         $(document).ready(function() {
             $('select[name="category_id"]').on('change', function(){
                 var category_id = $(this).val();
@@ -391,6 +389,5 @@
                 }
             });
         });
-
     </script>
 @endsection

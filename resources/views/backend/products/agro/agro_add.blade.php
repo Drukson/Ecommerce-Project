@@ -9,7 +9,7 @@
         <!-- Basic Forms -->
      <div class="box">
             <div class="box-header with-border">
-                <h4 class="box-title">Add Agro Products</h4>
+                <h4 class="box-title">Add Product Details</h4>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>Product Title <span class="text-danger">*</span></h5>
+                                                <h5>Name <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" id="product_name" name="product_name"
                                                            class="form-control" data-validation-required-message="This field is required">
@@ -68,7 +68,7 @@
                          {{--{{       First Row Ends       }}--}}
                          {{--{{       Second Row         }}--}}
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="product_code">
                                             <div class="form-group">
                                                 <h5>Product Code <span class="text-danger">*</span></h5>
                                                 <div class="controls">
@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>Product Quantity <span class="text-danger">*</span></h5>
+                                                <h5>Quantity/No of Rooms <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" id="product_qty" name="product_qty" class="form-control">
                                                     @error('product_qty')
@@ -93,7 +93,7 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>Selling Price <span class="text-danger">*</span></h5>
+                                                <h5>Selling Price / Price per Night <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" id="selling_price" name="selling_price" class="form-control" >
                                                     @error('selling_price')
@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <h5>Product Tags <span class="text-danger">*</span></h5>
+                                                <h5>Tags <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" id="product_tag" name="product_tag"
                                                            class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput">
@@ -132,6 +132,35 @@
                                         <div class="col-md-4">
                                         </div>
                                     </div>
+
+                                   {{-- ROOM AVAILIBITY--}}
+                                    <div class="row">
+                                        <div class="col-md-4" id="available_from">
+                                            <div class="form-group">
+                                                <h5>Available From <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <input type="date" id="available_from" name="available_from" class="form-control">
+                                                    @error('available_from')
+                                                    <span class="text-danger">{{$message}}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" id="available_to">
+                                            <div class="form-group">
+                                                <h5>Available To <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <input type="date" id="available_to" name="available_to" class="form-control">
+                                                    @error('available_to')
+                                                    <span class="text-danger">{{$message}}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   {{-- END ROOM AVAILIBITY--}}
+
+
                          {{--{{       Third Row Ends     }}--}}
                          {{--{{       Fouth Row Starts     }}--}}
                                     <div class="row">
@@ -240,8 +269,24 @@
         function showfields(id){
             if($('#'+id).val()==1){
                 $('#sub_cat_seciton').hide();
+                $('#product_code').hide();
             }else{
                 $('#sub_cat_seciton').show();
+                $('#product_code').show();
+            }
+
+            if($('#'+id).val()==4){
+                $('#available_from').hide();
+                $('#available_to').hide();
+            }else{
+                $('#available_from').show();
+                $('#available_to').show();
+            }
+            if($('#'+id).val()==5){
+                $('#available_from').hide();
+                $('#available_to').hide();
+            }else{
+
             }
         }
         $(document).ready(function() {

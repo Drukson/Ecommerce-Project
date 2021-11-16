@@ -293,16 +293,11 @@ Route::prefix('orders')->group(function(){
 
   Route::get('/pending/orders', [\App\Http\Controllers\Backend\OrderController::class, 'PendingOrders'])->name('pending-orders');
   Route::get('/pending/orders/details/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'PendingOrdersDetails'])->name('pending.order.details');
-    Route::get('/confirmed/orders', [\App\Http\Controllers\Backend\OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
-
-    Route::get('/processing/orders', [\App\Http\Controllers\Backend\OrderController::class, 'ProcessingOrders'])->name('processing-orders');
-
-    Route::get('/picked/orders', [\App\Http\Controllers\Backend\OrderController::class, 'PickedOrders'])->name('picked-orders');
-
-    Route::get('/shipped/orders', [\App\Http\Controllers\Backend\OrderController::class, 'ShippedOrders'])->name('shipped-orders');
-
-    Route::get('/delivered/orders', [\App\Http\Controllers\Backend\OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
-
-    Route::get('/cancel/orders', [\App\Http\Controllers\Backend\OrderController::class, 'CancelOrders'])->name('cancel-orders');
+  Route::get('/confirmed/orders', [\App\Http\Controllers\Backend\OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
+  Route::get('/processing/orders', [\App\Http\Controllers\Backend\OrderController::class, 'ProcessingOrders'])->name('processing-orders');
+  Route::get('/picked/orders', [\App\Http\Controllers\Backend\OrderController::class, 'PickedOrders'])->name('picked-orders');
+  Route::get('/shipped/orders', [\App\Http\Controllers\Backend\OrderController::class, 'ShippedOrders'])->name('shipped-orders');
+  Route::get('/delivered/orders', [\App\Http\Controllers\Backend\OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
+  Route::get('/cancel/orders', [\App\Http\Controllers\Backend\OrderController::class, 'CancelOrders'])->name('cancel-orders');
 
 });
