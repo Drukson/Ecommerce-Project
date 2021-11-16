@@ -44,15 +44,26 @@ class SellerController extends Controller
 
     public function EditSellerDetails($id)
     {
-        $seller = Seller::find($id);
+        $seller = Seller::where('id',$id)->first();
+        $cat='';
+        if($seller->category_id!=null && $seller->category_id!=""){
+            $subids=explode(', ',$seller->category_id);
+            foreach($subids as $id){
+                if($id!=null && $id!=""){
+                    $cat=$cat.Category::where('id',trim($id))->first()->name.', ';
+                }
+            }
+        }
         $subcategory = SubCategory::find($id);
         $dzongkhag = Dzongkhag::orderBy('dzongkhag_name', 'ASC')->get();
         $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();
         $village = Village::orderBy('village_name', 'ASC')->get();
         $category = Category::orderBy('name', 'ASC')->get();
-
         return view('seller.edit_seller_details',
-            compact('seller', 'dzongkhag', 'gewog', 'village', 'category', 'subcategory'));
+        compact('seller', 'dzongkhag', 'gewog', 'village', 'cat','category', 'subcategory'));
+    }
+    public function update_seller(Request $request){
+
     }
 
     public function GetVillage($gewog_id){
@@ -64,7 +75,7 @@ class SellerController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required | email|unique:sellers,email',
             'phone' => 'required',
             'category_id' => 'required',
         ]);
@@ -82,7 +93,7 @@ class SellerController extends Controller
             'gewog_id' => $request->gewog_id,
             'village_id' => $request->village_id,
             'category_id' => $cat,
-            'status' => 0,
+            'status' => 1,//submittted
             'remarks' => $request->remarks,
             'password' => Hash::make($request['password']),
             'created_at' => Carbon::now()
@@ -91,9 +102,7 @@ class SellerController extends Controller
             'message' => 'Please wait for Account verification',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return view('seller.registration_acknowledgement')->with($notification);
     }
-
-
 
 }

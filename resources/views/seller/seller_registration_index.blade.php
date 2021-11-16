@@ -133,7 +133,7 @@
                                 <h5>Remarks</h5>
                                 <div class="controls">
                                     <textarea name="remarks" id="short_desc" class="form-control"
-                                              required="" placeholder="Enter short description"></textarea>
+                                             placeholder="Enter short description"></textarea>
                                 </div>
                             </div>
                             </div>
