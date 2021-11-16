@@ -89,24 +89,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <h5>Category<span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select name="category_id" class="form-control">
-                                            <option value="" selected="" disabled="">Select Category</option>
-                                            @foreach($category as $details)
-                                                <option value="{{$details->id}}"
-                                                    {{$details->id == $subcategory->category_id ? 'selected':''}}>
-                                                    {{$details->name}}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <span class="text-danger">{{$message}}</span>
-                                        @enderror
-                                    </div>
+                                    <label>Category:</label>
+                                    <input type="text" readonly id="cat" name="cat" value="{{$cat}}" class="form-control unicase-form-control text-input">
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -121,26 +107,56 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-md-4">
-                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Update Sellers</button>
+                            <div class="col-md-12">
+                                <button type="button" onclick="updateform({{$seller->id}},'Approve')" class="btn-upper btn btn-primary"><span class="fa fa-check"></span>Aprove</button>
+                                <button type="button" onclick="updateform({{$seller->id}},'Reject')" class="btn-upper btn btn-danger"><span class="fa fa-times"></span>Reject</button>
                             </div>
                         </div>
-
                     </form>
-
-
+                </div>
+                <div class="modal fade" id="actionmodel" tabindex="-1" aria-labelledby="actionmodelLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="actionmodelLabel"> <strong id="pname"></strong> </h5>
+                                <button type="button" onclick="closemodal('actionmodel')" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{ route('update_seller') }}" class="register-form outer-top-xs" role="form">
+                                @csrf
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" name="recordId" id="recordId"/>
+                                           <span>Are you suere you wish to <span id="actiontype"></span> this ? </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" onclick="updateform({{$seller->id}},'Approve')" class="btn-upper btn btn-primary btn-sm"><span class="fa fa-check"></span>Yes</button>
+                                            <button type="button" onclick="closemodal('actionmodel')" data-dismiss="modal" class="btn-upper btn btn-danger btn-sm"><span class="fa fa-times"></span>No</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div><!-- /.sigin-in-->
         </div><!-- /.container -->
     </div><!-- /.body-content -->
 
-
-
-
-
     <script type="text/javascript">
+        function updateform(id,type){
+            $('#recordId').val(id);
+            $('#actiontype').html(type);
+            $('#actionmodel').modal('show');
+        } 
+        function closemodal(id){
+            $('#'+id).modal('hide');    
+        }
         $(document).ready(function() {
             $('select[name="dzongkhag_id"]').on('change', function(){
                 var dzongkhag_id = $(this).val();
@@ -160,6 +176,7 @@
                     alert('danger');
                 }
             });
+            
         });
     </script>
 

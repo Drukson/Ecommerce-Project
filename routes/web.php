@@ -61,6 +61,7 @@ Route::prefix('seller')->group(function (){
 // DISPLAY ALL SELLER IN THE ADMIN PANEL
 Route::get('/all/sellers', [\App\Http\Controllers\Seller\SellerController::class, 'SellerDetails'])->name('all_sellers');
 Route::get('/all/sellers/edit/{id}', [\App\Http\Controllers\Seller\SellerController::class, 'EditSellerDetails'])->name('edit.sellers');
+Route::post('/update_seller', [\App\Http\Controllers\Seller\SellerController::class, 'update_seller'])->name('update_seller');
 
 
 // Sponsors Section Route
