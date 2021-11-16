@@ -300,4 +300,16 @@ Route::prefix('orders')->group(function(){
   Route::get('/delivered/orders', [\App\Http\Controllers\Backend\OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
   Route::get('/cancel/orders', [\App\Http\Controllers\Backend\OrderController::class, 'CancelOrders'])->name('cancel-orders');
 
+    // Update Status
+    Route::get('/pending/confirm/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'PendingToConfirm'])->name('pending-confirm');
+    Route::get('/confirm/processing/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'ConfirmToProcessing'])->name('confirm.processing');
+    Route::get('/processing/picked/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'ProcessingToPicked'])->name('processing.picked');
+    Route::get('/picked/shipped/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'PickedToShipped'])->name('picked.shipped');
+    Route::get('/shipped/delivered/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
+
+    Route::get('/shipped/delivered/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
+    Route::get('/invoice/download/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
+
+
+
 });

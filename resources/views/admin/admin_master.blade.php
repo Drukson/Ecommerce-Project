@@ -93,7 +93,7 @@
     @endif
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript">
+{{--<script type="text/javascript">
     $(function(){
         $(document).on('click','#delete',function(e){
             e.preventDefault();
@@ -119,7 +119,11 @@
             })
         });
     });
-</script>
+</script>--}}
+{{--SWEET DELETE--}}
+<script src="{{ asset('backend/js/deletecode.js') }}"></script>
+{{--SWEET DELETE--}}
+
 
 
 </body>

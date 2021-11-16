@@ -71,7 +71,7 @@
                                         {{--{{       First Row Ends       }}--}}
                                         {{--{{       Second Row         }}--}}
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" id="product_code">
                                                 <div class="form-group">
                                                     <h5>Product Code <span class="text-danger">*</span></h5>
                                                     <div class="controls">
@@ -84,7 +84,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Product Quantity <span class="text-danger">*</span></h5>
+                                                    <h5>Quantity / No of Rooms <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" id="product_qty" value="{{$agroProduct->product_qty}}" name="product_qty" class="form-control">
                                                         @error('product_qty')
@@ -137,6 +137,33 @@
                                         </div>
                                         {{--{{       Third Row Ends     }}--}}
                                         {{--{{       Fouth Row Starts     }}--}}
+                                            {{--ROOM AVAILABLE DATES--}}
+                                        <div class="row">
+                                            <div class="col-md-3" id="available_from">
+                                                <div class="form-group">
+                                                    <h5>Available From <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="date" value="{{$agroProduct->available_from}}" id="available_from" name="available_from" class="form-control">
+                                                        @error('available_from')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3" id="available_to">
+                                                <div class="form-group">
+                                                    <h5>Available To <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="date" value="{{$agroProduct->available_to}}" id="available_to" name="available_to" class="form-control">
+                                                        @error('available_to')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                            {{--ROOM AVAILABLE DATES--}}
 
                                         {{--{{       Fouth Row Ends    }}--}}
                                         {{--{{       Fouth Row Starts     }}--}}
@@ -301,7 +328,7 @@
 
     </div>
     <script type="text/javascript">
-
+        showfields('category_id');
         function showfields(id){
             if($('#'+id).val()==1){
                 $('#sub_cat_seciton').hide();
