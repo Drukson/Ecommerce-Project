@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Dzongkhag;
 use App\Models\Gewog;
 use App\Models\Seller;
+use App\Models\Role;
+use App\Models\User;
 use App\Models\SubCategory;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -32,7 +34,7 @@ class SellerController extends Controller
     /*DISPLAY YALL SELLER IN THE ADMIN*/
     public function SellerDetails()
     {
-        $seller = Seller::latest()->get();
+        $seller = Seller::where('status',1)->get();
         $dzongkhag = Dzongkhag::orderBy('dzongkhag_name', 'ASC')->get();
         $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();
         $village = Village::orderBy('village_name', 'ASC')->get();
@@ -73,18 +75,22 @@ class SellerController extends Controller
             'updated_at' => Carbon::now(),
         ]);
         $userdet=Seller::where('id',$request->recordId)->first();
-        User::insert([
-            'name' => $userdet->name,
-            'email' => $userdet->email,
-            'phone' => $userdet->phone,
-            'password' => $userdet->password,
-            'role_id' => $cat,
-            'status' => 1,//submittted
-            'remarks' => $request->remarks,
-            
-            'created_at' => Carbon::now()
-        ]);
-        dd($userdet);
+        $roleid=Role::where('name','Seller')->first();
+        $checkuser=User::where('email',$userdet->email)->first();
+        if($status==2 && $checkuser==""){
+            User::insert([
+                'name' => $userdet->name,
+                'email' => $userdet->email,
+                'phone' => $userdet->phone,
+                'password' => $userdet->password,
+                'role_id' => $roleid->id,
+                'status' => 1,
+                'created_at' => Carbon::now()
+            ]);
+        }
+        return Redirect::route('all_sellers');
+        // $message="Seller Details has been updated";
+        // return view('admin.acknowledgement',compact('message'));
     }
 
     public function GetVillage($gewog_id){
@@ -123,7 +129,8 @@ class SellerController extends Controller
             'message' => 'Please wait for Account verification',
             'alert-type' => 'success'
         );
-        return view('seller.registration_acknowledgement')->with($notification);
+        $message="You registration details has been submitted for approval. Please wait for Account verification.";
+        return view('seller.registration_acknowledgement',compact('message'))->with($notification);
     }
 
 }
