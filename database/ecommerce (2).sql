@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2021 at 07:45 AM
+-- Generation Time: Nov 17, 2021 at 04:48 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -262,7 +262,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2021_11_12_124918_create_ship_districts_table', 18),
 (29, '2021_11_13_060941_create_shippings_table', 19),
 (30, '2021_11_15_062621_create_orders_table', 20),
-(31, '2021_11_15_062656_create_order_items_table', 20);
+(31, '2021_11_15_062656_create_order_items_table', 20),
+(32, '2021_11_17_095653_create_site_settings_table', 21);
 
 -- --------------------------------------------------------
 
@@ -343,6 +344,7 @@ CREATE TABLE `orders` (
   `delivered_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cancel_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `return_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `return_order` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `return_reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -353,11 +355,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `email`, `phone`, `address`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 03:20:09', NULL),
-(2, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw1zvBc8CCIWLpyCx2uFBV5', 'Stripe', 'txn_3Jw1zwBc8CCIWLpy1PdCrDB9', 'usd', 360.00, '61922fe7b3e19', 'EOS40001339', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:13', NULL),
-(3, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw20eBc8CCIWLpyPqkN6CYo', 'Stripe', 'txn_3Jw20fBc8CCIWLpy0wenl8ts', 'usd', 360.00, '6192301482836', 'EOS79609017', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:58', NULL),
-(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, '17 November 2021', 'Its not working', 'delivered', '2021-11-15 06:34:07', '2021-11-16 23:05:20');
+INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `email`, `phone`, `address`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_order`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'pending', '2021-11-15 03:20:09', NULL),
+(2, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw1zvBc8CCIWLpyCx2uFBV5', 'Stripe', 'txn_3Jw1zwBc8CCIWLpy1PdCrDB9', 'usd', 360.00, '61922fe7b3e19', 'EOS40001339', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'pending', '2021-11-15 04:01:13', NULL),
+(3, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw20eBc8CCIWLpyPqkN6CYo', 'Stripe', 'txn_3Jw20fBc8CCIWLpy0wenl8ts', 'usd', 360.00, '6192301482836', 'EOS79609017', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'pending', '2021-11-15 04:01:58', NULL),
+(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, '17 November 2021', '2', 'Product broke', 'delivered', '2021-11-15 06:34:07', '2021-11-17 05:38:45');
 
 -- --------------------------------------------------------
 
@@ -424,6 +426,31 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `comment`, `summary`, `status`, `created_at`, `updated_at`) VALUES
+(1, 14, 1, 'Good product. I liked it', 'Hello', '0', '2021-11-17 09:14:29', NULL),
+(2, 14, 1, 'zczczca', 'Hello', '1', '2021-11-17 09:26:43', '2021-11-17 09:43:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sellers`
 --
 
@@ -478,7 +505,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('aj6Ao1uYU87K4KPPEoKiYPDSkJrnqXPwEPVF4Gbc', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUGJxZEdwS2R6Y09BQkZUWkxlVXBPRG9xV2ZGOWF6UzVoWFVSck1MVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc3BvbnNvcnMvdmlldyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoiY2FydCI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoxOntzOjg6IgAqAGl0ZW1zIjthOjE6e3M6MzI6ImI3YTQ4N2M0YzI1YWNjYmM1ZWUzZTU0OTg2MmFiNDU0IjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6ImI3YTQ4N2M0YzI1YWNjYmM1ZWUzZTU0OTg2MmFiNDU0IjtzOjI6ImlkIjtzOjI6IjE1IjtzOjM6InF0eSI7czoxOiIxIjtzOjQ6Im5hbWUiO3M6OToiUGVtYSBEZW1hIjtzOjU6InByaWNlIjtkOjE1MDA7czo2OiJ3ZWlnaHQiO2Q6MTtzOjc6Im9wdGlvbnMiO086Mzk6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtT3B0aW9ucyI6MTp7czo4OiIAKgBpdGVtcyI7YToxOntzOjU6ImltYWdlIjtzOjQ3OiJ1cGxvYWRzL3Byb2R1Y3RzL3RodW1ibmFpbC8xNzE2NTg2OTA3NDg4MzA0LmpwZyI7fX1zOjc6InRheFJhdGUiO2k6MDtzOjQ5OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AYXNzb2NpYXRlZE1vZGVsIjtOO3M6NDY6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBkaXNjb3VudFJhdGUiO2k6MDt9fX19czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7fQ==', 1637131441);
+('0pYHEoSIOU6YrmXlTYaXEYGWUwz6owgEHpfS42Rm', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiOWN3bXg5NlFFcmtwcjIxUUhqcjhTQkV3U1Zjbm04c2RFZGtIamNqVSI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njk6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcHJvZHVjdC9hZ3JvL2RldGFpbHMvMTQvc2FuZ2F5LWhvbWVzdGF5cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1637150835),
+('okoQCYghlPl9SOf5y1ICK6zRt9E88JmVHTFwaxBY', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNjR4YktoenVOSklwVm1IbUQ1VEdhWk52aDJkck9Ic0RuemtOaU1EWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcmV2aWV3L3B1Ymxpc2giO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1637164058),
+('zlW9u4gKnA09l932RhJ3ftkzBY0ynyIJ9zzQV8Qb', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZjJ0OHdFa2IzSWZTaXJTZm9jaXBpZFgzZE1pOXlSbUJkOHhYOHlzWiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo1MToiaHR0cDovL2xvY2FsaG9zdC9lY29tL3B1YmxpYy91c2VyL3JldHVybi9vcmRlci9saXN0Ijt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcmV0dXJuL2FkbWluL2FsbC9yZXF1ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1637149145);
 
 -- --------------------------------------------------------
 
@@ -545,6 +574,35 @@ INSERT INTO `ship_divisions` (`id`, `division_name`, `created_at`, `updated_at`)
 (18, 'Trashigang', '2021-11-12 05:54:20', NULL),
 (19, 'Samdrup Jongkhar', '2021-11-12 05:54:34', NULL),
 (20, 'Samtse', '2021-11-12 05:54:45', '2021-11-12 06:04:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `site_settings`
+--
+
+CREATE TABLE `site_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_one` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_two` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `site_settings`
+--
+
+INSERT INTO `site_settings` (`id`, `logo`, `phone_one`, `phone_two`, `email`, `company_name`, `company_address`, `facebook`, `twitter`, `linkedin`, `youtube`, `created_at`, `updated_at`) VALUES
+(1, 'uploads/logo/1716670278016673.png', '+975 – 02-338089', '+975 – 02-338089', 'shine@grat.at', 'Shine', 'SHINE Project Office Above Memorial Chorten Chorten Lam, Thimphu, Bhutan', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://twitter.com/SHINEProject3', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://www.youtube.com/channel/UCCNTFsPeh0FYCPiTi4AHr5Q/featured', NULL, '2021-11-17 04:26:43');
 
 -- --------------------------------------------------------
 
@@ -809,6 +867,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sellers`
 --
 ALTER TABLE `sellers`
@@ -833,6 +897,12 @@ ALTER TABLE `ship_districts`
 -- Indexes for table `ship_divisions`
 --
 ALTER TABLE `ship_divisions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `site_settings`
+--
+ALTER TABLE `site_settings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -922,7 +992,7 @@ ALTER TABLE `gewogs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
@@ -949,6 +1019,12 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
@@ -965,6 +1041,12 @@ ALTER TABLE `ship_districts`
 --
 ALTER TABLE `ship_divisions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `site_settings`
+--
+ALTER TABLE `site_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sliders`
