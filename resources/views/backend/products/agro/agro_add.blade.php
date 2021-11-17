@@ -122,7 +122,7 @@
                                                 <h5>Tags <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" id="product_tag" name="product_tag"
-                                                           class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput">
+                                                           class="form-control" value="" data-role="tagsinput">
                                                     @error('name')
                                                     <span class="text-danger">{{$message}}</span>
                                                     @enderror

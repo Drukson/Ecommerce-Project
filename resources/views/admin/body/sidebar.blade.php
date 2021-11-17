@@ -128,14 +128,14 @@
             <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="file"></i>
-                    <span>Agro Products</span>
+                    <span>Product Details</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{($route == 'all.agroproducts') ? 'active':''}}">
-                        <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Agro Products</a></li>
+                        <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Products</a></li>
                     <li class="{{($route == 'manage.agroproducts') ? 'active':''}}">
                     <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
                 </ul>
