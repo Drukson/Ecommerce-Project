@@ -269,6 +269,28 @@ Route::prefix('orders')->group(function(){
     Route::get('/shipped/delivered/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
     Route::get('/invoice/download/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
 
+});
+
+// Admin Reports Routes
+Route::prefix('reports')->group(function(){
+
+  Route::get('/view', [\App\Http\Controllers\Backend\ReportController::class, 'ReportView'])->name('all.reports');
+  Route::post('/search/by/date', [\App\Http\Controllers\Backend\ReportController::class, 'ReportByDate'])->name('search-by-date');
+  Route::post('/search/by/month', [\App\Http\Controllers\Backend\ReportController::class, 'ReportByMonth'])->name('search-by-month');
+  Route::post('/search/by/year', [\App\Http\Controllers\Backend\ReportController::class, 'ReportByYear'])->name('search-by-year');
+
+});
+
+// Admin Get All User Routes
+Route::prefix('alluser')->group(function(){
+  Route::get('/view', [\App\Http\Controllers\Backend\AdminProfileController::class, 'AllUsers'])->name('all.users');
+});
+
+// Admin Site Setting Routes
+Route::prefix('setting')->group(function(){
+
+   Route::get('/site', [\App\Http\Controllers\Backend\SiteSettingController::class, 'SiteSetting'])->name('all_settings');
+   Route::post('/site/update', [\App\Http\Controllers\Backend\SiteSettingController::class, 'SiteSettingUpdate'])->name('update.sitesetting');
 
 
 });

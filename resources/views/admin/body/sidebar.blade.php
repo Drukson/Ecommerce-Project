@@ -25,6 +25,23 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
+            {{--SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
+            <li class="treeview {{($route == 'all_settings') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>Manage Settings</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu ">
+                    <li class="{{($route == 'all_settings') ? 'active':''}}">
+                        <a href="{{route('all_settings')}}"><i class="ti-more"></i>All Settings</a></li>
+                </ul>
+            </li>
+            {{--END SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
+
             <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -171,6 +188,38 @@
                 </ul>
             </li>
 
+           {{-- //ADMIN REPORTS--}}
+            <li class="treeview {{($route == 'all.reports') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>All Reports</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'all.reports') ? 'active':''}}">
+                        <a href="{{route('all.reports')}}"><i class="ti-more"></i>All Reports</a>
+                    </li>
+
+                </ul>
+            </li>
+           {{-- //END ADMIN REPORTS--}}
+
+            {{-- //ALL USER REPORTS--}}
+            <li class="treeview {{($route == 'all.users') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>All Users</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'all.users') ? 'active':''}}">
+                        <a href="{{route('all.users')}}"><i class="ti-more"></i>All Users</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- //END ALL USER REPORTS--}}
 
             <li class="header nav-small-cap">User Interface</li>
             <li class="treeview">

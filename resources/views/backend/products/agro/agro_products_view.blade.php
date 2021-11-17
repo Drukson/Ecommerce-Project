@@ -10,7 +10,8 @@
                 <div class="col-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Implementing Partners</h3>
+                            <h3 class="box-title">Products |</h3>
+                            <h3 class="box-title">Total Products <span class="badge badge-pill badge-danger"> {{ count($agroProducts) }} </span> </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
