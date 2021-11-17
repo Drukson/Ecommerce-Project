@@ -1,5 +1,5 @@
-@extends('frontend.main_master')
-@section('content')
+@extends('admin.admin_master')
+@section('admin')
     <div class="body-content">
         <div class="container">
             <div class="sign-in-page">
