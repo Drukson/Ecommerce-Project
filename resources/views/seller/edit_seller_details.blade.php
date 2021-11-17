@@ -97,11 +97,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <h5>Remarks</h5>
+                                    <h5>Description</h5>
                                     <div class="controls">
-                                    <textarea name="remarks" id="remarks" class="form-control"
+                                    <textarea name="description" id="description" class="form-control"
                                               required="" placeholder="Enter short description">
                                         {!! $seller->remarks !!}
+                                    </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h5>Remarks</h5>
+                                    <div class="controls">
+                                        <textarea name="remarks" id="remarks" class="form-control">
                                     </textarea>
                                     </div>
                                 </div>
@@ -125,17 +134,19 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="{{ route('update_seller') }}" class="register-form outer-top-xs" role="form">
+                                <form method="POST" action="{{route('update_seller') }}" role="form" id="actionform">
                                 @csrf
-                                    <div class="row">
+                                    <div class="row pb-20">
                                         <div class="col-md-12">
                                             <input type="hidden" name="recordId" id="recordId"/>
-                                           <span>Are you suere you wish to <span id="actiontype"></span> this ? </span>
+                                            <input type="hidden" name="action" id="action"/>
+                                            <input type="hidden" name="verification_remarks" id="verification_remarks"/>
+                                           <span class="text-white">Are you suere you wish to <span id="actiontype"></span> this ? </span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button type="submit" onclick="updateform({{$seller->id}},'Approve')" class="btn-upper btn btn-primary btn-sm"><span class="fa fa-check"></span>Yes</button>
+                                            <button type="button" onclick="updateaction('actionform')" class="btn-upper btn btn-primary btn-sm"><span class="fa fa-check"></span>Yes</button>
                                             <button type="button" onclick="closemodal('actionmodel')" data-dismiss="modal" class="btn-upper btn btn-danger btn-sm"><span class="fa fa-times"></span>No</button>
                                         </div>
                                     </div>
@@ -151,11 +162,16 @@
     <script type="text/javascript">
         function updateform(id,type){
             $('#recordId').val(id);
+            $('#action').val(type);
             $('#actiontype').html(type);
+            $('#verification_remarks').val($('#remarks').val());
             $('#actionmodel').modal('show');
         } 
         function closemodal(id){
             $('#'+id).modal('hide');    
+        }
+        function updateaction(form_id){
+            $('#'+form_id).submit();
         }
         $(document).ready(function() {
             $('select[name="dzongkhag_id"]').on('change', function(){
@@ -180,7 +196,6 @@
         });
     </script>
 
-    {{--VILLAGE AUTOLOAD--}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('select[name="gewog_id"]').on('change', function(){
@@ -203,6 +218,4 @@
             });
         });
     </script>
-    {{--END VILLAGE AUTOLOAD--}}
-
 @endsection

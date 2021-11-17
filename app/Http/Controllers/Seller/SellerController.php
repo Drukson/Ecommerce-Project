@@ -63,7 +63,28 @@ class SellerController extends Controller
         compact('seller', 'dzongkhag', 'gewog', 'village', 'cat','category', 'subcategory'));
     }
     public function update_seller(Request $request){
-
+        $status=2; //approve
+        if($request->action=="Reject"){
+            $status=3;//Rejected
+        }
+        Seller::find($request->recordId)->update([
+            'varification_remarks' => $request->verification_remarks,
+            'status' => $status,
+            'updated_at' => Carbon::now(),
+        ]);
+        $userdet=Seller::where('id',$request->recordId)->first();
+        User::insert([
+            'name' => $userdet->name,
+            'email' => $userdet->email,
+            'phone' => $userdet->phone,
+            'password' => $userdet->password,
+            'role_id' => $cat,
+            'status' => 1,//submittted
+            'remarks' => $request->remarks,
+            
+            'created_at' => Carbon::now()
+        ]);
+        dd($userdet);
     }
 
     public function GetVillage($gewog_id){
