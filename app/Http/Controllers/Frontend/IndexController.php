@@ -28,19 +28,10 @@ class IndexController extends Controller
         $featured = AgroProduct::where('featured_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $category = Category::orderBy('name','DESC')->get();
 
-        // Displaying Homestay Category
-        $skip_category_homestay = Category::skip(0)->first();
-        $skip_product_homestay = Homestay::where('status', 1)->where('category_id', $skip_category_homestay->id)
-            ->orderBy('id', 'DESC')->get();
 
-        // Displaying Handicraft Category
-        $skip_category_handicraft = Category::skip(2)->first();
-        $skip_product_handicraft = Handicraft::where('status', 1)->where('category_id', $skip_category_handicraft->id)
-            ->orderBy('id', 'DESC')->get();
 
         return view('frontend.index', compact('slider', 'category',
-            'agroProduct', 'featured', 'skip_category_homestay', 'skip_product_homestay',
-        'skip_category_handicraft', 'skip_product_handicraft'));
+            'agroProduct', 'featured'));
     }
 
     /*private function getsummproduct($type="", $limit= '' ){

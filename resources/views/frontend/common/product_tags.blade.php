@@ -1,8 +1,7 @@
 
 @php
     $tags = \App\Models\AgroProduct::groupBy('product_tag')->select('product_tag')->get();
-    $handicraft = \App\Models\Handicraft::groupBy('handicraft_tag')->select('handicraft_tag')->get();
-    $homestay = \App\Models\Homestay::groupBy('homestay_tag')->select('homestay_tag')->get();
+
 @endphp
 
 
@@ -17,21 +16,6 @@
             @endforeach
         </div>
         <hr>
-        <div class="tag-list">
-            @foreach($handicraft as $tag)
-                <a class="item active" title="{{$tag->handicraft_tag}}"
-                   href="{{url('/product/handicraft/tag/'. $tag->handicraft_tag)}}">
-                    {{str_replace(',','',$tag->handicraft_tag)}}</a>
-            @endforeach
-        </div>
-        <hr>
-        <div class="tag-list">
-            @foreach($homestay as $tag)
-                <a class="item active" title="{{$tag->homestay_tag}}"
-                   href="{{url('/product/homestay/tag/'. $tag->homestay_tag)}}">
-                    {{str_replace(',','',$tag->homestay_tag)}}</a>
-            @endforeach
-        </div>
         <!-- /.tag-list -->
     </div>
     <!-- /.sidebar-widget-body -->

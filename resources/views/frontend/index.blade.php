@@ -688,16 +688,16 @@
                                                             <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                     </li>
-                                                    <li {{--class="lnk wishlist"--}}>
+                                                    <li class="lnk wishlist">
                                                         <button class="btn btn-primary icon"  type="button" title="Wishlist"
                                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)">
                                                             <i class="fa fa-heart"></i>
                                                         </button>
 
-                                                       {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                        <button class="btn btn-primary icon"  type="button"  title="Wishlist"
                                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)">
                                                             <i class="fa fa-heart"></i>
-                                                        </button>--}}
+                                                        </button>
                                                     </li>
                                                     <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare">
                                                             <i class="fa fa-signal" aria-hidden="true"></i> </a>
@@ -721,7 +721,7 @@
                     <!-- /.section -->
                     <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
                     <!-- ============================================== HOMESTAY PRODUCTS ============================================== -->
-                    <section class="section featured-product wow fadeInUp">
+                    {{--<section class="section featured-product wow fadeInUp">
                         <h3 class="section-title">{{$skip_category_homestay->name}}</h3>
                         <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
                             @foreach($skip_product_homestay as $product)
@@ -773,11 +773,11 @@
 
                         </div>
                         <!-- /.home-owl-carousel -->
-                    </section>
+                    </section>--}}
                     <!-- /.section -->
 
                     <!-- ============================================== HANDICRAFT PRODUCTS ============================================== -->
-                    <section class="section featured-product wow fadeInUp">
+                  {{--  <section class="section featured-product wow fadeInUp">
                         <h3 class="section-title">{{$skip_category_handicraft->name}}</h3>
                         <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
                             @foreach($skip_product_handicraft as $product)
@@ -825,7 +825,7 @@
 
                         </div>
                         <!-- /.home-owl-carousel -->
-                    </section>
+                    </section>--}}
                     <!-- /.section -->
 
                     <!-- /.wide-banners -->

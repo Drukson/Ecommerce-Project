@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2021 at 10:02 AM
+-- Generation Time: Nov 17, 2021 at 07:45 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -56,10 +56,10 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `r
 CREATE TABLE `agro_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
-  `subcategory_id` int(11) NOT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_qty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `selling_price` int(11) NOT NULL,
@@ -72,7 +72,6 @@ CREATE TABLE `agro_products` (
   `special_offers` int(11) DEFAULT NULL,
   `special_deals` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `no_of_rooms` int(11) DEFAULT NULL,
   `available_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `available_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_weight` int(255) DEFAULT NULL,
@@ -85,13 +84,15 @@ CREATE TABLE `agro_products` (
 -- Dumping data for table `agro_products`
 --
 
-INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `product_thumbnail`, `hot_deals`, `featured_deals`, `special_offers`, `special_deals`, `status`, `no_of_rooms`, `available_from`, `available_to`, `product_weight`, `seller_id`, `created_at`, `updated_at`) VALUES
-(4, 4, 1, 'Cucumber', 'cucumber', 'asasd', '10', 'vegetables', 200, 180, 'asdasd', '<p>sdasdasdasd</p>', 'uploads/products/thumbnail/1714873847055284.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:25:43', '2021-11-04 01:59:40'),
-(5, 4, 1, 'Chilli', 'chilli', 'App1', '10', 'vegetables', 200, 100, 'Sas', '<p>ASasAS</p>', 'uploads/products/thumbnail/1714873934289969.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:27:07', '2021-11-04 01:59:48'),
-(7, 4, 4, 'Apple', 'apple', 'zxczxczxc', '10', 'fruits, apple', 250, 180, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', 'uploads/products/thumbnail/1714874693222311.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:39:10', '2021-11-04 22:34:18'),
-(9, 4, 1, 'Pea', 'pea', 'pea1', '50', 'Vegetables', 120, NULL, 'Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.', '<p>asdasdasd</p>', 'uploads/products/thumbnail/1714877316202855.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 09:20:52', '2021-11-04 09:58:25'),
-(10, 4, 4, 'Pineapple', 'pineapple', 'App1', '20', 'fruits, pineapple', 200, 180, 'asxas', '<p>asxasx</p>', 'uploads/products/thumbnail/1714950961099867.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 09:22:58', '2021-11-05 08:24:26'),
-(13, 5, 8, 'Wooden Mask', 'wooden mask', 'Mask1', '20', 'mask', 2500, 2000, 'sdfsdfsdf', '<p>sdfsdfsdfsdfsdf</p>', 'uploads/products/thumbnail/1716564075967090.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-11-16 00:11:11', '2021-11-16 00:16:27');
+INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `product_thumbnail`, `hot_deals`, `featured_deals`, `special_offers`, `special_deals`, `status`, `available_from`, `available_to`, `product_weight`, `seller_id`, `created_at`, `updated_at`) VALUES
+(4, 4, 1, 'Cucumber', 'cucumber', 'asasd', '10', 'vegetables', 200, 180, 'asdasd', '<p>sdasdasdasd</p>', 'uploads/products/thumbnail/1714873847055284.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 08:25:43', '2021-11-04 01:59:40'),
+(5, 4, 1, 'Chilli', 'chilli', 'App1', '10', 'vegetables', 200, 100, 'Sas', '<p>ASasAS</p>', 'uploads/products/thumbnail/1714873934289969.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 08:27:07', '2021-11-04 01:59:48'),
+(7, 4, 4, 'Apple', 'apple', 'zxczxczxc', '10', 'fruits, apple', 250, 180, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', 'uploads/products/thumbnail/1714874693222311.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 08:39:10', '2021-11-04 22:34:18'),
+(9, 4, 1, 'Pea', 'pea', 'pea1', '50', 'Vegetables', 120, NULL, 'Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.', '<p>asdasdasd</p>', 'uploads/products/thumbnail/1714877316202855.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 09:20:52', '2021-11-04 09:58:25'),
+(10, 4, 4, 'Pineapple', 'pineapple', 'App1', '20', 'fruits, pineapple', 200, 180, 'asxas', '<p>asxasx</p>', 'uploads/products/thumbnail/1714950961099867.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 09:22:58', '2021-11-05 08:24:26'),
+(13, 5, 8, 'Wooden Mask', 'wooden mask', 'Mask1', '20', 'mask', 2500, 2000, 'sdfsdfsdf', '<p>sdfsdfsdfsdfsdf</p>', 'uploads/products/thumbnail/1716564075967090.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-11-16 00:11:11', '2021-11-16 00:16:27'),
+(14, 1, NULL, 'Sangay Homestays', 'sangay-homestays', NULL, '4', 'village', 2500, 2000, 'sdfdfsdf', '<p>sdfsdfsdfdsfs</p>', 'uploads/products/thumbnail/1716579328063693.jpg', NULL, NULL, NULL, NULL, 1, '2021-11-17', '2021-11-24', NULL, NULL, '2021-11-16 04:13:37', '2021-11-16 06:10:04'),
+(15, 1, NULL, 'Pema Dema', 'pema-dema', NULL, '2', 'village', 1800, 1500, 'sdacda', '<p>asdsada</p>', 'uploads/products/thumbnail/1716586907488304.jpg', NULL, 1, NULL, NULL, 0, '2021-11-17', '2021-11-25', NULL, NULL, '2021-11-16 06:14:06', '2021-11-17 00:07:46');
 
 -- --------------------------------------------------------
 
@@ -104,6 +105,7 @@ CREATE TABLE `categories` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -112,10 +114,10 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `created_at`, `updated_at`) VALUES
-(1, 'Homestay', 'homestay', 'fa fa-home', '2021-10-24 23:40:03', NULL),
-(4, 'Agro Products', 'agro products', 'fa fa-ravelry', '2021-10-25 00:05:01', NULL),
-(5, 'Handicrafts', 'handicrafts', 'fa fa-american-sign-language-interpreting', '2021-10-26 22:12:24', NULL);
+INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Homestay', 'homestay', 'fa fa-home', 'Y', '2021-10-24 23:40:03', '2021-11-17 00:36:28'),
+(4, 'Agro Products', 'agro products', 'fa fa-ravelry', 'Y', '2021-10-25 00:05:01', '2021-11-17 00:35:56'),
+(5, 'Handicrafts', 'handicrafts', 'fa fa-american-sign-language-interpreting', 'Y', '2021-10-26 22:12:24', '2021-11-17 00:35:52');
 
 -- --------------------------------------------------------
 
@@ -219,135 +221,6 @@ INSERT INTO `gewogs` (`id`, `dzongkhag_id`, `gewog_name`, `slug`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `handicrafts`
---
-
-CREATE TABLE `handicrafts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `subcategory_id` int(11) NOT NULL,
-  `handicraft_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_qty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `selling_price` int(11) NOT NULL,
-  `discount_price` int(11) DEFAULT NULL,
-  `short_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `long_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `handicrafts`
---
-
-INSERT INTO `handicrafts` (`id`, `category_id`, `subcategory_id`, `handicraft_name`, `handicraft_slug`, `handicraft_code`, `handicraft_qty`, `handicraft_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `handicraft_thumbnail`, `status`, `created_at`, `updated_at`) VALUES
-(2, 5, 8, 'Dhaba', 'dhaba', 'Dhaba01', '2', 'Handicraft,Wooden Arts', 52000, 2000, 'dasdasd', '<p>asdasdasda</p>', 'uploads/handicraft/thumbnail/1715333573121580.jpg', 1, '2021-11-01 10:31:08', '2021-11-02 10:12:52'),
-(3, 5, 8, 'Mask', 'mask', 'Mask01', '2', 'Mask', 5400, 600, 'Handmade Wooden Mask, Handmade Wooden Mask Wholesale, Handmade Handicraft Wooden Mask export', '<p>Handmade Wooden Mask, Handmade Wooden Mask Wholesale, Handmade Handicraft Wooden Mask export</p>', 'uploads/handicraft/thumbnail/1715333554809519.jpg', 1, '2021-11-02 10:12:35', NULL),
-(4, 5, 9, 'Kira', 'kira', 'Kira1', '2', 'Kira', 2500, 2000, 'Opening high-end markets for Bhutanese handicrafts (en)', '<p>Opening high-end markets for Bhutanese handicrafts (en)</p>', 'uploads/handicraft/thumbnail/1715395719013526.jpg', 1, '2021-11-03 02:40:40', '2021-11-05 06:28:55');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `handicraft_images`
---
-
-CREATE TABLE `handicraft_images` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `handicraft_id` int(11) NOT NULL,
-  `photo_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `handicraft_images`
---
-
-INSERT INTO `handicraft_images` (`id`, `handicraft_id`, `photo_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'uploads/handicraft/multiimage/1715240251363322.jpg', '2021-11-01 09:29:34', NULL),
-(3, 1, 'uploads/handicraft/multiimage/1715240251830218.jpg', '2021-11-01 09:29:34', NULL),
-(4, 2, 'uploads/handicraft/multiimage/1715244124822387.jpg', '2021-11-01 10:31:08', NULL),
-(5, 2, 'uploads/handicraft/multiimage/1715244125092673.jpg', '2021-11-01 10:31:08', NULL),
-(6, 2, 'uploads/handicraft/multiimage/1715244125392613.jpg', '2021-11-01 10:31:08', NULL),
-(7, 3, 'uploads/handicraft/multiimage/1715333555212316.jpg', '2021-11-02 10:12:35', NULL),
-(8, 3, 'uploads/handicraft/multiimage/1715333555622520.jpg', '2021-11-02 10:12:36', NULL),
-(9, 4, 'uploads/handicraft/multiimage/1715395719633171.jpg', '2021-11-03 02:40:41', NULL),
-(10, 4, 'uploads/handicraft/multiimage/1715395721171395.jpg', '2021-11-03 02:40:42', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `homestays`
---
-
-CREATE TABLE `homestays` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_of_rooms` int(11) NOT NULL,
-  `available_from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `available_to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `selling_price` int(11) NOT NULL,
-  `discount_price` int(11) NOT NULL,
-  `homestay_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `short_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `long_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homestay_thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `homestays`
---
-
-INSERT INTO `homestays` (`id`, `category_id`, `name`, `slug`, `no_of_rooms`, `available_from`, `available_to`, `selling_price`, `discount_price`, `homestay_tag`, `short_desc`, `long_desc`, `homestay_thumbnail`, `status`, `created_at`, `updated_at`) VALUES
-(7, 1, 'Pempa Homestay', 'pempa-homestay', 6, '2021-10-07', '2021-10-08', 2500, 2000, 'Homestay', 'I enjoy meeting people from all around the globe and sharing good times with them.', '<p>With our guests, we enjoy talking, exchanging cultures and sometimes partying or eating out.&nbsp;I hope all our guests know more about our culture and like our country even better.</p>\r\n\r\n<h3>Meals</h3>\r\n\r\n<p>Hosts can offer a complimentary light breakfast at their discretion. All other meals, including a full breakfast, might incur an additional cost, if offered. Meals and any additional payment should be arranged directly with your host.</p>\r\n\r\n<h5>INCLUDED IN THE STAY</h5>\r\n\r\n<ul>\r\n	<li>Complimentary Light Breakfast</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Use of Kitchen</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>\r\n\r\n<h5>AVAILABLE ON REQUEST AT AN EXTRA COST</h5>\r\n\r\n<ul>\r\n	<li>Full Board</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>\r\n\r\n<h5>DIET TYPE AVAILABLE ON REQUEST</h5>\r\n\r\n<ul>\r\n	<li>Vegetarian</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Vegan</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Lactose Intolerant</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Nut Allergies</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>', 'uploads/homestay/thumbnail/1715153364991097.jpg', 1, '2021-10-31 10:28:33', '2021-11-02 23:37:44'),
-(9, 1, 'Gangtey Bhutan', 'gangtey-bhutan', 4, '2021-11-11', '2021-11-19', 1800, 100, 'Homestay', 'Phobjikha Valley Homestay', '<p>zxczxc</p>', 'uploads/homestay/thumbnail/1715231332367648.jpg', 1, '2021-11-01 07:07:48', '2021-11-16 00:16:09');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `homestay_images`
---
-
-CREATE TABLE `homestay_images` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `homestay_id` int(11) NOT NULL,
-  `photo_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `homestay_images`
---
-
-INSERT INTO `homestay_images` (`id`, `homestay_id`, `photo_name`, `created_at`, `updated_at`) VALUES
-(1, 5, 'uploads/homestay/multiimage/1715148103957211.jpg', '2021-10-31 09:04:56', NULL),
-(3, 5, 'uploads/homestay/multiimage/1715151848199297.jpg', '2021-10-31 09:04:56', '2021-10-31 10:04:26'),
-(12, 7, 'uploads/homestay/multiimage/1715153365229296.jpg', '2021-10-31 10:28:33', NULL),
-(13, 7, 'uploads/homestay/multiimage/1715153365774992.jpg', '2021-10-31 10:28:34', NULL),
-(14, 7, 'uploads/homestay/multiimage/1715153366351125.jpg', '2021-10-31 10:28:34', NULL),
-(15, 7, 'uploads/homestay/multiimage/1715153366600257.jpg', '2021-10-31 10:28:34', NULL),
-(16, 7, 'uploads/homestay/multiimage/1715153366812273.jpg', '2021-10-31 10:28:35', NULL),
-(17, 7, 'uploads/homestay/multiimage/1715153367516479.jpg', '2021-10-31 10:28:35', NULL),
-(18, 7, 'uploads/homestay/multiimage/1715153368060571.jpg', '2021-10-31 10:28:36', NULL),
-(19, 7, 'uploads/homestay/multiimage/1715153368520346.jpg', '2021-10-31 10:28:36', NULL),
-(25, 9, 'uploads/homestay/multiimage/1715231332844815.jpg', '2021-11-01 07:07:49', NULL),
-(26, 9, 'uploads/homestay/multiimage/1715231333137213.jpg', '2021-11-01 07:07:49', NULL),
-(27, 9, 'uploads/homestay/multiimage/1715231333393222.jpg', '2021-11-01 07:07:49', NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -432,7 +305,11 @@ INSERT INTO `multi_imgs` (`id`, `product_id`, `photo_name`, `created_at`, `updat
 (42, 13, 'uploads/products/multiimage/1716564076123668.jpg', '2021-11-16 00:11:12', NULL),
 (43, 13, 'uploads/products/multiimage/1716564076361158.jpg', '2021-11-16 00:11:12', NULL),
 (44, 13, 'uploads/products/multiimage/1716564076550286.jpg', '2021-11-16 00:11:12', NULL),
-(45, 13, 'uploads/products/multiimage/1716564076761203.jpg', '2021-11-16 00:11:12', NULL);
+(45, 13, 'uploads/products/multiimage/1716564076761203.jpg', '2021-11-16 00:11:12', NULL),
+(46, 14, 'uploads/products/multiimage/1716579328689822.jpg', '2021-11-16 04:13:38', NULL),
+(47, 14, 'uploads/products/multiimage/1716579329297389.jpg', '2021-11-16 04:13:38', NULL),
+(48, 14, 'uploads/products/multiimage/1716579329738233.jpg', '2021-11-16 04:13:39', NULL),
+(49, 15, 'uploads/products/multiimage/1716586908051707.jpg', '2021-11-16 06:14:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -480,7 +357,7 @@ INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `em
 (1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 03:20:09', NULL),
 (2, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw1zvBc8CCIWLpyCx2uFBV5', 'Stripe', 'txn_3Jw1zwBc8CCIWLpy1PdCrDB9', 'usd', 360.00, '61922fe7b3e19', 'EOS40001339', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:13', NULL),
 (3, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw20eBc8CCIWLpyPqkN6CYo', 'Stripe', 'txn_3Jw20fBc8CCIWLpy0wenl8ts', 'usd', 360.00, '6192301482836', 'EOS79609017', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:58', NULL),
-(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 06:34:07', NULL);
+(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, '17 November 2021', 'Its not working', 'delivered', '2021-11-15 06:34:07', '2021-11-16 23:05:20');
 
 -- --------------------------------------------------------
 
@@ -601,26 +478,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2PhPZNDFms8n6N5AZ59IgDbuufEvUkJS1BtPaeYi', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2dYSlNzOFc1VVBOenh4V1hmV3E1M1hsTTl1cjRqVEtnVVdpR3Z3dSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTA6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvb3JkZXJzL3NoaXBwZWQvb3JkZXJzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO3M6MjoiaWQiO3M6MjoiMTAiO3M6MzoicXR5IjtzOjE6IjIiO3M6NDoibmFtZSI7czo5OiJQaW5lYXBwbGUiO3M6NToicHJpY2UiO2Q6MTgwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czo1OiJpbWFnZSI7czo0NzoidXBsb2Fkcy9wcm9kdWN0cy90aHVtYm5haWwvMTcxNDk1MDk2MTA5OTg2Ny5qcGciO319czo3OiJ0YXhSYXRlIjtpOjA7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX19fX0=', 1637052200);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shippings`
---
-
-CREATE TABLE `shippings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` bigint(20) UNSIGNED NOT NULL,
-  `division_id` bigint(20) UNSIGNED NOT NULL,
-  `district_id` bigint(20) UNSIGNED NOT NULL,
-  `shipping_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shipping_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+('aj6Ao1uYU87K4KPPEoKiYPDSkJrnqXPwEPVF4Gbc', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUGJxZEdwS2R6Y09BQkZUWkxlVXBPRG9xV2ZGOWF6UzVoWFVSck1MVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc3BvbnNvcnMvdmlldyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoiY2FydCI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxDb2xsZWN0aW9uIjoxOntzOjg6IgAqAGl0ZW1zIjthOjE6e3M6MzI6ImI3YTQ4N2M0YzI1YWNjYmM1ZWUzZTU0OTg2MmFiNDU0IjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTA6e3M6NToicm93SWQiO3M6MzI6ImI3YTQ4N2M0YzI1YWNjYmM1ZWUzZTU0OTg2MmFiNDU0IjtzOjI6ImlkIjtzOjI6IjE1IjtzOjM6InF0eSI7czoxOiIxIjtzOjQ6Im5hbWUiO3M6OToiUGVtYSBEZW1hIjtzOjU6InByaWNlIjtkOjE1MDA7czo2OiJ3ZWlnaHQiO2Q6MTtzOjc6Im9wdGlvbnMiO086Mzk6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtT3B0aW9ucyI6MTp7czo4OiIAKgBpdGVtcyI7YToxOntzOjU6ImltYWdlIjtzOjQ3OiJ1cGxvYWRzL3Byb2R1Y3RzL3RodW1ibmFpbC8xNzE2NTg2OTA3NDg4MzA0LmpwZyI7fX1zOjc6InRheFJhdGUiO2k6MDtzOjQ5OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AYXNzb2NpYXRlZE1vZGVsIjtOO3M6NDY6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBkaXNjb3VudFJhdGUiO2k6MDt9fX19czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7fQ==', 1637131441);
 
 -- --------------------------------------------------------
 
@@ -912,30 +770,6 @@ ALTER TABLE `gewogs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `handicrafts`
---
-ALTER TABLE `handicrafts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `handicraft_images`
---
-ALTER TABLE `handicraft_images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `homestays`
---
-ALTER TABLE `homestays`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `homestay_images`
---
-ALTER TABLE `homestay_images`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -988,12 +822,6 @@ ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
-
---
--- Indexes for table `shippings`
---
-ALTER TABLE `shippings`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ship_districts`
@@ -1064,13 +892,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `agro_products`
 --
 ALTER TABLE `agro_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `dzongkhags`
@@ -1091,30 +919,6 @@ ALTER TABLE `gewogs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `handicrafts`
---
-ALTER TABLE `handicrafts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `handicraft_images`
---
-ALTER TABLE `handicraft_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `homestays`
---
-ALTER TABLE `homestays`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `homestay_images`
---
-ALTER TABLE `homestay_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -1124,7 +928,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `multi_imgs`
 --
 ALTER TABLE `multi_imgs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -1149,12 +953,6 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `sellers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `shippings`
---
-ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ship_districts`

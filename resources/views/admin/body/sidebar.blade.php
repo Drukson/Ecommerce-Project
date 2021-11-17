@@ -81,9 +81,9 @@
                     <li class="{{($route == 'all.subcategory') ? 'active':''}}">
                         <a href="{{route('all.subcategory')}}"><i class="ti-more"></i>Sub Category</a>
                     </li>
-                    <li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
+                    {{--<li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
                         <a href="{{route('all.subsubcategory')}}"><i class="ti-more"></i>Sub Sub Category</a></li>
-                    <li>
+                    <li>--}}
                 </ul>
             </li>
 
@@ -119,9 +119,7 @@
                     <li class="{{($route == 'subdistrict_view') ? 'active':''}}">
                         <a href="{{route('subdistrict_view')}}"><i class="ti-more"></i>Places</a>
                     </li>
-                    <li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
-                        <a href="{{route('all.subsubcategory')}}"><i class="ti-more"></i>Sub Sub Category</a></li>
-                    <li>
+
                 </ul>
             </li>
 
@@ -138,38 +136,6 @@
                         <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Products</a></li>
                     <li class="{{($route == 'manage.agroproducts') ? 'active':''}}">
                     <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview {{($route == 'all.homestay') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>Homestay</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'all.homestay') ? 'active':''}}">
-                        <a href="{{route('all.homestay')}}"><i class="ti-more"></i>Manage Homestay</a></li>
-                    <li class="{{($route == 'manage.homestay') ? 'active':''}}">
-                        <a href="{{route('manage.homestay')}}"><i class="ti-more"></i>Add Homestay</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="treeview {{($route == 'all.handicraft') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>Handicrafts</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'all.handicraft') ? 'active':''}}">
-                        <a href="{{route('all.handicraft')}}"><i class="ti-more"></i>Manage Handicrafts</a></li>
-                    <li class="{{($route == 'add.handicraft') ? 'active':''}}">
-                        <a href="{{route('add.handicraft')}}"><i class="ti-more"></i>Add Handicrafts</a>
-                    </li>
                 </ul>
             </li>
 

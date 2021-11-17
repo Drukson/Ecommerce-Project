@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgroProduct;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => strtolower(str_replace('','-',$request->name)),
             'icon' => $request->icon,
+            'status' => "Y",
             'created_at' => Carbon::now(),
         ]);
 
@@ -47,6 +49,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => strtolower(str_replace(' ','-',$request->name)),
             'icon' => $request->icon,
+            'status' => "Y",
             'updated_at' => Carbon::now(),
         ]);
 
@@ -59,7 +62,6 @@ class CategoryController extends Controller
 
     public function DeleteCategory($id)
     {
-
         $category = Category::find($id);
         $category->delete();
 
@@ -70,4 +72,25 @@ class CategoryController extends Controller
         return Redirect::route('all.category')->with($notification);
     }
 
+
+    public function InactiveCategory($id){
+
+      Category::find($id)->update(['status' => "N"]);
+
+        $notification = array(
+            'message' => 'Product Inactivated',
+            'alert-type' => 'success'
+        );
+
+        return Redirect::back()->with($notification);
+    }
+
+    public function ActiveCategory($id){
+        Category::find($id)->update(['status' => "Y"]);
+        $notification = array(
+            'message' => 'Product Activated',
+            'alert-type' => 'success'
+        );
+        return Redirect::back()->with($notification);
+    }
 }

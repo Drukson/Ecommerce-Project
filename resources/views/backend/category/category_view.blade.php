@@ -9,7 +9,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Implementing Partners</h3>
+                            <h3 class="box-title">Categories</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -20,6 +20,7 @@
                                         <th>Sl.No</th>
                                         <th>Icon</th>
                                         <th>Name</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -33,10 +34,25 @@
                                             </span></td>
                                             <td>{{$sponsers->name}}</td>
                                             <td>
+                                                @if($sponsers->status == "Y")
+                                                    <span class="badge badge-pill badge-success">Active</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-danger">Inactive</span>
+                                                @endif
+                                            </td>
+                                            <td>
                                                 <a href="{{route('edit.category', $sponsers->id) }}" class="btn btn-info" title="Edit">
                                                     <i class="fa fa-pencil"> </i></a>
                                                 <a href="{{route('delete.category', $sponsers->id) }}" class="btn btn-danger" id="delete" title="Delete">
-                                                    <i class="fa fa-pencil"></i></a>
+                                                    <i class="fa fa-trash"></i></a>
+                                                @if($sponsers->status == "Y")
+                                                    <a href="{{route('inactive.category', $sponsers->id)}}" class="btn btn-dark" title="InActive">
+                                                        <i class="fa fa-arrow-down"> </i></a>
+                                                @else
+                                                    <a href="{{route('active.category', $sponsers->id)}}" class="btn btn-info" title="Active Now">
+                                                        <i class="fa fa-arrow-up"> </i></a>
+                                                @endif
+
                                             </td>
 
                                         </tr>

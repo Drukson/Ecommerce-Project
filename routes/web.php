@@ -82,6 +82,10 @@ Route::prefix('category')->group(function (){
     Route::post('/update/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'UpdateCategory'])->name('update.category');
     Route::get('/delete/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'DeleteCategory'])->name('delete.category');
 
+    Route::get('/inactive/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'InactiveCategory'])->name('inactive.category');
+    Route::get('/active/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'ActiveCategory'])->name('active.category');
+
+
 //Sub Category
     Route::get('/sub/all', [\App\Http\Controllers\Backend\SubCategoryController::class, 'SubCategoryView'])->name('all.subcategory');
     Route::post('/sub/add', [\App\Http\Controllers\Backend\SubCategoryController::class, 'AddSubCategory'])->name('add.subcategory');
@@ -133,55 +137,9 @@ Route::prefix('slider')->group(function (){
 // Product Details Route Page
 Route::get('/product/agro/details/{id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductDetails']);
 
-// Homestay ALl Route
-Route::prefix('products')->group(function (){
-    Route::get('/homestay/all', [\App\Http\Controllers\Backend\HomestayController::class, 'HomestayIndex'])->name('all.homestay');
-    Route::get('/homestay/manage', [\App\Http\Controllers\Backend\HomestayController::class, 'ManageHomestayProducts'])->name('manage.homestay');
-    Route::post('/homestay/add', [\App\Http\Controllers\Backend\HomestayController::class, 'AddHomestayProduct'])->name('add.homestay');
-    Route::get('/homestay/edit/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'EditHomestayProducts'])->name('edit.homestay');
-    Route::post('/homestay/update/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'UpdateHomestay'])->name('update.homestay');
-    Route::get('/homestay/multiimg/delete/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'DeleteHomestayImg'])->name('delete.homestayimg');
-    Route::post('/homestay/multiimg/update/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'UpdateHomestayMultiImage'])->name('update.homestay.multiimage');
-    Route::post('/homestay/thumbnail/update/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'UpdateHomestayThumbnail'])->name('update.homestay.thumbnail');
-    Route::get('/homestay/inactive/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'InactiveHomestay'])->name('inactive.homestay');
-    Route::get('/homestay/active/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'ActiveHomestay'])->name('active.homestay');
-    Route::get('/homestay/delete/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'DeleteHomestay'])->name('homestay.delete');
-});
-
-// Homestay Details Route Page
-Route::get('/product/homestay/details/{id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'HomestayDetails']);
-
-// Handicrafts ALl Route
-Route::prefix('products')->group(function (){
-    Route::get('/handicraft/all', [\App\Http\Controllers\Backend\HandicraftController::class, 'HandicraftView'])->name('all.handicraft');
-    Route::get('/handicraft/add', [\App\Http\Controllers\Backend\HandicraftController::class, 'AddHandicraft'])->name('add.handicraft');
-    Route::post('/handicraft/store', [\App\Http\Controllers\Backend\HandicraftController::class, 'StoreHandicraft'])->name('store.handicraft');
-    Route::get('/handicraft/edit/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'EditHandicraft'])->name('edit.handicraft');
-    Route::post('/handicraft/update/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'UpdateHandicraft'])->name('update.handicraft');
-
-
-    Route::get('/handicraft/multiimg/delete/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'DeleteHandicraftImages'])->name('delete.handicraftimages');
-    Route::post('/handicraft/thumbnail/update/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'UpdateHandicraftThumbnail'])->name('update.handicraft.thumbnail');
-
-    Route::get('/handicraft/inactive/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'InactiveHandicraft'])->name('inactive.handicraft');
-    Route::get('/handicraft/active/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'ActiveHandicraft'])->name('active.handicraft');
-    Route::get('/handicraft/delete/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'DeleteHandicraftProduct'])->name('handicraft.details.delete');
-
-    /*Route::post('/agro/img/update/{id}', [\App\Http\Controllers\Backend\AgroProductController::class, 'UpdateAgroMultiImage'])->name('update.agro.multiimage');
-    */
-});
-
-// Handicraft Details Route Page
-Route::get('/product/handicraft/details/{id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'HandicraftDetails']);
 
 // Frontend Agro Product Tag Page Details
 Route::get('/product/agro/tag/{tag}', [\App\Http\Controllers\Frontend\IndexController::class, 'AgroProductTags']);
-
-// Frontend handicraft Product Tag Page Details
-Route::get('/product/handicraft/tag/{tag}', [\App\Http\Controllers\Frontend\IndexController::class, 'HandicraftProductTags']);
-
-// Frontend homestay Product Tag Page Details
-Route::get('/product/homestay/tag/{tag}', [\App\Http\Controllers\Frontend\IndexController::class, 'HomestayProductTags']);
 
 // Frontend Sub Category Product Tag Page Details
 Route::get('/subcategory/product/{subcat_id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'SubCatProduct']);
@@ -220,9 +178,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     //USER DASHBOARD INVOICE DOWNLOAD
     Route::get('/invoice_download/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'InvoiceDownload']);
 
-
-
-
+    //RETURN ORDER
+    Route::post('/return/order/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'ReturnOrder'])->name('return.order');
+    Route::get('/return/order/list', [\App\Http\Controllers\User\AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
+    Route::get('/cancel/orders', [\App\Http\Controllers\User\AllUserController::class, 'CancelOrders'])->name('cancel.orders');
 });
 
 // MYCART DETAILS ALL ROUTE
