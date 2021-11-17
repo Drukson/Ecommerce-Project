@@ -288,9 +288,14 @@ Route::prefix('alluser')->group(function(){
 
 // Admin Site Setting Routes
 Route::prefix('setting')->group(function(){
-
    Route::get('/site', [\App\Http\Controllers\Backend\SiteSettingController::class, 'SiteSetting'])->name('all_settings');
    Route::post('/site/update', [\App\Http\Controllers\Backend\SiteSettingController::class, 'SiteSettingUpdate'])->name('update.sitesetting');
+});
 
+// Admin Return Order Routes
+Route::prefix('return')->group(function(){
+Route::get('/admin/request', [\App\Http\Controllers\Backend\ReturnController::class, 'ReturnRequest'])->name('return.request');
 
+Route::get('/admin/return/approve/{order_id}', [\App\Http\Controllers\Backend\ReturnController::class, 'ReturnRequestApprove'])->name('return.approve');
+Route::get('/admin/all/request', [\App\Http\Controllers\Backend\ReturnController::class, 'ReturnAllRequest'])->name('all.request');
 });

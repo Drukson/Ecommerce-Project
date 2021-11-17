@@ -24,7 +24,6 @@ class StripeController extends Controller
             $total_amount = round(Cart::total());
         }
 
-
         \Stripe\Stripe::setApiKey('sk_test_51JvyFwBc8CCIWLpy2Rsz630bvowCJzxU8RdPSGW7TajmzN0r1Gn3PSvcl1j4btfno5LriZNlERQkmFPlp9WpVBIw00vgDKtSuO');
 
         $token = $_POST['stripeToken'];
@@ -57,7 +56,7 @@ class StripeController extends Controller
      	'order_date' => Carbon::now()->format('d F Y'),
      	'order_month' => Carbon::now()->format('F'),
      	'order_year' => Carbon::now()->format('Y'),
-     	'status' => 'Pending',
+     	'status' => 'pending',
      	'created_at' => Carbon::now(),
      ]);
 

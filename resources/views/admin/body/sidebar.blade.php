@@ -221,6 +221,24 @@
             </li>
             {{-- //END ALL USER REPORTS--}}
 
+            {{-- //RETURN PRODUCTS--}}
+            <li class="treeview {{($route == 'return.request') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Return Orders</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'return.request') ? 'active':''}}">
+                        <a href="{{route('return.request')}}"><i class="ti-more"></i>Returned Orders</a>
+                    </li>
+                    <li class="{{ ($route == 'all.request')? 'active':'' }}"><a href="{{ route('all.request') }}">
+                            <i class="ti-more"></i>All Request</a></li>
+                </ul>
+            </li>
+            {{-- //END RETURN PRODUCTS--}}
+
             <li class="header nav-small-cap">User Interface</li>
             <li class="treeview">
                 <a href="#">

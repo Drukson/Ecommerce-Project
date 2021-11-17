@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function PendingOrders(){
-        $orders = Order::where('status','Pending')->orderBy('id','DESC')->get();
+        $orders = Order::where('status','pending')->orderBy('id','DESC')->get();
         return view('backend.orders.pending_orders',compact('orders'));
 
     }
@@ -48,14 +48,12 @@ class OrderController extends Controller
     } // end mehtod
 
 
-
     // Shipped Orders
     public function ShippedOrders(){
         $orders = Order::where('status','shipped')->orderBy('id','DESC')->get();
         return view('backend.orders.shipped_orders',compact('orders'));
 
     } // end mehtod
-
 
     // Delivered Orders
     public function DeliveredOrders(){
@@ -82,8 +80,6 @@ class OrderController extends Controller
 
         return redirect()->route('pending-orders')->with($notification);
     }
-
-
 
     public function ConfirmToProcessing($order_id)
     {
@@ -118,7 +114,6 @@ class OrderController extends Controller
 
         return redirect()->route('picked-orders')->with($notification);
     } // end method
-
 
     public function ShippedToDelivered($order_id){
 
