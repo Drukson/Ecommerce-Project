@@ -116,19 +116,7 @@ class IndexController extends Controller
         return view('frontend.products.agroproducts.agro_view', compact('product', 'multiImg'));
     }
 
-    public function HomestayDetails($id, $slug)
-    {
-        $homestay = Homestay::find($id);
-        $homestayimage = HomestayImage::where('homestay_id', $id)->get();
-        return view('frontend.products.homestay.homestay_view', compact('homestay', 'homestayimage'));
-    }
 
-    public function HandicraftDetails($id, $slug)
-    {
-        $handicraft = Handicraft::find($id);
-        $handicraftimage = HandicraftImage::where('handicraft_id', $id)->get();
-        return view('frontend.products.handicraft.handicraft_view', compact('handicraft', 'handicraftimage'));
-    }
 
     public function AgroProductTags($tag)
     {
@@ -138,33 +126,19 @@ class IndexController extends Controller
         return view('frontend.tags.agrotags_view', compact('agroProduct', 'categories'));
     }
 
-    public function HandicraftProductTags($tag)
-    {
-        $handicraft = Handicraft::where('status', 1)->where('handicraft_tag', $tag)->orderBy('id', 'ASC')->paginate(3);
-        $categories = Category::orderBy('name', 'ASC')->get();
-
-        return view('frontend.tags.handicrafttags_view', compact('handicraft', 'categories'));
-    }
-
-    public function HomestayProductTags($tag)
-    {
-        $homestay = Homestay::where('status', 1)->where('homestay_tag', $tag)->orderBy('id', 'ASC')->paginate(3);
-        $categories = Category::orderBy('name', 'ASC')->get();
-        return view('frontend.tags.homestaytags_view', compact('homestay', 'categories'));
-    }
 
     public function SubCatProduct($subcat_id, $slug)
     {
+        // dd($subcat_id);
         $agros = AgroProduct::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
-      // $categories = Category::orderBy('name', 'ASC')->get();
-        $categories = Category::skip(1)->first();
+        $categories = Category::orderBy('name', 'ASC')->get();
+       // $categories = Category::skip(1)->first();
 
-    // HANDICRAFT SUB CATEGORY
-        $handicraft = Handicraft::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
-        $category = Category::skip(2)->first();
+        $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
+        //$agroProduct = AgroProduct::where('status', 1)->where('product_tag', $tag)->orderBy('id', 'DESC')->paginate(3);
 
         return view('frontend.products.agroproducts.subcategory_view',
-            compact('agros', 'categories', 'handicraft', 'category'));
+            compact('agros', 'categories', 'breadsubcat'));
     }
 
     public function SubCatHandicraft($subcat_id, $slug)
@@ -192,13 +166,25 @@ class IndexController extends Controller
     }
 
     // Product Search
-    public function ProductSearch(Request $request){
+    public function ProductSearch(Request $request)
+    {
+
+        $request->validate(["search" => "required"]);
         $item = $request->search;
         // echo "$item";
         $categories = Category::orderBy('name','ASC')->get();
         $products = AgroProduct::where('product_name','LIKE',"%$item%")->get();
         return view('frontend.products.agroproducts.search',compact('products','categories'));
+    }
 
+    ///// Advance Search Options
+    public function SearchProduct(Request $request)
+    {
+        $request->validate(["search" => "required"]);
+        $item = $request->search;
+
+        $products = AgroProduct::where('product_name','LIKE',"%$item%")->select('product_name','product_thumbnail')->limit(5)->get();
+        return view('frontend.products.agroproducts.search_product',compact('products'));
     }
 
 }

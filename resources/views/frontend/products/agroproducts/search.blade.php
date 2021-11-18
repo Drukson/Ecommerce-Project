@@ -4,10 +4,6 @@
     Product Search Page
 @endsection
 
-
-
-
-
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
@@ -118,7 +114,8 @@
                         <!-- /.container-fluid -->
                     </div>
                 </div>
-
+                <h4><b>Total Search </b><span class="badge badge-danger" style="background: #FF0000;">
+                        {{ count($products) }} </span> Items  </h4>
                 <div class="clearfix filters-container m-t-10">
                     <div class="row">
                         <div class="col col-sm-6 col-md-2">

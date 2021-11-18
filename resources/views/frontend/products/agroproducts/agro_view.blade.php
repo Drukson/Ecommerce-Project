@@ -4,7 +4,11 @@
 @section('title')
 {{$product->product_name}} Product Details
 @endsection
-
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
     <div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">
@@ -107,6 +111,12 @@
 
                                 </div><!-- /.single-product-gallery -->
                             </div><!-- /.gallery-holder -->
+
+                            @php
+                                $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                            @endphp
+
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
                                     <h1 class="name" id="pname">{{$product->product_name}}</h1>
@@ -268,6 +278,32 @@
                                                             <form role="form" class="cnt-form" method="post" action="{{ route('review.store') }}">
                                                                 @csrf
                                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="cell-label">&nbsp;</th>
+                                                                        <th>1 star</th>
+                                                                        <th>2 stars</th>
+                                                                        <th>3 stars</th>
+                                                                        <th>4 stars</th>
+                                                                        <th>5 stars</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="cell-label">Quality</td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="1"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="2"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="3"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="4"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="5"></td>
+                                                                    </tr>
+
+                                                                    </tbody>
+                                                                </table>
+
+
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">

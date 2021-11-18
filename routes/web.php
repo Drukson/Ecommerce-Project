@@ -93,13 +93,6 @@ Route::prefix('category')->group(function (){
     Route::post('/sub/update/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'UpdateSubCategory'])->name('update.subcategory');
     Route::get('/sub/delete/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
 
-//Sub Sub Category
-    Route::get('/subsubcat/all', [\App\Http\Controllers\Backend\SubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
-    Route::post('/subsubcat/add', [\App\Http\Controllers\Backend\SubCategoryController::class, 'AddSubSubCategory'])->name('add.subsubcategory');
-    Route::get('/subsubcat/edit/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'EditSubSubCategory'])->name('edit.subsubcategory');
-    Route::post('/subsubcat/update/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'UpdateSubSubCategory'])->name('update.subsubcategory');
-    Route::get('/subsubcat/delete/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'DeleteSubSubCategory'])->name('delete.subsubcategory');
-
     //Sub Category autoload
     Route::get('/subcategory/ajax/{category_id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'GetSubCategory']);
 });
@@ -144,8 +137,6 @@ Route::get('/product/agro/tag/{tag}', [\App\Http\Controllers\Frontend\IndexContr
 // Frontend Sub Category Product Tag Page Details
 Route::get('/subcategory/product/{subcat_id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'SubCatProduct']);
 
-// Frontend Sub Category Handicraft Tag Page Details
-Route::get('/subcategory/handicraft/{subcat_id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'SubCatHandicraft']);
 
 // PRODUCT VIEW MODEL WITH AJAX
 Route::get('/product/view/modal/{id}', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductViewAjax']);
@@ -325,3 +316,6 @@ Route::prefix('stock')->group(function(){
 
 /// Product Search Route
 Route::post('/search', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductSearch'])->name('product.search');
+
+// Advance Search Routes
+Route::post('search-product', [\App\Http\Controllers\Frontend\IndexController::class, 'SearchProduct']);
