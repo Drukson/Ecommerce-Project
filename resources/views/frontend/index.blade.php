@@ -472,8 +472,7 @@
                                 <li><a data-transition-type="backSlide" href="#category{{$cat->id}}" data-toggle="tab">
                                     {{$cat->name}}</a></li>
                                 @endforeach
-                                    <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
-                                <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li>
+
                             </ul>
                             <!-- /.nav-tabs -->
                         </div>
@@ -518,11 +517,24 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                                                                        <button class="btn btn-primary icon"  type="button" title="Add to cart"
+                                                                                data-toggle="modal"
+                                                                                data-target="#exampleModal" id="{{ $agro->id }}"
+                                                                                onclick="productView(this.id)">
+                                                                            <i class="fa fa-shopping-cart"></i> </button>
                                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                                                                    <li {{--class="lnk wishlist"--}}>
+                                                                        <button class="btn btn-primary icon"  type="button" title="Wishlist"
+                                                                                id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+
+                                                                        {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)">
+                                                                             <i class="fa fa-heart"></i>
+                                                                         </button>--}}
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                             <!-- /.action -->
@@ -591,11 +603,24 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                                                                        <button class="btn btn-primary icon"  type="button" title="Add to cart"
+                                                                                data-toggle="modal"
+                                                                                data-target="#exampleModal" id="{{ $agro->id }}"
+                                                                                onclick="productView(this.id)">
+                                                                            <i class="fa fa-shopping-cart"></i> </button>
                                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                                                                    <li {{--class="lnk wishlist"--}}>
+                                                                        <button class="btn btn-primary icon"  type="button" title="Wishlist"
+                                                                                id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+
+                                                                        {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)">
+                                                                             <i class="fa fa-heart"></i>
+                                                                         </button>--}}
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                             <!-- /.action -->
@@ -656,7 +681,15 @@
                                         <div class="product-image">
                                             <div class="image"> <a href="{{url('/product/agro/details/'. $product->id.'/'. $product->product_slug)}}"><img  src="{{$product->product_thumbnail}}" alt=""></a> </div>
                                             <!-- /.image -->
-                                            <div class="tag hot"><span>hot</span></div>
+                                            @php
+                                                $amount = $product->selling_price - $product->discount_price;
+                                                $discount = ($amount/$product->selling_price) * 100;
+                                            @endphp
+                                            @if($product->discount_price == NULL)
+                                                <div class="tag new"><span>New</span></div>
+                                            @else
+                                                <div class="tag hot"><span>{{round($discount)}} %</span></div>
+                                            @endif
                                         </div>
                                         <!-- /.product-image -->
                                         <div class="product-info text-left">
@@ -688,20 +721,18 @@
                                                             <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                     </li>
-                                                    <li class="lnk wishlist">
+                                                    <li {{--class="lnk wishlist"--}}>
                                                         <button class="btn btn-primary icon"  type="button" title="Wishlist"
                                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)">
                                                             <i class="fa fa-heart"></i>
                                                         </button>
 
-                                                        <button class="btn btn-primary icon"  type="button"  title="Wishlist"
-                                                                id="{{ $product->id }}" onclick="addToWishlist(this.id)">
-                                                            <i class="fa fa-heart"></i>
-                                                        </button>
+                                                        {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)">
+                                                             <i class="fa fa-heart"></i>
+                                                         </button>--}}
                                                     </li>
-                                                    <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare">
-                                                            <i class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                    </li>
+
                                                 </ul>
                                             </div>
                                             <!-- /.action -->
