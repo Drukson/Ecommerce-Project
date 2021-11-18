@@ -28,7 +28,8 @@ class IndexController extends Controller
         $featured = AgroProduct::where('featured_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $category = Category::orderBy('name','DESC')->get();
 
-
+       // $categories = Category::orderBy('name','ASC')->get();
+       // $products = AgroProduct::where('product_name','LIKE',"%$item%")->get();
 
         return view('frontend.index', compact('slider', 'category',
             'agroProduct', 'featured'));
@@ -188,6 +189,16 @@ class IndexController extends Controller
         return response()->json(array(
             'product' => $product,
         ));
+    }
+
+    // Product Search
+    public function ProductSearch(Request $request){
+        $item = $request->search;
+        // echo "$item";
+        $categories = Category::orderBy('name','ASC')->get();
+        $products = AgroProduct::where('product_name','LIKE',"%$item%")->get();
+        return view('frontend.products.agroproducts.search',compact('products','categories'));
+
     }
 
 }

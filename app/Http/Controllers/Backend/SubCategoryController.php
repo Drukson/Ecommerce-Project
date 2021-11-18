@@ -77,7 +77,7 @@ class SubCategoryController extends Controller
         return Redirect::route('all.subcategory')->with($notification);
     }
 
-    // Sub Sub Category
+    /*// Sub Sub Category
     public function SubSubCategoryView(){
         $category = Category::orderBy('name', 'ASC')->get();
         $subcategory = SubCategory::orderBy('name', 'ASC')->get();
@@ -140,6 +140,6 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         );
         return Redirect::route('all.subsubcategory')->with($notification);
-    }
+    }*/
 
 }

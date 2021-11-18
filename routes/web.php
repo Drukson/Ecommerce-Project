@@ -321,6 +321,7 @@ Route::prefix('review')->group(function(){
 Route::prefix('stock')->group(function(){
 
     Route::get('/product', [\App\Http\Controllers\Backend\AgroProductController::class, 'ProductStock'])->name('product.stock');
-
-
 });
+
+/// Product Search Route
+Route::post('/search', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductSearch'])->name('product.search');

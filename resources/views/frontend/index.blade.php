@@ -472,7 +472,8 @@
                                 <li><a data-transition-type="backSlide" href="#category{{$cat->id}}" data-toggle="tab">
                                     {{$cat->name}}</a></li>
                                 @endforeach
-
+                                    <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
+                                <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li>
                             </ul>
                             <!-- /.nav-tabs -->
                         </div>
@@ -517,11 +518,7 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon"  type="button" title="Add to cart"
-                                                                                data-toggle="modal"
-                                                                                data-target="#exampleModal" id="{{ $agro->id }}"
-                                                                                onclick="productView(this.id)">
-                                                                            <i class="fa fa-shopping-cart"></i> </button>
+                                                                        <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
                                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                     </li>
                                                                     <li {{--class="lnk wishlist"--}}>
@@ -603,11 +600,7 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon"  type="button" title="Add to cart"
-                                                                                data-toggle="modal"
-                                                                                data-target="#exampleModal" id="{{ $agro->id }}"
-                                                                                onclick="productView(this.id)">
-                                                                            <i class="fa fa-shopping-cart"></i> </button>
+                                                                        <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
                                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                     </li>
                                                                     <li {{--class="lnk wishlist"--}}>
@@ -681,15 +674,7 @@
                                         <div class="product-image">
                                             <div class="image"> <a href="{{url('/product/agro/details/'. $product->id.'/'. $product->product_slug)}}"><img  src="{{$product->product_thumbnail}}" alt=""></a> </div>
                                             <!-- /.image -->
-                                            @php
-                                                $amount = $product->selling_price - $product->discount_price;
-                                                $discount = ($amount/$product->selling_price) * 100;
-                                            @endphp
-                                            @if($product->discount_price == NULL)
-                                                <div class="tag new"><span>New</span></div>
-                                            @else
-                                                <div class="tag hot"><span>{{round($discount)}} %</span></div>
-                                            @endif
+                                            <div class="tag hot"><span>hot</span></div>
                                         </div>
                                         <!-- /.product-image -->
                                         <div class="product-info text-left">
