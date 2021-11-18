@@ -155,7 +155,22 @@
                     <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
                 </ul>
             </li>
+            {{--MANAGE STOCKS--}}
+            <li class="treeview {{($route == 'product.stock') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Manage Stocks</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'product.stock') ? 'active':''}}">
+                        <a href="{{route('product.stock')}}"><i class="ti-more"></i>Stocks</a></li>
 
+                </ul>
+            </li>
+            {{--END MANAGE STOCKS--}}
             {{--ORDERS--}}
            <li class="treeview {{($route == 'pending-orders') ? 'active':''}}">
                 <a href="#">

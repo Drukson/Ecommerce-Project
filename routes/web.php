@@ -312,3 +312,11 @@ Route::prefix('review')->group(function(){
     Route::get('/publish', [\App\Http\Controllers\User\ReviewController::class, 'PublishReview'])->name('publish.review');
     Route::get('/delete/{id}', [\App\Http\Controllers\User\ReviewController::class, 'DeleteReview'])->name('delete.review');
 });
+
+// Admin Manage Review Routes
+Route::prefix('stock')->group(function(){
+
+    Route::get('/product', [\App\Http\Controllers\Backend\AgroProductController::class, 'ProductStock'])->name('product.stock');
+
+
+});

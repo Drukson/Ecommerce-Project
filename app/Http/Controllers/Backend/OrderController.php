@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgroProduct;
 use App\Models\Order;
 use App\Models\OrderItem;
+
+use DB;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -29,46 +32,42 @@ class OrderController extends Controller
         $orders = Order::where('status','confirm')->orderBy('id','DESC')->get();
         return view('backend.orders.confirmed_orders',compact('orders'));
 
-    } // end mehtod
-
+    }
 
     // Processing Orders
     public function ProcessingOrders(){
         $orders = Order::where('status','processing')->orderBy('id','DESC')->get();
         return view('backend.orders.processing_orders',compact('orders'));
 
-    } // end mehtod
-
+    }
 
     // Picked Orders
     public function PickedOrders(){
         $orders = Order::where('status','picked')->orderBy('id','DESC')->get();
         return view('backend.orders.picked_orders',compact('orders'));
 
-    } // end mehtod
-
+    }
 
     // Shipped Orders
     public function ShippedOrders(){
         $orders = Order::where('status','shipped')->orderBy('id','DESC')->get();
         return view('backend.orders.shipped_orders',compact('orders'));
 
-    } // end mehtod
+    }
 
     // Delivered Orders
     public function DeliveredOrders(){
         $orders = Order::where('status','delivered')->orderBy('id','DESC')->get();
         return view('backend.orders.delivered_orders',compact('orders'));
 
-    } // end mehtod
-
+    }
 
     // Cancel Orders
     public function CancelOrders(){
         $orders = Order::where('status','cancel')->orderBy('id','DESC')->get();
         return view('backend.orders.cancel_orders',compact('orders'));
 
-    } // end mehtod
+    }
 
     public function PendingToConfirm($order_id){
 
@@ -101,7 +100,7 @@ class OrderController extends Controller
         );
         return redirect()->route('processing-orders')->with($notification);
 
-    } // end method
+    }
 
     public function PickedToShipped($order_id){
 
@@ -113,9 +112,15 @@ class OrderController extends Controller
         );
 
         return redirect()->route('picked-orders')->with($notification);
-    } // end method
+    }
 
-    public function ShippedToDelivered($order_id){
+    public function ShippedToDelivered($order_id)
+    {
+        $product = OrderItem::where('order_id',$order_id)->get();
+        foreach ($product as $item) {
+            AgroProduct::where('id',$item->product_id)
+                ->update(['product_qty' => DB::raw('product_qty-'.$item->qty)]);
+        }
 
         Order::findOrFail($order_id)->update(['status' => 'delivered']);
 
@@ -123,10 +128,9 @@ class OrderController extends Controller
             'message' => 'Order Delivered Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->route('shipped-orders')->with($notification);
 
-    } // end method
+    }
 
     //INVOICE PDF
     public function AdminInvoiceDownload($order_id)
@@ -140,7 +144,7 @@ class OrderController extends Controller
         ]);
         return $pdf->download('invoice.pdf');
 
-    } // end method
+    }
 
 
 

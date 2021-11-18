@@ -219,4 +219,11 @@ class AgroProductController extends Controller
         return Redirect::back()->with($notification);
     }
 
+    // product Stock
+    public function ProductStock()
+    {
+        $products = AgroProduct::latest()->get();
+        return view('backend.products.agro.product_stock',compact('products'));
+    }
+
 }
