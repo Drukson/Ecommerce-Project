@@ -205,7 +205,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{--{{ route('order.tracking') }}--}}">
+                    <form method="POST" action="{{ route('order.tracking') }}">
                         @csrf
                         <div class="modal-body">
                             <label>Invoice Code</label>

@@ -183,8 +183,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/return/order/list', [\App\Http\Controllers\User\AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
     Route::get('/cancel/orders', [\App\Http\Controllers\User\AllUserController::class, 'CancelOrders'])->name('cancel.orders');
 
-/// Order Traking Route
-    Route::get('/order/tracking', [\App\Http\Controllers\User\AllUserController::class, 'OrderTracking'])->name('order.tracking');
+/// Order Tracking Route
+    Route::post('/order/tracking', [\App\Http\Controllers\User\AllUserController::class, 'OrderTracking'])->name('order.tracking');
 
 });
 
