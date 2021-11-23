@@ -56,10 +56,8 @@
                 <div class='col-md-9'>
                     <div class="detail-block">
                         <div class="row  wow fadeInUp">
-
                             <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                                 <div class="product-item-holder size-big single-product-gallery small-gallery">
-
                                     <div id="owl-single-product">
                                         @foreach($multiImg as $multi)
                                         <div class="single-product-gallery-item" id="slide{{$multi->id}}">
@@ -71,9 +69,7 @@
                                         @endforeach
 
                                     </div><!-- /.single-product-slider -->
-
                                     <div class="single-product-gallery-thumbs gallery-thumbs">
-
                                         <div id="owl-single-product-thumbnails">
                                             @foreach($multiImg as $multi)
                                             <div class="item">
@@ -301,7 +297,6 @@
 
                                                                         @endif
 
-
                                                                     </div>
                                                                     <div class="col-md-6">
 
@@ -310,15 +305,12 @@
                                                                 <div class="review-title"><span class="summary">{{ $item->summary }}</span><span class="date"><i class="fa fa-calendar"></i><span> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </span></span></div>
                                                                 <div class="text">"{{ $item->comment }}"</div>
                                                             </div>
-
                                                         @endif
                                                     @endforeach
                                                 </div><!-- /.reviews -->
                                             </div><!-- /.product-reviews -->
-
                                             <div class="product-add-review">
                                                 <h4 class="title">Write your own review</h4>
-
                                                 <div class="review-form">
 
                                                     @guest
@@ -354,7 +346,6 @@
                                                                     </tbody>
                                                                 </table>
 
-
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
@@ -385,8 +376,6 @@
 
                                         </div><!-- /.product-tab -->
                                     </div><!-- /.tab-pane -->
-
-
 
                                 </div><!-- /.tab-content -->
                             </div><!-- /.col -->
@@ -471,8 +460,9 @@
                                             <div class="description"></div>
 
                                             <div class="product-price">
-				<span class="price">
-					$650.99				</span>
+				                                    <span class="price">
+					                                        $650.99
+                                                    </span>
                                                 <span class="price-before-discount">$ 800</span>
 
                                             </div><!-- /.product-price -->
