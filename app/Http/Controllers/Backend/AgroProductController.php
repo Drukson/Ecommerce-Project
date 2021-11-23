@@ -53,6 +53,7 @@ class AgroProductController extends Controller
 
             'product_thumbnail' => $filePath,
             'status' => 1,
+           'product_unit' => $request->product_unit,
             'created_at' => Carbon::now(),
         ]);
 
@@ -96,6 +97,7 @@ class AgroProductController extends Controller
 
     public function UpdateAgroProducts(Request $request, $id){
         AgroProduct::find($id)->update([
+
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
@@ -116,6 +118,7 @@ class AgroProductController extends Controller
             'available_to' => $request->available_to,
 
             'status' => 1,
+            'product_unit' => $request->product_unit,
             'updated_at' => Carbon::now(),
         ]);
 

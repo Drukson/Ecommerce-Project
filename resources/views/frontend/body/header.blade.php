@@ -6,7 +6,7 @@
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href=""><i class="icon fa fa-user"></i>My Account</a></li>
+
                        {{-- <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>--}}
                         <li><a href="{{route('mycart')}}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="{{route('checkout')}}"><i class="icon fa fa-check"></i>Checkout</a></li>
@@ -14,7 +14,7 @@
                         <li><a href="" type="button" data-toggle="modal" data-target="#ordertraking"><i class="icon fa fa-check"></i>Order Tracking</a></li>
                         <li>
                             @auth
-                                <a href="{{route('login')}}"><i class="icon fa fa-user"></i>User Profile</a>
+                                <a href="{{route('login')}}"><i class="icon fa fa-user"></i>My Account</a>
                             @else
                                 <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login|Register</a>
                             @endauth

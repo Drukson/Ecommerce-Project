@@ -152,7 +152,7 @@ class IndexController extends Controller
         $category = Category::skip(2)->first();
 
         return view('frontend.products.handicraft.subcategory_view',
-            compact('agros', 'categories', 'handicraft', 'category'));
+          compact('agros', 'categories', 'handicraft', 'category'));
 
     }
 
@@ -168,7 +168,6 @@ class IndexController extends Controller
     // Product Search
     public function ProductSearch(Request $request)
     {
-
         $request->validate(["search" => "required"]);
         $item = $request->search;
         // echo "$item";

@@ -93,6 +93,21 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
+                                                <h5>Product Unit</h5>
+                                                <select class="form-control" name="product_unit" id="exampleFormControlSelect1">
+                                                    <option>Grams</option>
+                                                    <option>Kg</option>
+                                                    <option>Piece</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                         {{--{{       Second Row Ends        }}--}}
+                         {{--{{       Third Row Starts        }}--}}
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
                                                 <h5>Selling Price / Price per Night <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" id="selling_price" name="selling_price" class="form-control" >
@@ -102,11 +117,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                         {{--{{       Second Row Ends        }}--}}
-                         {{--{{       Third Row Starts        }}--}}
-                                    <div class="row">
-                                        <div class="col-md-4">
+
+                                        {{--<div class="col-md-4">
                                             <div class="form-group">
                                                 <h5>Discount Price <span class="text-danger">*</span></h5>
                                                 <div class="controls">
@@ -116,7 +128,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>--}}
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <h5>Tags <span class="text-danger">*</span></h5>
@@ -250,7 +262,7 @@
                             </div>
 
                             <div class="text-xs-right">
-                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Agro Product" >                                </div>
+                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Product" >                                </div>
                         </form>
 
                     </div>

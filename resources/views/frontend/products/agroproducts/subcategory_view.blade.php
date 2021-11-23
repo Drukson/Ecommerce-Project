@@ -42,7 +42,7 @@
                                     @foreach($categories as $cat)
                                         <div class="accordion-group">
                                             <div class="accordion-heading"> <a href="#collapse{{$cat->id}}"
-                                                                               data-toggle="collapse" class="accordion-toggle collapsed"> {{$cat->name}} </a> </div>
+                                                     data-toggle="collapse" class="accordion-toggle collapsed"> {{$cat->name}} </a> </div>
                                             <!-- /.accordion-heading -->
 
                                             @php
@@ -230,7 +230,7 @@
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image">
-                                                            <a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->slug)}}">
+                                                            <a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">
                                                                 <img  src="{{asset($agro->product_thumbnail)}}" alt=""></a> </div>
                                                         <!-- /.image -->
                                                         @php
@@ -246,7 +246,7 @@
                                                     <!-- /.product-image -->
 
                                                     <div class="product-info text-left">
-                                                        <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->slug)}}">{{$agro->name}}</a></h3>
+                                                        <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->name}}</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="description">{{$agro->short_desc}}</div>
 

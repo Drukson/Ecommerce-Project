@@ -77,18 +77,18 @@ class SubCategoryController extends Controller
         return Redirect::route('all.subcategory')->with($notification);
     }
 
-    /*// Sub Sub Category
+    public function GetSubCategory($category_id){
+        $subcat = SubCategory::where('category_id',$category_id)->orderBy('name','ASC')->get();
+        return json_encode($subcat);
+    }
+
+    // Sub Sub Category
     public function SubSubCategoryView(){
         $category = Category::orderBy('name', 'ASC')->get();
         $subcategory = SubCategory::orderBy('name', 'ASC')->get();
         $subsubcat = SubSubCategory::latest()->get();
         return view('backend.category.subsubcategory_view',
             compact('category', 'subsubcat', 'subcategory'));
-    }
-
-    public function GetSubCategory($category_id){
-        $subcat = SubCategory::where('category_id',$category_id)->orderBy('name','ASC')->get();
-        return json_encode($subcat);
     }
 
     public function AddSubSubCategory(Request $request){
@@ -140,6 +140,6 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         );
         return Redirect::route('all.subsubcategory')->with($notification);
-    }*/
+    }
 
 }
