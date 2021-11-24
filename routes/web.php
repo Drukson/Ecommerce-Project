@@ -90,19 +90,16 @@ Route::prefix('category')->group(function (){
     Route::post('/update/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'UpdateCategory'])->name('update.category');
     Route::get('/delete/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'DeleteCategory'])->name('delete.category');
 
+    Route::get('/inactive/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'InactiveCategory'])->name('inactive.category');
+    Route::get('/active/{id}', [\App\Http\Controllers\Backend\CategoryController::class, 'ActiveCategory'])->name('active.category');
+
+
 //Sub Category
     Route::get('/sub/all', [\App\Http\Controllers\Backend\SubCategoryController::class, 'SubCategoryView'])->name('all.subcategory');
     Route::post('/sub/add', [\App\Http\Controllers\Backend\SubCategoryController::class, 'AddSubCategory'])->name('add.subcategory');
     Route::get('/sub/edit/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'EditSubCategory'])->name('edit.subcategory');
     Route::post('/sub/update/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'UpdateSubCategory'])->name('update.subcategory');
     Route::get('/sub/delete/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
-
-//Sub Sub Category
-    Route::get('/subsubcat/all', [\App\Http\Controllers\Backend\SubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
-    Route::post('/subsubcat/add', [\App\Http\Controllers\Backend\SubCategoryController::class, 'AddSubSubCategory'])->name('add.subsubcategory');
-    Route::get('/subsubcat/edit/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'EditSubSubCategory'])->name('edit.subsubcategory');
-    Route::post('/subsubcat/update/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'UpdateSubSubCategory'])->name('update.subsubcategory');
-    Route::get('/subsubcat/delete/{id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'DeleteSubSubCategory'])->name('delete.subsubcategory');
 
     //Sub Category autoload
     Route::get('/subcategory/ajax/{category_id}', [\App\Http\Controllers\Backend\SubCategoryController::class, 'GetSubCategory']);
@@ -141,61 +138,13 @@ Route::prefix('slider')->group(function (){
 // Product Details Route Page
 Route::get('/product/agro/details/{id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductDetails']);
 
-// Homestay ALl Route
-Route::prefix('products')->group(function (){
-    Route::get('/homestay/all', [\App\Http\Controllers\Backend\HomestayController::class, 'HomestayIndex'])->name('all.homestay');
-    Route::get('/homestay/manage', [\App\Http\Controllers\Backend\HomestayController::class, 'ManageHomestayProducts'])->name('manage.homestay');
-    Route::post('/homestay/add', [\App\Http\Controllers\Backend\HomestayController::class, 'AddHomestayProduct'])->name('add.homestay');
-    Route::get('/homestay/edit/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'EditHomestayProducts'])->name('edit.homestay');
-    Route::post('/homestay/update/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'UpdateHomestay'])->name('update.homestay');
-    Route::get('/homestay/multiimg/delete/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'DeleteHomestayImg'])->name('delete.homestayimg');
-    Route::post('/homestay/multiimg/update/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'UpdateHomestayMultiImage'])->name('update.homestay.multiimage');
-    Route::post('/homestay/thumbnail/update/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'UpdateHomestayThumbnail'])->name('update.homestay.thumbnail');
-    Route::get('/homestay/inactive/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'InactiveHomestay'])->name('inactive.homestay');
-    Route::get('/homestay/active/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'ActiveHomestay'])->name('active.homestay');
-    Route::get('/homestay/delete/{id}', [\App\Http\Controllers\Backend\HomestayController::class, 'DeleteHomestay'])->name('homestay.delete');
-});
-
-// Homestay Details Route Page
-Route::get('/product/homestay/details/{id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'HomestayDetails']);
-
-// Handicrafts ALl Route
-Route::prefix('products')->group(function (){
-    Route::get('/handicraft/all', [\App\Http\Controllers\Backend\HandicraftController::class, 'HandicraftView'])->name('all.handicraft');
-    Route::get('/handicraft/add', [\App\Http\Controllers\Backend\HandicraftController::class, 'AddHandicraft'])->name('add.handicraft');
-    Route::post('/handicraft/store', [\App\Http\Controllers\Backend\HandicraftController::class, 'StoreHandicraft'])->name('store.handicraft');
-    Route::get('/handicraft/edit/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'EditHandicraft'])->name('edit.handicraft');
-    Route::post('/handicraft/update/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'UpdateHandicraft'])->name('update.handicraft');
-
-
-    Route::get('/handicraft/multiimg/delete/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'DeleteHandicraftImages'])->name('delete.handicraftimages');
-    Route::post('/handicraft/thumbnail/update/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'UpdateHandicraftThumbnail'])->name('update.handicraft.thumbnail');
-
-    Route::get('/handicraft/inactive/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'InactiveHandicraft'])->name('inactive.handicraft');
-    Route::get('/handicraft/active/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'ActiveHandicraft'])->name('active.handicraft');
-    Route::get('/handicraft/delete/{id}', [\App\Http\Controllers\Backend\HandicraftController::class, 'DeleteHandicraftProduct'])->name('handicraft.details.delete');
-
-    /*Route::post('/agro/img/update/{id}', [\App\Http\Controllers\Backend\AgroProductController::class, 'UpdateAgroMultiImage'])->name('update.agro.multiimage');
-    */
-});
-
-// Handicraft Details Route Page
-Route::get('/product/handicraft/details/{id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'HandicraftDetails']);
 
 // Frontend Agro Product Tag Page Details
 Route::get('/product/agro/tag/{tag}', [\App\Http\Controllers\Frontend\IndexController::class, 'AgroProductTags']);
 
-// Frontend handicraft Product Tag Page Details
-Route::get('/product/handicraft/tag/{tag}', [\App\Http\Controllers\Frontend\IndexController::class, 'HandicraftProductTags']);
-
-// Frontend homestay Product Tag Page Details
-Route::get('/product/homestay/tag/{tag}', [\App\Http\Controllers\Frontend\IndexController::class, 'HomestayProductTags']);
-
 // Frontend Sub Category Product Tag Page Details
 Route::get('/subcategory/product/{subcat_id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'SubCatProduct']);
 
-// Frontend Sub Category Handicraft Tag Page Details
-Route::get('/subcategory/handicraft/{subcat_id}/{slug}', [\App\Http\Controllers\Frontend\IndexController::class, 'SubCatHandicraft']);
 
 // PRODUCT VIEW MODEL WITH AJAX
 Route::get('/product/view/modal/{id}', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductViewAjax']);
@@ -228,8 +177,13 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     //USER DASHBOARD INVOICE DOWNLOAD
     Route::get('/invoice_download/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'InvoiceDownload']);
 
+    //RETURN ORDER
+    Route::post('/return/order/{order_id}', [\App\Http\Controllers\User\AllUserController::class, 'ReturnOrder'])->name('return.order');
+    Route::get('/return/order/list', [\App\Http\Controllers\User\AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
+    Route::get('/cancel/orders', [\App\Http\Controllers\User\AllUserController::class, 'CancelOrders'])->name('cancel.orders');
 
-
+/// Order Tracking Route
+    Route::post('/order/tracking', [\App\Http\Controllers\User\AllUserController::class, 'OrderTracking'])->name('order.tracking');
 
 });
 
@@ -318,6 +272,58 @@ Route::prefix('orders')->group(function(){
     Route::get('/shipped/delivered/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
     Route::get('/invoice/download/{order_id}', [\App\Http\Controllers\Backend\OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
 
+});
 
+// Admin Reports Routes
+Route::prefix('reports')->group(function(){
+
+  Route::get('/view', [\App\Http\Controllers\Backend\ReportController::class, 'ReportView'])->name('all.reports');
+  Route::post('/search/by/date', [\App\Http\Controllers\Backend\ReportController::class, 'ReportByDate'])->name('search-by-date');
+  Route::post('/search/by/month', [\App\Http\Controllers\Backend\ReportController::class, 'ReportByMonth'])->name('search-by-month');
+  Route::post('/search/by/year', [\App\Http\Controllers\Backend\ReportController::class, 'ReportByYear'])->name('search-by-year');
 
 });
+
+// Admin Get All User Routes
+Route::prefix('alluser')->group(function(){
+  Route::get('/view', [\App\Http\Controllers\Backend\AdminProfileController::class, 'AllUsers'])->name('all.users');
+});
+
+// Admin Site Setting Routes
+Route::prefix('setting')->group(function(){
+   Route::get('/site', [\App\Http\Controllers\Backend\SiteSettingController::class, 'SiteSetting'])->name('all_settings');
+   Route::post('/site/update', [\App\Http\Controllers\Backend\SiteSettingController::class, 'SiteSettingUpdate'])->name('update.sitesetting');
+});
+
+// Admin Return Order Routes
+Route::prefix('return')->group(function(){
+Route::get('/admin/request', [\App\Http\Controllers\Backend\ReturnController::class, 'ReturnRequest'])->name('return.request');
+
+Route::get('/admin/return/approve/{order_id}', [\App\Http\Controllers\Backend\ReturnController::class, 'ReturnRequestApprove'])->name('return.approve');
+Route::get('/admin/all/request', [\App\Http\Controllers\Backend\ReturnController::class, 'ReturnAllRequest'])->name('all.request');
+});
+
+/// Frontend Product Review Routes
+
+Route::post('/review/store', [\App\Http\Controllers\User\ReviewController::class, 'ReviewStore'])->name('review.store');
+
+// Admin Manage Review Routes
+Route::prefix('review')->group(function(){
+
+    Route::get('/pending', [\App\Http\Controllers\User\ReviewController::class, 'PendingReview'])->name('pending.review');
+    Route::get('/admin/approve/{id}', [\App\Http\Controllers\User\ReviewController::class, 'ReviewApprove'])->name('review.approve');
+    Route::get('/publish', [\App\Http\Controllers\User\ReviewController::class, 'PublishReview'])->name('publish.review');
+    Route::get('/delete/{id}', [\App\Http\Controllers\User\ReviewController::class, 'DeleteReview'])->name('delete.review');
+});
+
+// Admin Manage Review Routes
+Route::prefix('stock')->group(function(){
+
+    Route::get('/product', [\App\Http\Controllers\Backend\AgroProductController::class, 'ProductStock'])->name('product.stock');
+});
+
+/// Product Search Route
+Route::post('/search', [\App\Http\Controllers\Frontend\IndexController::class, 'ProductSearch'])->name('product.search');
+
+// Advance Search Routes
+Route::post('search-product', [\App\Http\Controllers\Frontend\IndexController::class, 'SearchProduct']);

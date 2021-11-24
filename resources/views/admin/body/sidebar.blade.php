@@ -25,6 +25,23 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
+            {{--SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
+            <li class="treeview {{($route == 'all_settings') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>Manage Settings</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu ">
+                    <li class="{{($route == 'all_settings') ? 'active':''}}">
+                        <a href="{{route('all_settings')}}"><i class="ti-more"></i>All Settings</a></li>
+                </ul>
+            </li>
+            {{--END SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
+
             <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -81,9 +98,9 @@
                     <li class="{{($route == 'all.subcategory') ? 'active':''}}">
                         <a href="{{route('all.subcategory')}}"><i class="ti-more"></i>Sub Category</a>
                     </li>
-                    <li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
+                    {{--<li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
                         <a href="{{route('all.subsubcategory')}}"><i class="ti-more"></i>Sub Sub Category</a></li>
-                    <li>
+                    <li>--}}
                 </ul>
             </li>
 
@@ -119,60 +136,41 @@
                     <li class="{{($route == 'subdistrict_view') ? 'active':''}}">
                         <a href="{{route('subdistrict_view')}}"><i class="ti-more"></i>Places</a>
                     </li>
-                    <li class="{{($route == 'all.subsubcategory') ? 'active':''}}">
-                        <a href="{{route('all.subsubcategory')}}"><i class="ti-more"></i>Sub Sub Category</a></li>
-                    <li>
+
                 </ul>
             </li>
 
             <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="file"></i>
-                    <span>Agro Products</span>
+                    <span>Product Details</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{($route == 'all.agroproducts') ? 'active':''}}">
-                        <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Agro Products</a></li>
+                        <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Products</a></li>
                     <li class="{{($route == 'manage.agroproducts') ? 'active':''}}">
                     <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
                 </ul>
             </li>
-
-            <li class="treeview {{($route == 'all.homestay') ? 'active':''}}">
+            {{--MANAGE STOCKS--}}
+            <li class="treeview {{($route == 'product.stock') ? 'active':''}}">
                 <a href="#">
-                    <i data-feather="mail"></i> <span>Homestay</span>
+                    <i data-feather="file"></i>
+                    <span>Manage Stocks</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{($route == 'all.homestay') ? 'active':''}}">
-                        <a href="{{route('all.homestay')}}"><i class="ti-more"></i>Manage Homestay</a></li>
-                    <li class="{{($route == 'manage.homestay') ? 'active':''}}">
-                        <a href="{{route('manage.homestay')}}"><i class="ti-more"></i>Add Homestay</a>
-                    </li>
+                    <li class="{{($route == 'product.stock') ? 'active':''}}">
+                        <a href="{{route('product.stock')}}"><i class="ti-more"></i>Stocks</a></li>
+
                 </ul>
             </li>
-
-            <li class="treeview {{($route == 'all.handicraft') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>Handicrafts</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'all.handicraft') ? 'active':''}}">
-                        <a href="{{route('all.handicraft')}}"><i class="ti-more"></i>Manage Handicrafts</a></li>
-                    <li class="{{($route == 'add.handicraft') ? 'active':''}}">
-                        <a href="{{route('add.handicraft')}}"><i class="ti-more"></i>Add Handicrafts</a>
-                    </li>
-                </ul>
-            </li>
-
+            {{--END MANAGE STOCKS--}}
             {{--ORDERS--}}
            <li class="treeview {{($route == 'pending-orders') ? 'active':''}}">
                 <a href="#">
@@ -205,6 +203,74 @@
                 </ul>
             </li>
 
+           {{-- //ADMIN REPORTS--}}
+            <li class="treeview {{($route == 'all.reports') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>All Reports</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'all.reports') ? 'active':''}}">
+                        <a href="{{route('all.reports')}}"><i class="ti-more"></i>All Reports</a>
+                    </li>
+
+                </ul>
+            </li>
+           {{-- //END ADMIN REPORTS--}}
+
+            {{-- //ALL USER REPORTS--}}
+            <li class="treeview {{($route == 'all.users') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>All Users</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'all.users') ? 'active':''}}">
+                        <a href="{{route('all.users')}}"><i class="ti-more"></i>All Users</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- //END ALL USER REPORTS--}}
+
+            {{-- //RETURN PRODUCTS--}}
+            <li class="treeview {{($route == 'return.request') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Return Orders</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'return.request') ? 'active':''}}">
+                        <a href="{{route('return.request')}}"><i class="ti-more"></i>Returned Orders</a>
+                    </li>
+                    <li class="{{ ($route == 'all.request')? 'active':'' }}"><a href="{{ route('all.request') }}">
+                            <i class="ti-more"></i>All Request</a></li>
+                </ul>
+            </li>
+            {{-- //END RETURN PRODUCTS--}}
+
+            {{-- //REVIEWS--}}
+            <li class="treeview {{($route == 'pending.review') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Manage Review</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'pending.review')? 'active':'' }}">
+                        <a href="{{ route('pending.review') }}"><i class="ti-more"></i>Pending Review</a></li>
+
+                    <li class="{{ ($route == 'publish.review')? 'active':'' }}">
+                        <a href="{{ route('publish.review') }}"><i class="ti-more"></i>Publish Review</a></li>
+                </ul>
+            </li>
+            {{-- //REVIEWS--}}
 
             <li class="header nav-small-cap">User Interface</li>
             <li class="treeview">

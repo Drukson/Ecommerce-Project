@@ -4,7 +4,11 @@
 @section('title')
 {{$product->product_name}} Product Details
 @endsection
-
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
     <div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">
@@ -21,9 +25,8 @@
             <div class='row single-product'>
                 <div class='col-md-3 sidebar'>
                     <div class="sidebar-module-container">
-                        <div class="home-banner outer-top-n">
-                            <img src="{{asset('frontend/assets/images/banners/LHS-banner.jpg')}}" alt="Image">
-                        </div>
+
+                        @include('frontend.common.category')
 
 
                         <!-- ============================================== NEWSLETTER ============================================== -->
@@ -42,41 +45,19 @@
                         </div><!-- /.sidebar-widget -->
                         <!-- ============================================== NEWSLETTER: END ============================================== -->
 
-                        <!-- ============================================== Testimonials============================================== -->
-                        <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                            <div id="advertisement" class="advertisement">
-                                <div class="item">
-                                    <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image"></div>
-                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                    <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
-                                </div><!-- /.item -->
+                        <!-- ============================================== Product Tags ============================================== -->
 
-                                <div class="item">
-                                    <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>
-                                    <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                    <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>
-                                </div><!-- /.item -->
+                        @include('frontend.common.product_tags')
 
-                                <div class="item">
-                                    <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>
-                                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                    <div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->
-                                </div><!-- /.item -->
-
-                            </div><!-- /.owl-carousel -->
-                        </div>
-
-                        <!-- ============================================== Testimonials: END ============================================== -->
+                        <!-- ============================================== Product Tags: END ============================================== -->
 
                     </div>
                 </div><!-- /.sidebar -->
                 <div class='col-md-9'>
                     <div class="detail-block">
                         <div class="row  wow fadeInUp">
-
                             <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                                 <div class="product-item-holder size-big single-product-gallery small-gallery">
-
                                     <div id="owl-single-product">
                                         @foreach($multiImg as $multi)
                                         <div class="single-product-gallery-item" id="slide{{$multi->id}}">
@@ -88,9 +69,7 @@
                                         @endforeach
 
                                     </div><!-- /.single-product-slider -->
-
                                     <div class="single-product-gallery-thumbs gallery-thumbs">
-
                                         <div id="owl-single-product-thumbnails">
                                             @foreach($multiImg as $multi)
                                             <div class="item">
@@ -107,6 +86,12 @@
 
                                 </div><!-- /.single-product-gallery -->
                             </div><!-- /.gallery-holder -->
+
+                            @php
+                                $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                            @endphp
+
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
                                     <h1 class="name" id="pname">{{$product->product_name}}</h1>
@@ -114,11 +99,45 @@
                                     <div class="rating-reviews m-t-20">
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <div class="rating rateit-small"></div>
+
+                                                @if($avarage == 0)
+                                                    No Rating Yet
+                                                @elseif($avarage == 1 || $avarage < 2)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avarage == 2 || $avarage < 3)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avarage == 3 || $avarage < 4)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+
+                                                @elseif($avarage == 4 || $avarage < 5)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avarage == 5 || $avarage < 5)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                @endif
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="reviews">
-                                                    <a href="#" class="lnk">(13 Reviews)</a>
+                                                    <a href="#" class="lnk">({{ count($reviewcount) }} Reviews)</a>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -213,7 +232,7 @@
                                 <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
                                     <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
                                     <li><a data-toggle="tab" href="#review">REVIEW</a></li>
-                                    <li><a data-toggle="tab" href="#tags">TAGS</a></li>
+
                                 </ul><!-- /.nav-tabs #product-tabs -->
                             </div>
                             <div class="col-sm-9">
@@ -227,117 +246,133 @@
                                         <div class="product-tab">
                                             <div class="product-reviews">
                                                 <h4 class="title">Customer Reviews</h4>
+                                                @php
+                                                    $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
+                                                @endphp
+
                                                 <div class="reviews">
-                                                    <div class="review">
-                                                        <div class="review-title"><span class="summary">We love this product</span><span class="date"><i class="fa fa-calendar"></i><span>1 days ago</span></span></div>
-                                                        <div class="text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aliquam suscipit."</div>
-                                                    </div>
+
+                                                    @foreach($reviews as $item)
+                                                        @if($item->status == 0)
+
+                                                        @else
+                                                            <div class="review">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <img style="border-radius: 50%" src="{{ (!empty($item->user->profile_photo_path))? url('uploads/user_images/'.$item->user->profile_photo_path):url('uploads/no_image.jpg') }}" width="40px;" height="40px;"><b> {{ $item->user->name }}</b>
+                                                                        @if($item->rating == NULL)
+
+                                                                        @elseif($item->rating == 1)
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                        @elseif($item->rating == 2)
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                            <span class="fa fa-star"></span>
+
+                                                                        @elseif($item->rating == 3)
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                            <span class="fa fa-star"></span>
+
+                                                                        @elseif($item->rating == 4)
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star"></span>
+                                                                        @elseif($item->rating == 5)
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+                                                                            <span class="fa fa-star checked"></span>
+
+                                                                        @endif
+
+                                                                    </div>
+                                                                    <div class="col-md-6">
+
+                                                                    </div>
+                                                                </div> <!-- // end row -->
+                                                                <div class="review-title"><span class="summary">{{ $item->summary }}</span><span class="date"><i class="fa fa-calendar"></i><span> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </span></span></div>
+                                                                <div class="text">"{{ $item->comment }}"</div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
                                                 </div><!-- /.reviews -->
                                             </div><!-- /.product-reviews -->
-
                                             <div class="product-add-review">
                                                 <h4 class="title">Write your own review</h4>
-                                                <div class="review-table">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="cell-label">&nbsp;</th>
-                                                                <th>1 star</th>
-                                                                <th>2 stars</th>
-                                                                <th>3 stars</th>
-                                                                <th>4 stars</th>
-                                                                <th>5 stars</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td class="cell-label">Quality</td>
-                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="cell-label">Price</td>
-                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="cell-label">Value</td>
-                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table><!-- /.table .table-bordered -->
-                                                    </div><!-- /.table-responsive -->
-                                                </div><!-- /.review-table -->
-
                                                 <div class="review-form">
-                                                    <div class="form-container">
-                                                        <form role="form" class="cnt-form">
 
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputName">Your Name <span class="astk">*</span></label>
-                                                                        <input type="text" class="form-control txt" id="exampleInputName" placeholder="">
-                                                                    </div><!-- /.form-group -->
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputSummary">Summary <span class="astk">*</span></label>
-                                                                        <input type="text" class="form-control txt" id="exampleInputSummary" placeholder="">
-                                                                    </div><!-- /.form-group -->
-                                                                </div>
+                                                    @guest
+                                                        <p> <b> To Add Product Review, You Need to Login First <a href="{{ route('login') }}">Login Here</a> </b> </p>
+                                                    @else
+
+                                                        <div class="form-container">
+                                                            <form role="form" class="cnt-form" method="post" action="{{ route('review.store') }}">
+                                                                @csrf
+                                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="cell-label">&nbsp;</th>
+                                                                        <th>1 star</th>
+                                                                        <th>2 stars</th>
+                                                                        <th>3 stars</th>
+                                                                        <th>4 stars</th>
+                                                                        <th>5 stars</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="cell-label">Quality</td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="1"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="2"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="3"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="4"></td>
+                                                                        <td><input type="radio" name="quality" class="radio" value="5"></td>
+                                                                    </tr>
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputSummary">Summary <span class="astk">*</span></label>
+                                                                            <input type="text" name="summary" class="form-control txt" id="exampleInputSummary" placeholder="">
+                                                                        </div><!-- /.form-group -->
+                                                                    </div>
 
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputReview">Review <span class="astk">*</span></label>
-                                                                        <textarea class="form-control txt txt-review" id="exampleInputReview" rows="4" placeholder=""></textarea>
+                                                                        <textarea class="form-control txt txt-review" name="comment" id="exampleInputReview" rows="4" placeholder=""></textarea>
                                                                     </div><!-- /.form-group -->
                                                                 </div>
-                                                            </div><!-- /.row -->
+                                                        </div><!-- /.row -->
 
-                                                            <div class="action text-right">
-                                                                <button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
-                                                            </div><!-- /.action -->
+                                                        <div class="action text-right">
+                                                            <button type="submit" class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                                                        </div><!-- /.action -->
 
                                                         </form><!-- /.cnt-form -->
-                                                    </div><!-- /.form-container -->
+                                                </div><!-- /.form-container -->
+
+                                                @endguest
                                                 </div><!-- /.review-form -->
 
                                             </div><!-- /.product-add-review -->
-
-                                        </div><!-- /.product-tab -->
-                                    </div><!-- /.tab-pane -->
-
-                                    <div id="tags" class="tab-pane">
-                                        <div class="product-tag">
-                                            <h4 class="title">Product Tags</h4>
-                                            <form role="form" class="form-inline form-cnt">
-                                                <div class="form-container">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputTag">Add Your Tags: </label>
-                                                        <input type="email" id="exampleInputTag" class="form-control txt">
-
-                                                    </div>
-
-                                                    <button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
-                                                </div><!-- /.form-container -->
-                                            </form><!-- /.form-cnt -->
-
-                                            <form role="form" class="form-inline form-cnt">
-                                                <div class="form-group">
-                                                    <label>&nbsp;</label>
-                                                    <span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
-                                                </div>
-                                            </form><!-- /.form-cnt -->
 
                                         </div><!-- /.product-tab -->
                                     </div><!-- /.tab-pane -->
@@ -349,21 +384,19 @@
 
                     <!-- ============================================== UPSELL PRODUCTS ============================================== -->
                     <section class="section featured-product wow fadeInUp">
-                        <h3 class="section-title">upsell products</h3>
+                        <h3 class="section-title">similar products</h3>
                         <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
 
                             <div class="item item-carousel">
                                 <div class="products">
-
                                     <div class="product">
                                         <div class="product-image">
                                             <div class="image">
-                                                <a href="detail.html"><img  src="assets/images/products/p1.jpg" alt=""></a>
+                                                <a href="{{url('/product/agro/details/'. $product->id.'/'. $product->product_slug)}}"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a>
                                             </div><!-- /.image -->
 
                                             <div class="tag sale"><span>sale</span></div>
                                         </div><!-- /.product-image -->
-
 
                                         <div class="product-info text-left">
                                             <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
@@ -371,8 +404,9 @@
                                             <div class="description"></div>
 
                                             <div class="product-price">
-				<span class="price">
-					$650.99				</span>
+				                                <span class="price">
+					                                $650.99
+                                                </span>
                                                 <span class="price-before-discount">$ 800</span>
 
                                             </div><!-- /.product-price -->
@@ -426,8 +460,9 @@
                                             <div class="description"></div>
 
                                             <div class="product-price">
-				<span class="price">
-					$650.99				</span>
+				                                    <span class="price">
+					                                        $650.99
+                                                    </span>
                                                 <span class="price-before-discount">$ 800</span>
 
                                             </div><!-- /.product-price -->
@@ -463,230 +498,6 @@
                                 </div><!-- /.products -->
                             </div><!-- /.item -->
 
-                            <div class="item item-carousel">
-                                <div class="products">
-
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="image">
-                                                <a href="detail.html"><img  src="assets/images/products/p3.jpg" alt=""></a>
-                                            </div><!-- /.image -->
-
-                                            <div class="tag hot"><span>hot</span></div>
-                                        </div><!-- /.product-image -->
-
-
-                                        <div class="product-info text-left">
-                                            <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                            <div class="rating rateit-small"></div>
-                                            <div class="description"></div>
-
-                                            <div class="product-price">
-				<span class="price">
-					$650.99				</span>
-                                                <span class="price-before-discount">$ 800</span>
-
-                                            </div><!-- /.product-price -->
-
-                                        </div><!-- /.product-info -->
-                                        <div class="cart clearfix animate-effect">
-                                            <div class="action">
-                                                <ul class="list-unstyled">
-                                                    <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-                                                    </li>
-
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="lnk">
-                                                        <a class="add-to-cart" href="detail.html" title="Compare">
-                                                            <i class="fa fa-signal"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- /.action -->
-                                        </div><!-- /.cart -->
-                                    </div><!-- /.product -->
-
-                                </div><!-- /.products -->
-                            </div><!-- /.item -->
-
-                            <div class="item item-carousel">
-                                <div class="products">
-
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="image">
-                                                <a href="detail.html"><img  src="assets/images/products/p4.jpg" alt=""></a>
-                                            </div><!-- /.image -->
-
-                                            <div class="tag new"><span>new</span></div>
-                                        </div><!-- /.product-image -->
-
-
-                                        <div class="product-info text-left">
-                                            <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                            <div class="rating rateit-small"></div>
-                                            <div class="description"></div>
-
-                                            <div class="product-price">
-				                                <span class="price">
-					                            $650.99
-                                                </span>
-                                                <span class="price-before-discount">$ 800</span>
-
-                                            </div><!-- /.product-price -->
-
-                                        </div><!-- /.product-info -->
-                                        <div class="cart clearfix animate-effect">
-                                            <div class="action">
-                                                <ul class="list-unstyled">
-                                                    <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-                                                    </li>
-
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="lnk">
-                                                        <a class="add-to-cart" href="detail.html" title="Compare">
-                                                            <i class="fa fa-signal"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- /.action -->
-                                        </div><!-- /.cart -->
-                                    </div><!-- /.product -->
-
-                                </div><!-- /.products -->
-                            </div><!-- /.item -->
-
-                            <div class="item item-carousel">
-                                <div class="products">
-
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="image">
-                                                <a href="detail.html"><img  src="assets/images/blank.gif" data-echo="assets/images/products/p5.jpg" alt=""></a>
-                                            </div><!-- /.image -->
-
-                                            <div class="tag hot"><span>hot</span></div>
-                                        </div><!-- /.product-image -->
-
-
-                                        <div class="product-info text-left">
-                                            <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                            <div class="rating rateit-small"></div>
-                                            <div class="description"></div>
-
-                                            <div class="product-price">
-				<span class="price">
-					$650.99				</span>
-                                                <span class="price-before-discount">$ 800</span>
-
-                                            </div><!-- /.product-price -->
-
-                                        </div><!-- /.product-info -->
-                                        <div class="cart clearfix animate-effect">
-                                            <div class="action">
-                                                <ul class="list-unstyled">
-                                                    <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-                                                    </li>
-
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="lnk">
-                                                        <a class="add-to-cart" href="detail.html" title="Compare">
-                                                            <i class="fa fa-signal"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- /.action -->
-                                        </div><!-- /.cart -->
-                                    </div><!-- /.product -->
-
-                                </div><!-- /.products -->
-                            </div><!-- /.item -->
-
-                            <div class="item item-carousel">
-                                <div class="products">
-
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="image">
-                                                <a href="detail.html"><img  src="assets/images/blank.gif" data-echo="assets/images/products/p6.jpg" alt=""></a>
-                                            </div><!-- /.image -->
-
-                                            <div class="tag new"><span>new</span></div>
-                                        </div><!-- /.product-image -->
-
-
-                                        <div class="product-info text-left">
-                                            <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                            <div class="rating rateit-small"></div>
-                                            <div class="description"></div>
-
-                                            <div class="product-price">
-				<span class="price">
-					$650.99				</span>
-                                                <span class="price-before-discount">$ 800</span>
-
-                                            </div><!-- /.product-price -->
-
-                                        </div><!-- /.product-info -->
-                                        <div class="cart clearfix animate-effect">
-                                            <div class="action">
-                                                <ul class="list-unstyled">
-                                                    <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-                                                    </li>
-
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="lnk">
-                                                        <a class="add-to-cart" href="detail.html" title="Compare">
-                                                            <i class="fa fa-signal"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- /.action -->
-                                        </div><!-- /.cart -->
-                                    </div><!-- /.product -->
-
-                                </div><!-- /.products -->
-                            </div><!-- /.item -->
                         </div><!-- /.home-owl-carousel -->
                     </section><!-- /.section -->
                     <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2021 at 10:02 AM
+-- Generation Time: Nov 18, 2021 at 05:24 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -54,12 +54,12 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `r
 --
 
 CREATE TABLE `agro_products` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
-  `subcategory_id` int(11) NOT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_qty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `selling_price` int(11) NOT NULL,
@@ -72,7 +72,6 @@ CREATE TABLE `agro_products` (
   `special_offers` int(11) DEFAULT NULL,
   `special_deals` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `no_of_rooms` int(11) DEFAULT NULL,
   `available_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `available_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_weight` int(255) DEFAULT NULL,
@@ -85,13 +84,15 @@ CREATE TABLE `agro_products` (
 -- Dumping data for table `agro_products`
 --
 
-INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `product_thumbnail`, `hot_deals`, `featured_deals`, `special_offers`, `special_deals`, `status`, `no_of_rooms`, `available_from`, `available_to`, `product_weight`, `seller_id`, `created_at`, `updated_at`) VALUES
-(4, 4, 1, 'Cucumber', 'cucumber', 'asasd', '10', 'vegetables', 200, 180, 'asdasd', '<p>sdasdasdasd</p>', 'uploads/products/thumbnail/1714873847055284.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:25:43', '2021-11-04 01:59:40'),
-(5, 4, 1, 'Chilli', 'chilli', 'App1', '10', 'vegetables', 200, 100, 'Sas', '<p>ASasAS</p>', 'uploads/products/thumbnail/1714873934289969.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:27:07', '2021-11-04 01:59:48'),
-(7, 4, 4, 'Apple', 'apple', 'zxczxczxc', '10', 'fruits, apple', 250, 180, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', 'uploads/products/thumbnail/1714874693222311.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 08:39:10', '2021-11-04 22:34:18'),
-(9, 4, 1, 'Pea', 'pea', 'pea1', '50', 'Vegetables', 120, NULL, 'Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.', '<p>asdasdasd</p>', 'uploads/products/thumbnail/1714877316202855.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 09:20:52', '2021-11-04 09:58:25'),
-(10, 4, 4, 'Pineapple', 'pineapple', 'App1', '20', 'fruits, pineapple', 200, 180, 'asxas', '<p>asxasx</p>', 'uploads/products/thumbnail/1714950961099867.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-10-28 09:22:58', '2021-11-05 08:24:26'),
-(13, 5, 8, 'Wooden Mask', 'wooden mask', 'Mask1', '20', 'mask', 2500, 2000, 'sdfsdfsdf', '<p>sdfsdfsdfsdfsdf</p>', 'uploads/products/thumbnail/1716564075967090.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-11-16 00:11:11', '2021-11-16 00:16:27');
+INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `product_thumbnail`, `hot_deals`, `featured_deals`, `special_offers`, `special_deals`, `status`, `available_from`, `available_to`, `product_weight`, `seller_id`, `created_at`, `updated_at`) VALUES
+(4, 4, 1, 'Cucumber', 'cucumber', 'asasd', '10', 'vegetables', 200, 180, 'asdasd', '<p>sdasdasdasd</p>', 'uploads/products/thumbnail/1714873847055284.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 08:25:43', '2021-11-04 01:59:40'),
+(5, 4, 1, 'Chilli', 'chilli', 'App1', '10', 'vegetables', 200, 100, 'Sas', '<p>ASasAS</p>', 'uploads/products/thumbnail/1714873934289969.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 08:27:07', '2021-11-04 01:59:48'),
+(7, 4, 4, 'Apple', 'apple', 'zxczxczxc', '8', 'fruits, apple', 250, 180, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', 'uploads/products/thumbnail/1714874693222311.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 08:39:10', '2021-11-17 23:09:07'),
+(9, 4, 1, 'Pea', 'pea', 'pea1', '50', 'Vegetables', 120, NULL, 'Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.', '<p>asdasdasd</p>', 'uploads/products/thumbnail/1714877316202855.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 09:20:52', '2021-11-04 09:58:25'),
+(10, 4, 4, 'Pineapple', 'pineapple', 'App1', '18', 'fruits, pineapple', 200, 180, 'asxas', '<p>asxasx</p>', 'uploads/products/thumbnail/1714950961099867.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-10-28 09:22:58', '2021-11-17 22:51:38'),
+(13, 5, 8, 'Wooden Mask', 'wooden-mask', 'Mask1', '20', 'mask', 2500, 2000, 'sdfsdfsdf', '<p>sdfsdfsdfsdfsdf</p>', 'uploads/products/thumbnail/1716564075967090.jpg', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-11-16 00:11:11', '2021-11-17 23:51:47'),
+(14, 1, NULL, 'Sangay Homestays', 'sangay-homestays', NULL, '4', 'village', 2500, 2000, 'sdfdfsdf', '<p>sdfsdfsdfdsfs</p>', 'uploads/products/thumbnail/1716579328063693.jpg', NULL, NULL, NULL, NULL, 1, '2021-11-17', '2021-11-24', NULL, NULL, '2021-11-16 04:13:37', '2021-11-16 06:10:04'),
+(15, 1, NULL, 'Pema Dema', 'pema-dema', NULL, '2', 'village', 1800, 1500, 'sdacda', '<p>asdsada</p>', 'uploads/products/thumbnail/1716586907488304.jpg', NULL, 1, NULL, NULL, 1, '2021-11-17', '2021-11-25', NULL, NULL, '2021-11-16 06:14:06', '2021-11-17 23:51:31');
 
 -- --------------------------------------------------------
 
@@ -100,10 +101,11 @@ INSERT INTO `agro_products` (`id`, `category_id`, `subcategory_id`, `product_nam
 --
 
 CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -112,10 +114,10 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `created_at`, `updated_at`) VALUES
-(1, 'Homestay', 'homestay', 'fa fa-home', '2021-10-24 23:40:03', NULL),
-(4, 'Agro Products', 'agro products', 'fa fa-ravelry', '2021-10-25 00:05:01', NULL),
-(5, 'Handicrafts', 'handicrafts', 'fa fa-american-sign-language-interpreting', '2021-10-26 22:12:24', NULL);
+INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Homestay', 'homestay', 'fa fa-home', 'Y', '2021-10-24 23:40:03', '2021-11-17 00:36:28'),
+(4, 'Agro Products', 'agro products', 'fa fa-ravelry', 'Y', '2021-10-25 00:05:01', '2021-11-17 00:35:56'),
+(5, 'Handicrafts', 'handicrafts', 'fa fa-american-sign-language-interpreting', 'Y', '2021-10-26 22:12:24', '2021-11-17 00:35:52');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,7 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `created_at`, `updated_a
 --
 
 CREATE TABLE `dzongkhags` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `dzongkhag_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -163,7 +165,7 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `gewogs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `dzongkhag_id` int(11) NOT NULL,
   `gewog_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -219,135 +221,6 @@ INSERT INTO `gewogs` (`id`, `dzongkhag_id`, `gewog_name`, `slug`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `handicrafts`
---
-
-CREATE TABLE `handicrafts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `subcategory_id` int(11) NOT NULL,
-  `handicraft_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_qty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `selling_price` int(11) NOT NULL,
-  `discount_price` int(11) DEFAULT NULL,
-  `short_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `long_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handicraft_thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `handicrafts`
---
-
-INSERT INTO `handicrafts` (`id`, `category_id`, `subcategory_id`, `handicraft_name`, `handicraft_slug`, `handicraft_code`, `handicraft_qty`, `handicraft_tag`, `selling_price`, `discount_price`, `short_desc`, `long_desc`, `handicraft_thumbnail`, `status`, `created_at`, `updated_at`) VALUES
-(2, 5, 8, 'Dhaba', 'dhaba', 'Dhaba01', '2', 'Handicraft,Wooden Arts', 52000, 2000, 'dasdasd', '<p>asdasdasda</p>', 'uploads/handicraft/thumbnail/1715333573121580.jpg', 1, '2021-11-01 10:31:08', '2021-11-02 10:12:52'),
-(3, 5, 8, 'Mask', 'mask', 'Mask01', '2', 'Mask', 5400, 600, 'Handmade Wooden Mask, Handmade Wooden Mask Wholesale, Handmade Handicraft Wooden Mask export', '<p>Handmade Wooden Mask, Handmade Wooden Mask Wholesale, Handmade Handicraft Wooden Mask export</p>', 'uploads/handicraft/thumbnail/1715333554809519.jpg', 1, '2021-11-02 10:12:35', NULL),
-(4, 5, 9, 'Kira', 'kira', 'Kira1', '2', 'Kira', 2500, 2000, 'Opening high-end markets for Bhutanese handicrafts (en)', '<p>Opening high-end markets for Bhutanese handicrafts (en)</p>', 'uploads/handicraft/thumbnail/1715395719013526.jpg', 1, '2021-11-03 02:40:40', '2021-11-05 06:28:55');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `handicraft_images`
---
-
-CREATE TABLE `handicraft_images` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `handicraft_id` int(11) NOT NULL,
-  `photo_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `handicraft_images`
---
-
-INSERT INTO `handicraft_images` (`id`, `handicraft_id`, `photo_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'uploads/handicraft/multiimage/1715240251363322.jpg', '2021-11-01 09:29:34', NULL),
-(3, 1, 'uploads/handicraft/multiimage/1715240251830218.jpg', '2021-11-01 09:29:34', NULL),
-(4, 2, 'uploads/handicraft/multiimage/1715244124822387.jpg', '2021-11-01 10:31:08', NULL),
-(5, 2, 'uploads/handicraft/multiimage/1715244125092673.jpg', '2021-11-01 10:31:08', NULL),
-(6, 2, 'uploads/handicraft/multiimage/1715244125392613.jpg', '2021-11-01 10:31:08', NULL),
-(7, 3, 'uploads/handicraft/multiimage/1715333555212316.jpg', '2021-11-02 10:12:35', NULL),
-(8, 3, 'uploads/handicraft/multiimage/1715333555622520.jpg', '2021-11-02 10:12:36', NULL),
-(9, 4, 'uploads/handicraft/multiimage/1715395719633171.jpg', '2021-11-03 02:40:41', NULL),
-(10, 4, 'uploads/handicraft/multiimage/1715395721171395.jpg', '2021-11-03 02:40:42', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `homestays`
---
-
-CREATE TABLE `homestays` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_of_rooms` int(11) NOT NULL,
-  `available_from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `available_to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `selling_price` int(11) NOT NULL,
-  `discount_price` int(11) NOT NULL,
-  `homestay_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `short_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `long_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homestay_thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `homestays`
---
-
-INSERT INTO `homestays` (`id`, `category_id`, `name`, `slug`, `no_of_rooms`, `available_from`, `available_to`, `selling_price`, `discount_price`, `homestay_tag`, `short_desc`, `long_desc`, `homestay_thumbnail`, `status`, `created_at`, `updated_at`) VALUES
-(7, 1, 'Pempa Homestay', 'pempa-homestay', 6, '2021-10-07', '2021-10-08', 2500, 2000, 'Homestay', 'I enjoy meeting people from all around the globe and sharing good times with them.', '<p>With our guests, we enjoy talking, exchanging cultures and sometimes partying or eating out.&nbsp;I hope all our guests know more about our culture and like our country even better.</p>\r\n\r\n<h3>Meals</h3>\r\n\r\n<p>Hosts can offer a complimentary light breakfast at their discretion. All other meals, including a full breakfast, might incur an additional cost, if offered. Meals and any additional payment should be arranged directly with your host.</p>\r\n\r\n<h5>INCLUDED IN THE STAY</h5>\r\n\r\n<ul>\r\n	<li>Complimentary Light Breakfast</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Use of Kitchen</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>\r\n\r\n<h5>AVAILABLE ON REQUEST AT AN EXTRA COST</h5>\r\n\r\n<ul>\r\n	<li>Full Board</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>\r\n\r\n<h5>DIET TYPE AVAILABLE ON REQUEST</h5>\r\n\r\n<ul>\r\n	<li>Vegetarian</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Vegan</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Lactose Intolerant</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Nut Allergies</li>\r\n</ul>\r\n\r\n<ul>\r\n</ul>', 'uploads/homestay/thumbnail/1715153364991097.jpg', 1, '2021-10-31 10:28:33', '2021-11-02 23:37:44'),
-(9, 1, 'Gangtey Bhutan', 'gangtey-bhutan', 4, '2021-11-11', '2021-11-19', 1800, 100, 'Homestay', 'Phobjikha Valley Homestay', '<p>zxczxc</p>', 'uploads/homestay/thumbnail/1715231332367648.jpg', 1, '2021-11-01 07:07:48', '2021-11-16 00:16:09');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `homestay_images`
---
-
-CREATE TABLE `homestay_images` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `homestay_id` int(11) NOT NULL,
-  `photo_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `homestay_images`
---
-
-INSERT INTO `homestay_images` (`id`, `homestay_id`, `photo_name`, `created_at`, `updated_at`) VALUES
-(1, 5, 'uploads/homestay/multiimage/1715148103957211.jpg', '2021-10-31 09:04:56', NULL),
-(3, 5, 'uploads/homestay/multiimage/1715151848199297.jpg', '2021-10-31 09:04:56', '2021-10-31 10:04:26'),
-(12, 7, 'uploads/homestay/multiimage/1715153365229296.jpg', '2021-10-31 10:28:33', NULL),
-(13, 7, 'uploads/homestay/multiimage/1715153365774992.jpg', '2021-10-31 10:28:34', NULL),
-(14, 7, 'uploads/homestay/multiimage/1715153366351125.jpg', '2021-10-31 10:28:34', NULL),
-(15, 7, 'uploads/homestay/multiimage/1715153366600257.jpg', '2021-10-31 10:28:34', NULL),
-(16, 7, 'uploads/homestay/multiimage/1715153366812273.jpg', '2021-10-31 10:28:35', NULL),
-(17, 7, 'uploads/homestay/multiimage/1715153367516479.jpg', '2021-10-31 10:28:35', NULL),
-(18, 7, 'uploads/homestay/multiimage/1715153368060571.jpg', '2021-10-31 10:28:36', NULL),
-(19, 7, 'uploads/homestay/multiimage/1715153368520346.jpg', '2021-10-31 10:28:36', NULL),
-(25, 9, 'uploads/homestay/multiimage/1715231332844815.jpg', '2021-11-01 07:07:49', NULL),
-(26, 9, 'uploads/homestay/multiimage/1715231333137213.jpg', '2021-11-01 07:07:49', NULL),
-(27, 9, 'uploads/homestay/multiimage/1715231333393222.jpg', '2021-11-01 07:07:49', NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -389,7 +262,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2021_11_12_124918_create_ship_districts_table', 18),
 (29, '2021_11_13_060941_create_shippings_table', 19),
 (30, '2021_11_15_062621_create_orders_table', 20),
-(31, '2021_11_15_062656_create_order_items_table', 20);
+(31, '2021_11_15_062656_create_order_items_table', 20),
+(32, '2021_11_17_095653_create_site_settings_table', 21);
 
 -- --------------------------------------------------------
 
@@ -398,7 +272,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `multi_imgs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `product_id` int(11) NOT NULL,
   `photo_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -432,7 +306,11 @@ INSERT INTO `multi_imgs` (`id`, `product_id`, `photo_name`, `created_at`, `updat
 (42, 13, 'uploads/products/multiimage/1716564076123668.jpg', '2021-11-16 00:11:12', NULL),
 (43, 13, 'uploads/products/multiimage/1716564076361158.jpg', '2021-11-16 00:11:12', NULL),
 (44, 13, 'uploads/products/multiimage/1716564076550286.jpg', '2021-11-16 00:11:12', NULL),
-(45, 13, 'uploads/products/multiimage/1716564076761203.jpg', '2021-11-16 00:11:12', NULL);
+(45, 13, 'uploads/products/multiimage/1716564076761203.jpg', '2021-11-16 00:11:12', NULL),
+(46, 14, 'uploads/products/multiimage/1716579328689822.jpg', '2021-11-16 04:13:38', NULL),
+(47, 14, 'uploads/products/multiimage/1716579329297389.jpg', '2021-11-16 04:13:38', NULL),
+(48, 14, 'uploads/products/multiimage/1716579329738233.jpg', '2021-11-16 04:13:39', NULL),
+(49, 15, 'uploads/products/multiimage/1716586908051707.jpg', '2021-11-16 06:14:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -442,9 +320,9 @@ INSERT INTO `multi_imgs` (`id`, `product_id`, `photo_name`, `created_at`, `updat
 
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `division_id` bigint(20) UNSIGNED NOT NULL,
-  `district_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(20) UNSIGNED NOT NULL,
+  `division_id` int(20) UNSIGNED NOT NULL,
+  `district_id` int(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -466,6 +344,7 @@ CREATE TABLE `orders` (
   `delivered_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cancel_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `return_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `return_order` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `return_reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -476,11 +355,12 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `email`, `phone`, `address`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 03:20:09', NULL),
-(2, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw1zvBc8CCIWLpyCx2uFBV5', 'Stripe', 'txn_3Jw1zwBc8CCIWLpy1PdCrDB9', 'usd', 360.00, '61922fe7b3e19', 'EOS40001339', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:13', NULL),
-(3, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw20eBc8CCIWLpyPqkN6CYo', 'Stripe', 'txn_3Jw20fBc8CCIWLpy0wenl8ts', 'usd', 360.00, '6192301482836', 'EOS79609017', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 04:01:58', NULL),
-(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pending', '2021-11-15 06:34:07', NULL);
+INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `email`, `phone`, `address`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_order`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'dsdfsdf', 'card_1Jw1MABc8CCIWLpyNwR7lO20', 'Stripe', 'txn_3Jw1MCBc8CCIWLpy15vmImsn', 'usd', 360.00, '6192264739e5a', 'EOS40973602', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'delivered', '2021-11-15 03:20:09', '2021-11-17 23:09:07'),
+(2, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw1zvBc8CCIWLpyCx2uFBV5', 'Stripe', 'txn_3Jw1zwBc8CCIWLpy1PdCrDB9', 'usd', 360.00, '61922fe7b3e19', 'EOS40001339', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'delivered', '2021-11-15 04:01:13', '2021-11-17 22:57:32'),
+(3, 1, 1, 2, 'Drukson', 'drukzim@gmail.com', '77364409', 'B-Home', 'card_1Jw20eBc8CCIWLpyPqkN6CYo', 'Stripe', 'txn_3Jw20fBc8CCIWLpy0wenl8ts', 'usd', 360.00, '6192301482836', 'EOS79609017', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'delivered', '2021-11-15 04:01:58', '2021-11-17 22:51:38'),
+(4, 1, 1, 6, 'Drukson', 'drukzim@gmail.com', '77364409', 'sfdfsdfssdf', 'card_1Jw4NqBc8CCIWLpys36mnykq', 'Stripe', 'txn_3Jw4NsBc8CCIWLpy0la3Npet', 'usd', 720.00, '619253bb0af97', 'EOS85846519', '15 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, '17 November 2021', '2', 'Product broke', 'confirm', '2021-11-15 06:34:07', '2021-11-17 05:38:45'),
+(5, 1, 1, 5, 'Drukson', 'drukzim@gmail.com', '77364409', 'dasdaasdasdsdasd', 'card_1Jx2fKBc8CCIWLpylQEb1NBZ', 'Stripe', 'txn_3Jx2fMBc8CCIWLpy1xHjCGbV', 'usd', 360.00, '6195dce71ee25', 'EOS97880274', '18 November 2021', 'November', '2021', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, 'pending', '2021-11-17 22:56:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -489,7 +369,7 @@ INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `name`, `em
 --
 
 CREATE TABLE `order_items` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `order_id` bigint(20) UNSIGNED NOT NULL,
   `product_id` bigint(20) UNSIGNED NOT NULL,
   `qty` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -505,7 +385,8 @@ CREATE TABLE `order_items` (
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `qty`, `price`, `created_at`, `updated_at`) VALUES
 (1, 1, 7, '2', 180.00, '2021-11-15 03:20:09', NULL),
 (2, 3, 10, '2', 180.00, '2021-11-15 04:02:04', NULL),
-(3, 4, 10, '4', 180.00, '2021-11-15 06:34:18', NULL);
+(3, 4, 10, '4', 180.00, '2021-11-15 06:34:18', NULL),
+(4, 5, 10, '2', 180.00, '2021-11-17 22:56:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -533,9 +414,9 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_id` int(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -543,6 +424,33 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `comment`, `summary`, `rating`, `status`, `created_at`, `updated_at`) VALUES
+(1, 14, 1, 'Good product. I liked it', 'Hello', NULL, '0', '2021-11-17 09:14:29', NULL),
+(2, 14, 1, 'zczczca', 'Hello', NULL, '1', '2021-11-17 09:26:43', '2021-11-17 09:43:39'),
+(3, 7, 1, 'Nice Apple', 'Hello', 5, '1', '2021-11-18 09:50:06', '2021-11-18 09:50:21');
 
 -- --------------------------------------------------------
 
@@ -601,26 +509,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2PhPZNDFms8n6N5AZ59IgDbuufEvUkJS1BtPaeYi', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2dYSlNzOFc1VVBOenh4V1hmV3E1M1hsTTl1cjRqVEtnVVdpR3Z3dSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTA6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvb3JkZXJzL3NoaXBwZWQvb3JkZXJzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJE1WWC5DODdjVng4RktTSVpsQWJocWVRMFpBNk8zSHp6WFBaYnRHUk83MEFjUHhzYURBNEFtIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO086MzI6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtIjoxMDp7czo1OiJyb3dJZCI7czozMjoiOTJiODk4MTU1MjM1MDQxZGExMmY4OTkyZDEzMmNhOGUiO3M6MjoiaWQiO3M6MjoiMTAiO3M6MzoicXR5IjtzOjE6IjIiO3M6NDoibmFtZSI7czo5OiJQaW5lYXBwbGUiO3M6NToicHJpY2UiO2Q6MTgwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czo1OiJpbWFnZSI7czo0NzoidXBsb2Fkcy9wcm9kdWN0cy90aHVtYm5haWwvMTcxNDk1MDk2MTA5OTg2Ny5qcGciO319czo3OiJ0YXhSYXRlIjtpOjA7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX19fX0=', 1637052200);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shippings`
---
-
-CREATE TABLE `shippings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` bigint(20) UNSIGNED NOT NULL,
-  `division_id` bigint(20) UNSIGNED NOT NULL,
-  `district_id` bigint(20) UNSIGNED NOT NULL,
-  `shipping_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shipping_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+('tK5oS44Fm92yADQjp9KPz5KhfL8iyjPe9jqPvqa3', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQThQb1hCdXllSnptcTd3V0o2VHhVbVQ1SnBhNFdPU0RyeVRRYWIxWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTc6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcHJvZHVjdC9hZ3JvL2RldGFpbHMvNy9hcHBsZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRNVlguQzg3Y1Z4OEZLU0labEFiaHFlUTBaQTZPM0h6elhQWmJ0R1JPNzBBY1B4c2FEQTRBbSI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkTVZYLkM4N2NWeDhGS1NJWmxBYmhxZVEwWkE2TzNIenpYUFpidEdSTzcwQWNQeHNhREE0QW0iO30=', 1637250993);
 
 -- --------------------------------------------------------
 
@@ -629,7 +518,7 @@ CREATE TABLE `shippings` (
 --
 
 CREATE TABLE `ship_districts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `division_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `district_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -656,7 +545,7 @@ INSERT INTO `ship_districts` (`id`, `division_id`, `district_name`, `created_at`
 --
 
 CREATE TABLE `ship_divisions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `division_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -691,11 +580,40 @@ INSERT INTO `ship_divisions` (`id`, `division_name`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `site_settings`
+--
+
+CREATE TABLE `site_settings` (
+  `id` int(20) UNSIGNED NOT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_one` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_two` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `site_settings`
+--
+
+INSERT INTO `site_settings` (`id`, `logo`, `phone_one`, `phone_two`, `email`, `company_name`, `company_address`, `facebook`, `twitter`, `linkedin`, `youtube`, `created_at`, `updated_at`) VALUES
+(1, 'uploads/logo/1716670278016673.png', '+975 – 02-338089', '+975 – 02-338089', 'shine@grat.at', 'Shine', 'SHINE Project Office Above Memorial Chorten Chorten Lam, Thimphu, Bhutan', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://twitter.com/SHINEProject3', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://www.youtube.com/channel/UCCNTFsPeh0FYCPiTi4AHr5Q/featured', NULL, '2021-11-17 04:26:43');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sliders`
 --
 
 CREATE TABLE `sliders` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `slider_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -720,7 +638,7 @@ INSERT INTO `sliders` (`id`, `slider_image`, `title`, `description`, `status`, `
 --
 
 CREATE TABLE `sponsors` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -744,7 +662,7 @@ INSERT INTO `sponsors` (`id`, `name`, `slug`, `image`, `created_at`, `updated_at
 --
 
 CREATE TABLE `sub_categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -765,30 +683,6 @@ INSERT INTO `sub_categories` (`id`, `category_id`, `name`, `slug`, `created_at`,
 (8, 5, 'Woodworking', 'woodworking', '2021-11-01 09:12:00', NULL),
 (9, 5, 'Weaving', 'weaving', '2021-11-03 02:35:51', NULL),
 (10, 5, 'Sewing', 'sewing', '2021-11-03 02:37:09', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sub_sub_categories`
---
-
-CREATE TABLE `sub_sub_categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `subcategory_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sub_sub_categories`
---
-
-INSERT INTO `sub_sub_categories` (`id`, `category_id`, `subcategory_id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, 'Carrot', 'carrot', '2021-10-25 11:10:44', NULL),
-(3, 4, 4, 'Pineapple', 'pineapple', '2021-10-26 22:16:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -829,7 +723,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `passw
 --
 
 CREATE TABLE `villages` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `dzongkhag_id` int(11) NOT NULL,
   `gewog_id` int(11) NOT NULL,
   `village_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -855,9 +749,9 @@ INSERT INTO `villages` (`id`, `dzongkhag_id`, `gewog_id`, `village_name`, `slug`
 --
 
 CREATE TABLE `wishlists` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
+  `user_id` int(20) UNSIGNED NOT NULL,
+  `product_id` int(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -912,30 +806,6 @@ ALTER TABLE `gewogs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `handicrafts`
---
-ALTER TABLE `handicrafts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `handicraft_images`
---
-ALTER TABLE `handicraft_images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `homestays`
---
-ALTER TABLE `homestays`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `homestay_images`
---
-ALTER TABLE `homestay_images`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -975,6 +845,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sellers`
 --
 ALTER TABLE `sellers`
@@ -990,12 +866,6 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indexes for table `shippings`
---
-ALTER TABLE `shippings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `ship_districts`
 --
 ALTER TABLE `ship_districts`
@@ -1005,6 +875,12 @@ ALTER TABLE `ship_districts`
 -- Indexes for table `ship_divisions`
 --
 ALTER TABLE `ship_divisions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `site_settings`
+--
+ALTER TABLE `site_settings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1023,12 +899,6 @@ ALTER TABLE `sponsors`
 -- Indexes for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sub_sub_categories`
---
-ALTER TABLE `sub_sub_categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1064,19 +934,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `agro_products`
 --
 ALTER TABLE `agro_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `dzongkhags`
 --
 ALTER TABLE `dzongkhags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1088,61 +958,43 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `gewogs`
 --
 ALTER TABLE `gewogs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `handicrafts`
---
-ALTER TABLE `handicrafts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `handicraft_images`
---
-ALTER TABLE `handicraft_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `homestays`
---
-ALTER TABLE `homestays`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `homestay_images`
---
-ALTER TABLE `homestay_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
 --
 ALTER TABLE `multi_imgs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sellers`
@@ -1151,46 +1003,40 @@ ALTER TABLE `sellers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `shippings`
---
-ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `ship_districts`
 --
 ALTER TABLE `ship_districts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ship_divisions`
 --
 ALTER TABLE `ship_divisions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `site_settings`
+--
+ALTER TABLE `site_settings`
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
 ALTER TABLE `sponsors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `sub_sub_categories`
---
-ALTER TABLE `sub_sub_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1202,13 +1048,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `villages`
 --
 ALTER TABLE `villages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

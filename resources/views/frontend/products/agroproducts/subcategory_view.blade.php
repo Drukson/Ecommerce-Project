@@ -10,7 +10,12 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="{{url('/')}}">Home</a></li>
-                <li class='active'>Vegetables</li>
+                @foreach($breadsubcat as $item)
+                    <li class='active'>{{ $item->category->name }}</li>
+                @endforeach
+                @foreach($breadsubcat as $item)
+                    <li class='active'>{{ $item->name }}</li>
+                @endforeach
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->
@@ -34,15 +39,16 @@
                             </div>
                             <div class="sidebar-widget-body">
                                 <div class="accordion">
-
+                                    @foreach($categories as $cat)
                                         <div class="accordion-group">
-                                            <div class="accordion-heading"> <a href="#collapse{{$categories->id}}"
-                                                  data-toggle="collapse" class="accordion-toggle collapsed"> {{$categories->name}} </a> </div>
+                                            <div class="accordion-heading"> <a href="#collapse{{$cat->id}}"
+                                                     data-toggle="collapse" class="accordion-toggle collapsed"> {{$cat->name}} </a> </div>
                                             <!-- /.accordion-heading -->
+
                                             @php
-                                                $subcategory = App\Models\SubCategory::where('category_id',$categories->id)->orderBy('name','ASC')->get();
+                                                $subcategory = App\Models\SubCategory::where('category_id', $cat->id)->orderBy('name','ASC')->get();
                                             @endphp
-                                            <div class="accordion-body collapse" id="collapse{{$categories->id}}" style="height: 0px;">
+                                            <div class="accordion-body collapse" id="collapse{{$cat->id}}" style="height: 0px;">
                                                 <div class="accordion-inner">
                                                     @foreach($subcategory as $subcat)
                                                         <ul>
@@ -56,10 +62,11 @@
                                             </div>
                                             <!-- /.accordion-body -->
                                         </div>
+                                @endforeach
                                 <!-- /.accordion-group -->
                                 </div>
 
-                                <div class="accordion">
+                                {{--<div class="accordion">
 
                                     <div class="accordion-group">
                                         <div class="accordion-heading"> <a href="#collapse{{$category->id}}"
@@ -72,7 +79,7 @@
                                             <div class="accordion-inner">
                                                 @foreach($subcategory as $subcat)
                                                     <ul>
-                                                        <li><a href="{{url('/subcategory/handicraft/'. $subcat->id . '/'. $subcat->slug)}}">
+                                                        <li><a href="{{url('/subcategory/product/'. $subcat->id . '/'. $subcat->slug)}}">
                                                                 {{$subcat->name}}
                                                             </a></li>
                                                     </ul>
@@ -83,7 +90,7 @@
                                         <!-- /.accordion-body -->
                                     </div>
                                     <!-- /.accordion-group -->
-                                </div>
+                                </div>--}}
                                 <!-- /.accordion -->
                             </div>
                             <!-- /.sidebar-widget-body -->
@@ -137,7 +144,14 @@
                         <!-- /.container-fluid -->
                     </div>
                 </div>
+                @foreach($breadsubcat as $item)
+                    <span class="badge badge-danger" style="background: #808080">{{ $item->category->name }} </span>
+                @endforeach
 
+                @foreach($breadsubcat as $item)
+                    <span class="badge badge-danger" style="background: #FF0000">{{ $item->name }} </span>
+
+                @endforeach
                 <div class="clearfix filters-container m-t-10">
                     <div class="row">
                         <div class="col col-sm-6 col-md-2">
@@ -216,7 +230,7 @@
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image">
-                                                            <a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->slug)}}">
+                                                            <a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">
                                                                 <img  src="{{asset($agro->product_thumbnail)}}" alt=""></a> </div>
                                                         <!-- /.image -->
                                                         @php
@@ -232,7 +246,7 @@
                                                     <!-- /.product-image -->
 
                                                     <div class="product-info text-left">
-                                                        <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->slug)}}">{{$agro->name}}</a></h3>
+                                                        <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->name}}</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="description">{{$agro->short_desc}}</div>
 
@@ -251,11 +265,24 @@
                                                         <div class="action">
                                                             <ul class="list-unstyled">
                                                                 <li class="add-cart-button btn-group">
-                                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                                    <button class="btn btn-primary icon"  type="button" title="Add to cart"
+                                                                            data-toggle="modal"
+                                                                            data-target="#exampleModal" id="{{ $agro->id }}"
+                                                                            onclick="productView(this.id)">
+                                                                        <i class="fa fa-shopping-cart"></i> </button>
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
-                                                                <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
+                                                                <li {{--class="lnk wishlist"--}}>
+                                                                    <button class="btn btn-primary icon"  type="button" title="Wishlist"
+                                                                            id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
+                                                                        <i class="fa fa-heart"></i>
+                                                                    </button>
+
+                                                                    {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                                             id="{{ $product->id }}" onclick="addToWishlist(this.id)">
+                                                                         <i class="fa fa-heart"></i>
+                                                                     </button>--}}
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <!-- /.action -->

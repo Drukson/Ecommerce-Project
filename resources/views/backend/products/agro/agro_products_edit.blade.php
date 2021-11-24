@@ -96,25 +96,27 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Selling Price <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" id="selling_price" value="{{$agroProduct->selling_price}}" name="selling_price" class="form-control" >
-                                                        @error('selling_price')
-                                                        <span class="text-danger">{{$message}}</span>
-                                                        @enderror
-                                                    </div>
+                                                    <h5>Product Unit</h5>
+                                                    <select class="form-control" name="product_unit" id="exampleFormControlSelect1">
+
+                                                        <option>{{$agroProduct->product_unit}}</option>
+                                                        {{--option>Grams</option>
+                                                        <option>Kg</option>
+                                                        <option>Piece</option>--}}
+                                                    </select>
                                                 </div>
                                             </div>
+
                                         </div>
                                         {{--{{       Second Row Ends        }}--}}
                                         {{--{{       Third Row Starts        }}--}}
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Discount Price <span class="text-danger">*</span></h5>
+                                                    <h5>Selling Price <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" id="discount_price" value="{{$agroProduct->discount_price}}" name="discount_price" class="form-control">
-                                                        @error('discount_price')
+                                                        <input type="text" id="selling_price" value="{{$agroProduct->selling_price}}" name="selling_price" class="form-control" >
+                                                        @error('selling_price')
                                                         <span class="text-danger">{{$message}}</span>
                                                         @enderror
                                                     </div>
