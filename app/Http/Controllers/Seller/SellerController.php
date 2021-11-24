@@ -98,8 +98,7 @@ class SellerController extends Controller
         return json_encode($sub);
     }
 
-    public function StoreSellers(Request $request)
-    {
+    public function StoreSellers(Request $request){
         $validate = $request->validate([
             'name' => 'required',
             'email' => 'required | email|unique:sellers,email',

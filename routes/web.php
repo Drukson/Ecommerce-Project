@@ -40,12 +40,20 @@ Route::post('/admin/password/update', [\App\Http\Controllers\Backend\AdminProfil
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = \Illuminate\Support\Facades\Auth::user()->id;
     $user = \App\Models\User::find($id);
+    if($user!=null && $user!=""){
+        $role=\App\Models\Role::find($user->role_id);
+        $user->role=$role;
+    }
     return view('dashboard', compact('user'));
 })->name('dashboard');
 
 
-// Route::post('/login', [\App\Http\Controllers\Backend\LoginController::class, 'login'])->name('user.login');
-Route::get('/', [\App\Http\Controllers\Frontend\IndexController::class, 'index']);
+Route::post('/user_login', [\App\Http\Controllers\Backend\LoginController::class, 'user_login'])->name('user.user_login');
+Route::get('/public_dashboard', [\App\Http\Controllers\Backend\LoginController::class, 'public_dashboard'])->name('public_dashboard');
+Route::get('/public_logout', [\App\Http\Controllers\Backend\LoginController::class, 'public_logout'])->name('public_logout');
+
+
+Route::get('/', [\App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('/');
 Route::get('/user/logout', [\App\Http\Controllers\Frontend\IndexController::class, 'destroy'])->name('user.logout');
 Route::get('/user/profile', [\App\Http\Controllers\Frontend\IndexController::class, 'UserProfile'])->name('user.profile');
 Route::post('/user/profile/update', [\App\Http\Controllers\Frontend\IndexController::class, 'UserProfileUpdate'])->name('user.profile.update');
