@@ -7,13 +7,11 @@
             <div class="row">
 
                 @include('frontend.common.user_sidebar')
-
                 <div class="col-md-1">
-
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <h3 class="text-center"><strong><span class="text-danger">Hello...</span> {{\Illuminate\Support\Facades\Auth::user()->name}}</strong>
+                        <h3 class="text-center"><strong><span class="text-danger">Hello...</span> {{$user->name}}</strong>
                             Update Your Profile</h3>
                     </div>
                     <div class="card-body">
@@ -52,7 +50,6 @@
                                         url('uploads/admin_images/'.$editAdminProfile->profile_photo_path) : url('uploads/no_image.png') }}" style="width: 100px">
                                 </div>
                             </div>
-
                             <div class="text-xs-right">
                                 <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Profile" >
                             </div>

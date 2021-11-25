@@ -20,26 +20,43 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="{{ ($route == 'dashboard') ? 'active':'' }}">
-                <a href="{{url('/admin/dashboard')}}">
+                <a href="{{url('/dashboard')}}">
                     <i data-feather="pie-chart"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             {{--SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
-            <li class="treeview {{($route == 'all_settings') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="message-circle"></i>
-                    <span>Manage Settings</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu ">
-                    <li class="{{($route == 'all_settings') ? 'active':''}}">
-                        <a href="{{route('all_settings')}}"><i class="ti-more"></i>All Settings</a></li>
-                </ul>
-            </li>
+            @if(strpos(strtolower(Session::get('user_details')['role_name']),'admin')!==false)
+                <li class="treeview {{($route == 'all_settings') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="message-circle"></i>
+                        <span>Manage Settings</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu ">
+                        <li class="{{($route == 'all_settings') ? 'active':''}}">
+                            <a href="{{route('all_settings')}}"><i class="ti-more"></i>All Settings</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview {{($route == 'all.slider') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="message-circle"></i>
+                        <span>Slider</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu ">
+                        <li class="{{($route == 'all.slider') ? 'active':''}}">
+                            <a href="{{route('all.slider')}}"><i class="ti-more"></i>All Sliders</a></li>
+                    </ul>
+                </li>
+            @endif
+            
             {{--END SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
 
             <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
@@ -56,19 +73,7 @@
                 </ul>
             </li>
 
-            <li class="treeview {{($route == 'all.slider') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="message-circle"></i>
-                    <span>Slider</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu ">
-                    <li class="{{($route == 'all.slider') ? 'active':''}}">
-                        <a href="{{route('all.slider')}}"><i class="ti-more"></i>All Sliders</a></li>
-                </ul>
-            </li>
+           
 
             <li class="treeview {{($route == 'all.sponsors') ? 'active':''}}">
                 <a href="#">

@@ -23,9 +23,9 @@ Route::group(['prefix'=>'admin', 'middleware' => ['admin:admin']], function(){
     Route::post('/login', [\App\Http\Controllers\AdminController::class, 'store'])->name('admin.login');
 });
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+//     return view('admin.index');
+// })->name('dashboard');
 
 // ADMIN ALL ROUTE
 Route::get('/admin/logout', [\App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.logout');
@@ -37,19 +37,21 @@ Route::post('/admin/password/update', [\App\Http\Controllers\Backend\AdminProfil
 
 
 // User All Route
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    $id = \Illuminate\Support\Facades\Auth::user()->id;
-    $user = \App\Models\User::find($id);
-    if($user!=null && $user!=""){
-        $role=\App\Models\Role::find($user->role_id);
-        $user->role=$role;
-    }
-    return view('dashboard', compact('user'));
-})->name('dashboard');
+// Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+//     $id = \Illuminate\Support\Facades\Auth::user()->id;
+//     $user = \App\Models\User::find($id);
+//     if($user!=null && $user!=""){
+//         $role=\App\Models\Role::find($user->role_id);
+//         $user->role=$role;
+//     }
+//     return view('dashboard', compact('user'));
+// })->name('dashboard');
 
 
 Route::post('/user_login', [\App\Http\Controllers\Backend\LoginController::class, 'user_login'])->name('user.user_login');
+Route::post('/register_customer', [\App\Http\Controllers\Backend\LoginController::class, 'register_customer'])->name('register_customer');
 Route::get('/public_dashboard', [\App\Http\Controllers\Backend\LoginController::class, 'public_dashboard'])->name('public_dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\Backend\LoginController::class, 'public_dashboard'])->name('dashboard');
 Route::get('/public_logout', [\App\Http\Controllers\Backend\LoginController::class, 'public_logout'])->name('public_logout');
 
 
@@ -162,7 +164,7 @@ Route::get('/minicart/product-remove/{rowId}', [\App\Http\Controllers\Frontend\C
 Route::post('/add-to-wishlist/{product_id}', [\App\Http\Controllers\Frontend\CartController::class, 'AddtoWishlist']);
 
 // ADD TO WISHLIST
-Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function (){
+// Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function (){
     Route::get('/wishlist', [\App\Http\Controllers\User\WishlistController::class, 'ViewWishlist'])->name('wishlist');
     Route::get('/get-wishlist-product', [\App\Http\Controllers\User\WishlistController::class, 'GetWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [\App\Http\Controllers\User\WishlistController::class, 'RemoveWishlistProduct']);
@@ -185,7 +187,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 /// Order Tracking Route
     Route::post('/order/tracking', [\App\Http\Controllers\User\AllUserController::class, 'OrderTracking'])->name('order.tracking');
 
-});
+// });
 
 // MYCART DETAILS ALL ROUTE
 Route::get('/mycart', [\App\Http\Controllers\User\CartPageController::class, 'ViewMyCart'])->name('mycart');

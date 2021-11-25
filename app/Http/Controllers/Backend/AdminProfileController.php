@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -53,12 +55,14 @@ class AdminProfileController extends Controller
             'oldpassword' => 'required',
             'password' => 'required|confirmed'
         ]);
-        $hashedPassword = Admin::find(1)->password;
-        if (Hash::check($request->oldpassword, $hashedPassword )){
-            $admin = Admin::find(1);
-            $admin->password = Hash::make($request->password);
-            $admin->save();
+        // $hashedPassword = User::find(1)->password;
+        $user_details = User::where('id',Session::get('user_details')['user_id'])->first();
+        if (Hash::check($request->oldpassword, $user_details->password )){
+            $user_details->password = Hash::make($request->password);
+            $user_details->save();
             Auth::logout();
+            Session::forget('user_details');
+            Session::flush();
             return Redirect::route('admin.logout');
         }else{
             return Redirect::back();
@@ -67,6 +71,14 @@ class AdminProfileController extends Controller
 
     public function AllUsers(){
         $users = User::latest()->get();
+        if($users!=null && $users!=""){
+            foreach($users as $us){
+                $role=Role::where('id',$us->role_id)->first();
+                if($role!=null && $role!=""){
+                    $us->role=$role->name;
+                }
+            }
+        }
         return view('backend.user.all_user',compact('users'));
     }
 

@@ -13,6 +13,7 @@ use App\Models\HomestayImage;
 use App\Models\MultiImg;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,19 +56,16 @@ class IndexController extends Controller
 
     public function UserProfile()
     {
-        $id = Auth::user()->id;
-        $user = User::find($id);
+        $user = User::where('id',Session::get('user_details')['user_id'])->first();
         return view('frontend.profile.user_profile', compact('user'));
     }
 
     public function UserProfileUpdate(Request $request){
 
-        $image = User::find(Auth::user()->id);
+        $image = User::find(Session::get('user_details')['user_id']);
         $image->name = $request->name;
         $image->email = $request->email;
         $image->phone = $request->phone;
-
-
         if ($request->file('profile_photo_path')){
             $file = $request->file('profile_photo_path');
            // unlink(public_path('uploads/user_images/'. $image->profile_photo_path));
@@ -85,7 +83,8 @@ class IndexController extends Controller
     }
 
     public function UserPasswordChange(){
-        return view('frontend.profile.change_password');
+        $user = User::where('id',Session::get('user_details')['user_id'])->first();
+        return view('frontend.profile.change_password',compact('user'));
     }
 
     public function UserPasswordUpdate(Request $request){
@@ -93,18 +92,21 @@ class IndexController extends Controller
             'oldpassword' => 'required',
             'password' => 'required|confirmed'
         ]);
-        $hashedPassword = User::find(Auth::user()->id)->password;
-        if (Hash::check($request->oldpassword, $hashedPassword )){
-            $user = User::find(Auth::user()->id);
-            $user->password = Hash::make($request->password);
-            $user->save();
+        $user_details = User::where('id',Session::get('user_details')['user_id'])->first();
+        if (Hash::check($request->oldpassword, $user_details->password )){
+            $user_details->password = Hash::make($request->password);
+            $user_details->save();
+            Auth::logout();
+            Session::forget('user_details');
+            Session::flush();
             Auth::logout();
             $notification = array(
                 'message' => 'User Password Changes Successfully',
                 'alert-type' => 'success'
             );
             return Redirect::route('user.logout')->with($notification);
-        }else{
+        }
+        else{
             return Redirect::back();
         }
     }

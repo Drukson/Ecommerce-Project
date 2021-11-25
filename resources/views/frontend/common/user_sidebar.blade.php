@@ -1,6 +1,5 @@
 @php
-    $id = \Illuminate\Support\Facades\Auth::user()->id;
-        $user = \App\Models\User::find($id);
+        $user =$user;
 @endphp
 
 <div class="col-md-2"><br>

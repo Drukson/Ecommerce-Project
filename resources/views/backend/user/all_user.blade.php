@@ -26,7 +26,8 @@
                                         <th>Name </th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Status</th>
+                                        <th>Phone</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -37,7 +38,7 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
-
+                                            <td>{{ $user->role }}</td>
                                             <td> <span class="badge badge-pill badge-success">Active Now</span></td>
 
                                             <td>

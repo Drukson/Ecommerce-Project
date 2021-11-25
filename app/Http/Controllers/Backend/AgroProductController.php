@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use App\Models\AgroProduct;
 use App\Models\Category;
 use App\Models\MultiImg;
@@ -26,12 +27,10 @@ class AgroProductController extends Controller
     }
 
     public function AddAgroProduct(Request $request){
-
         $img = $request->file('product_thumbnail');
         $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
         Image::make($img)->resize(800,900)->save('uploads/products/thumbnail/' . $imgName);
         $filePath = 'uploads/products/thumbnail/' . $imgName;
-
        $product_id = AgroProduct::insertGetId([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -53,7 +52,8 @@ class AgroProductController extends Controller
 
             'product_thumbnail' => $filePath,
             'status' => 1,
-           'product_unit' => $request->product_unit,
+            'product_unit' => $request->product_unit,
+            'created_by' => Session::get('user_details')['user_id'],
             'created_at' => Carbon::now(),
         ]);
 

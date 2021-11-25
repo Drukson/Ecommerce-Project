@@ -5,7 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
-
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
 use Carbon\Carbon;
 use PDF;
 use Illuminate\Http\Request;
@@ -14,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 class AllUserController extends Controller
 {
     public function MyOrders(){
-
+        $user = User::where('id',Session::get('user_details')['user_id'])->first();
         $orders = Order::where('user_id',Auth::id())->orderBy('id','DESC')->get();
-        return view('frontend.user.order.order_view',compact('orders'));
+        return view('frontend.user.order.order_view',compact('orders','user'));
     }
 
     public function OrderDetails($order_id)
@@ -46,6 +47,7 @@ class AllUserController extends Controller
     //RETURNING ORDER
     public function ReturnOrder(Request $request,$order_id)
     {
+        
         Order::findOrFail($order_id)->update([
             'return_date' => Carbon::now()->format('d F Y'),
             'return_reason' => $request->return_reason,
@@ -63,14 +65,16 @@ class AllUserController extends Controller
     //RETURN ORDER DETAILS
     public function ReturnOrderList()
     {
+        $user = User::where('id',Session::get('user_details')['user_id'])->first();
         $orders = Order::where('user_id',Auth::id())->where('return_reason','!=',NULL)->orderBy('id','DESC')->get();
-        return view('frontend.user.order.return_order_view',compact('orders'));
+        return view('frontend.user.order.return_order_view',compact('orders','user'));
     } // end method
 
     public function CancelOrders()
     {
+        $user = User::where('id',Session::get('user_details')['user_id'])->first();
         $orders = Order::where('user_id',Auth::id())->where('status','cancel')->orderBy('id','DESC')->get();
-        return view('frontend.user.order.cancel_order_view',compact('orders'));
+        return view('frontend.user.order.cancel_order_view',compact('orders','user'));
     }
 
     public function OrderTracking(Request $request)

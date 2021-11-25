@@ -125,7 +125,7 @@ class SellerController extends Controller
             'created_at' => Carbon::now()
         ]);
         $notification = array(
-            'message' => 'Please wait for Account verification',
+            'message' => 'Your registration has beed submitted. Please wait for Account verification',
             'alert-type' => 'success'
         );
         $message="You registration details has been submitted for approval. Please wait for Account verification.";
