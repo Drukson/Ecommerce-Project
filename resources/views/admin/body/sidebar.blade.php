@@ -28,6 +28,7 @@
 
             {{--SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
             @if(strpos(strtolower(Session::get('user_details')['role_name']),'admin')!==false)
+
                 <li class="treeview {{($route == 'all_settings') ? 'active':''}}">
                     <a href="#">
                         <i data-feather="message-circle"></i>
@@ -56,7 +57,7 @@
                     </ul>
                 </li>
             @endif
-            
+
             {{--END SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
 
             <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
@@ -72,8 +73,6 @@
                         <a href="{{route('all_sellers')}}"><i class="ti-more"></i>All Sellers</a></li>
                 </ul>
             </li>
-
-           
 
             <li class="treeview {{($route == 'all.sponsors') ? 'active':''}}">
                 <a href="#">
@@ -176,6 +175,24 @@
                 </ul>
             </li>
             {{--END MANAGE STOCKS--}}
+            {{--COUPON CODE--}}
+            <li class="treeview {{($route == 'manage-coupon') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Coupon Code</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'manage-coupon') ? 'active':''}}">
+                        <a href="{{route('manage-coupon')}}"><i class="ti-more"></i>Add Coupon</a></li>
+
+                </ul>
+            </li>
+            {{--COUPON CODE--}}
+
+
             {{--ORDERS--}}
            <li class="treeview {{($route == 'pending-orders') ? 'active':''}}">
                 <a href="#">

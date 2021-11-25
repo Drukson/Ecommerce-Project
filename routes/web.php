@@ -329,3 +329,19 @@ Route::post('/search', [\App\Http\Controllers\Frontend\IndexController::class, '
 
 // Advance Search Routes
 Route::post('search-product', [\App\Http\Controllers\Frontend\IndexController::class, 'SearchProduct']);
+
+// Admin Coupons All Routes
+
+Route::prefix('coupons')->group(function(){
+    Route::get('/view', [\App\Http\Controllers\Backend\CouponController::class, 'CouponView'])->name('manage-coupon');
+    Route::post('/store', [\App\Http\Controllers\Backend\CouponController::class, 'CouponStore'])->name('coupon.store');
+    Route::get('/edit/{id}', [\App\Http\Controllers\Backend\CouponController::class, 'CouponEdit'])->name('coupon.edit');
+    Route::post('/update/{id}', [\App\Http\Controllers\Backend\CouponController::class, 'CouponUpdate'])->name('coupon.update');
+
+    Route::get('/delete/{id}', [\App\Http\Controllers\Backend\CouponController::class, 'CouponDelete'])->name('coupon.delete');
+});
+
+// Frontend Coupon Option
+Route::post('/coupon-apply', [\App\Http\Controllers\Frontend\CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [\App\Http\Controllers\Frontend\CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [\App\Http\Controllers\Frontend\CartController::class, 'CouponRemove']);

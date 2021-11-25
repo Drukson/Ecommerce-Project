@@ -53,17 +53,7 @@
                         <form method="post" action="{{ route('product.search') }}">
                             @csrf
                             <div class="control-group">
-                                <ul class="categories-filter animate-dropdown">
-                                    <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-                                        <ul class="dropdown-menu" role="menu" >
-                                            <li class="menu-header">Computer</li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+
                                 <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()" id="search" name="search" placeholder="Search here..." />
                                 <button class="search-button" type="submit"></button> </div>
                         </form>
@@ -94,10 +84,7 @@
                                 <div id="miniCart">
 
                                 </div>
-
-
                                {{-- END MINI CART START WITH AJAX--}}
-
 
                                 <div class="clearfix cart-total">
                                     <div class="pull-right"> <span class="text">Sub Total : </span>
@@ -144,7 +131,7 @@
                                 <li class="dropdown yamm mega-menu"> <a href="{{ url('/') }}" data-hover="dropdown"
                                                       class="dropdown-toggle" data-toggle="dropdown">{{$cat->name}}</a>
                                     <ul class="dropdown-menu container">
-                                        <li>
+                                        {{--<li>
                                             <div class="yamm-content ">
                                                 <div class="row">
                                                     @php
@@ -153,29 +140,17 @@
                                                     @foreach($subcategory as $subcat)
                                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                         <h2 class="title">{{$subcat->name}}</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Dresses</a></li>
-                                                            <li><a href="#">Shoes </a></li>
-                                                            <li><a href="#">Jackets</a></li>
-                                                            <li><a href="#">Sunglasses</a></li>
-                                                            <li><a href="#">Sport Wear</a></li>
-                                                            <li><a href="#">Blazers</a></li>
-                                                            <li><a href="#">Shirts</a></li>
-                                                        </ul>
-                                                    </div>
-                                                @endforeach
-                                                    <!-- /.col -->
 
-                                                    <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image"> <img class="img-responsive" src="{{asset('frontend/assets/images/banners/top-menu-banner.jpg')}}" alt=""> </div>
-                                                    <!-- /.yamm-content -->
+                                                    </div>
+                                                    @endforeach
+                                                    <!-- /.col -->
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li>--}}
                                     </ul>
                                 </li>
                                 @endforeach
 
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>
