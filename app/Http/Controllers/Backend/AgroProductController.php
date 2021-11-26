@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seller;
 use Illuminate\Support\Facades\Session;
 use App\Models\AgroProduct;
 use App\Models\Category;
@@ -54,6 +55,7 @@ class AgroProductController extends Controller
             'status' => 1,
             'product_unit' => $request->product_unit,
             'created_by' => Session::get('user_details')['user_id'],
+            'seller_id' => Session::get('user_details')['seller_id'],
             'created_at' => Carbon::now(),
         ]);
 

@@ -345,3 +345,7 @@ Route::prefix('coupons')->group(function(){
 Route::post('/coupon-apply', [\App\Http\Controllers\Frontend\CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [\App\Http\Controllers\Frontend\CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [\App\Http\Controllers\Frontend\CartController::class, 'CouponRemove']);
+
+//Display Seller Details
+Route::get('/seller/seller-details/{gewog_id}', [\App\Http\Controllers\Frontend\IndexController::class, 'SellerDetails']);
+

@@ -23,6 +23,7 @@ class LoginController extends Controller{
                     $role=Role::where('id',$us->role_id)->first();
                     $userdet=[
                         'user_id'   =>$us->id,
+                        'seller_id'   =>$us->seller_id,
                         'name'     =>$us->name,
                         'phone'     =>$us->phone,
                         'email'     =>$us->email,
@@ -34,7 +35,7 @@ class LoginController extends Controller{
                     break;
                 }
             }
-            if($usermatch){ 
+            if($usermatch){
                 return redirect()->route('public_dashboard');
             }else{
                 $message="User name and password mismatch. Please check your password and try again";
@@ -46,11 +47,12 @@ class LoginController extends Controller{
     }
 
     public function public_dashboard(){
+
         if(Session::get('user_details')!=null){
             if(strpos(strtolower(Session::get('user_details')['role_name']),'customer')!==false){
                 return view('dashboard');
             }else{
-                return view('admin/index');   
+                return view('admin/index');
             }
         }else{
             return redirect()->route('login');
@@ -87,6 +89,6 @@ class LoginController extends Controller{
             $message="Your registration is sucess. You may login now to access further with us.";
         }
         return view('seller.registration_acknowledgement',compact('message'))->with($notification);
-        
+
     }
-} 
+}

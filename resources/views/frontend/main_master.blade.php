@@ -531,8 +531,11 @@ onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
             url: 'http://localhost/ecom/public/user/cart-remove/'+id,
             dataType:'json',
             success:function(data){
+                couponCalculation();
                 cart();
                 miniCart();
+                $('#couponField').show();
+                $('#coupon_name').val('');
                 // Start Message
                 const Toast = Swal.mixin({
                     toast: true,
@@ -638,10 +641,10 @@ onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
                         `<tr>
                 <th>
                     <div class="cart-sub-total">
-                        Subtotal<span class="inner-left-md">$ ${data.total}</span>
+                        Subtotal<span class="inner-left-md">Nu ${data.total}</span>
                     </div>
                     <div class="cart-grand-total">
-                        Grand Total<span class="inner-left-md">$ ${data.total}</span>
+                        Grand Total<span class="inner-left-md">Nu ${data.total}</span>
                     </div>
                 </th>
             </tr>`

@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\AgroProduct;
 use App\Models\Category;
+use App\Models\Dzongkhag;
+use App\Models\Gewog;
 use App\Models\Handicraft;
 use App\Models\HandicraftImage;
 use App\Models\Homestay;
 use App\Models\HomestayImage;
 use App\Models\MultiImg;
+use App\Models\Seller;
 use App\Models\Slider;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Session;
@@ -28,12 +31,19 @@ class IndexController extends Controller
         $agroProduct = AgroProduct::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
         $featured = AgroProduct::where('featured_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $category = Category::orderBy('name','DESC')->get();
+        $category_list = Category::get();
+        if($category_list!=null && $category_list!="" && sizeof($category_list)>0){
+            foreach ($category_list as $cat){
+                $cat->product_details = AgroProduct::where('category_id', $cat->id)->orderBy('id', 'DESC')->limit(6)->get();
+            }
+        }
+        $handicraft = AgroProduct::where('category_id', 5)->orderBy('id', 'DESC')->limit(6)->get();
 
        // $categories = Category::orderBy('name','ASC')->get();
        // $products = AgroProduct::where('product_name','LIKE',"%$item%")->get();
 
         return view('frontend.index', compact('slider', 'category',
-            'agroProduct', 'featured'));
+            'agroProduct', 'featured', 'category_list'));
     }
 
     /*private function getsummproduct($type="", $limit= '' ){
@@ -118,8 +128,6 @@ class IndexController extends Controller
         return view('frontend.products.agroproducts.agro_view', compact('product', 'multiImg'));
     }
 
-
-
     public function AgroProductTags($tag)
     {
         $agroProduct = AgroProduct::where('status', 1)->where('product_tag', $tag)->orderBy('id', 'DESC')->paginate(3);
@@ -128,15 +136,20 @@ class IndexController extends Controller
         return view('frontend.tags.agrotags_view', compact('agroProduct', 'categories'));
     }
 
-
     public function SubCatProduct($subcat_id, $slug)
     {
-        // dd($subcat_id);
-        $agros = AgroProduct::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
+         /*dd($slug);*/
         $categories = Category::orderBy('name', 'ASC')->get();
-       // $categories = Category::skip(1)->first();
+         if ($slug == 'seller'){
+             $agros = AgroProduct::where('status', 1)->where('seller_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
+            /* dd($agros, $subcat_id);*/
 
-        $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
+             $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
+         }else{
+             $agros = AgroProduct::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
+                /*dd($agros);*/
+             $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
+         }
         //$agroProduct = AgroProduct::where('status', 1)->where('product_tag', $tag)->orderBy('id', 'DESC')->paginate(3);
 
         return view('frontend.products.agroproducts.subcategory_view',
@@ -187,5 +200,28 @@ class IndexController extends Controller
         $products = AgroProduct::where('product_name','LIKE',"%$item%")->select('product_name','product_thumbnail')->limit(5)->get();
         return view('frontend.products.agroproducts.search_product',compact('products'));
     }
+
+    public function SellerDetails($gewog_id = '')
+    {
+        $seller = Seller::where('gewog_id',$gewog_id)->where('status', 2)->get();
+        if ($seller != null && $seller!='' && sizeof($seller)>0)
+        {
+            foreach ($seller as $sell){
+                $dzongkhag = Dzongkhag::where('id', $sell->dzongkhag_id)->first();
+                if ($dzongkhag != null && $dzongkhag!=''){
+                    $sell->dzongkhag_name =  $dzongkhag->dzongkhag_name;
+                }
+                $gewog = Gewog::where('id', $sell->gewog_id)->first();
+                if ($gewog != null && $gewog!=''){
+                    $sell->gewog_name = $gewog->gewog_name;
+                }
+
+            }
+        }
+        return view('frontend.seller.seller_details', compact('seller'));
+    }
+
+
+
 
 }

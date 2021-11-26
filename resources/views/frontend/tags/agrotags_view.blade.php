@@ -27,7 +27,7 @@
                 <div class="sidebar-module-container">
                     <div class="sidebar-filter">
                         <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
+                       {{-- <div class="sidebar-widget wow fadeInUp">
                             <h3 class="section-title">shop by</h3>
                             <div class="widget-header">
                                 <h4 class="widget-title">Category</h4>
@@ -63,30 +63,14 @@
                                 <!-- /.accordion -->
                             </div>
                             <!-- /.sidebar-widget-body -->
-                        </div>
+                        </div>--}}
+
+                        @include('frontend.common.category')
 
 
 
                         <!-- /.sidebar-widget -->
                         <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
-
-                        <!-- ============================================== PRICE SILDER============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Price Slider</h4>
-                            </div>
-                            <div class="sidebar-widget-body m-t-10">
-                                <div class="price-range-holder"> <span class="min-max"> <span class="pull-left">$200.00</span> <span class="pull-right">$800.00</span> </span>
-                                    <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
-                                    <input type="text" class="price-slider" value="" >
-                                </div>
-                                <!-- /.price-range-holder -->
-                                <a href="#" class="lnk btn btn-primary">Show Now</a> </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== PRICE SILDER : END ============================================== -->
-
 
                         <!-- ======================== PRODUCT TAGS ========================= -->
                         @include('frontend.common.product_tags')

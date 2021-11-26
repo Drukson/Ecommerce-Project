@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2021 at 03:25 PM
+-- Generation Time: Nov 25, 2021 at 03:08 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -121,6 +121,29 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `status`, `created_at`, 
 (1, 'Homestay', 'homestay', 'fa fa-home', 'Y', '2021-10-24 23:40:03', '2021-11-17 00:36:28'),
 (4, 'Agro Products', 'agro products', 'fa fa-ravelry', 'Y', '2021-10-25 00:05:01', '2021-11-17 00:35:56'),
 (5, 'Handicrafts', 'handicrafts', 'fa fa-american-sign-language-interpreting', 'Y', '2021-10-26 22:12:24', '2021-11-17 00:35:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_discount` int(11) NOT NULL,
+  `coupon_validity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'DRUKSON', 25, '2021-11-30', 1, '2021-11-25 05:00:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -266,7 +289,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2021_11_13_060941_create_shippings_table', 19),
 (30, '2021_11_15_062621_create_orders_table', 20),
 (31, '2021_11_15_062656_create_order_items_table', 20),
-(32, '2021_11_17_095653_create_site_settings_table', 21);
+(32, '2021_11_17_095653_create_site_settings_table', 21),
+(33, '2021_11_25_070752_create_coupons_table', 22);
 
 -- --------------------------------------------------------
 
@@ -464,6 +488,28 @@ INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `comment`, `summary`, `rat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `role_master`
+--
+
+CREATE TABLE `role_master` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `code` varchar(20) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `role_master`
+--
+
+INSERT INTO `role_master` (`id`, `name`, `code`, `status`) VALUES
+(1, 'Seller', '0001', 1),
+(2, 'Customer', '0002', 1),
+(3, 'Admin', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sellers`
 --
 
@@ -518,12 +564,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6GtsdGJTA9oZyQ55stVLYYHuX5KQeh3FkuQ70Dcu', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidUZFU3F3ZmRzdWxmWm0zaWNRTkhMTTdVN1k1M2dyQ1RNVW82ZUJpOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc3BvbnNvcnMvdmlldyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1637753945),
-('hG3uHnipcVrbRpR69gLFl6DlvBdEnhixu2gxgaYo', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiQTk0WFJkQTdxcUVmMENKczFyZ2x2TVV0anJZWlREUEltUmM3S08yUCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1637759970),
-('jz1m5aKkVJulsqA1NDcSt113X2BMDZxAFO7dwuiF', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiWUdRVVRpWm5icUJHbzNYcGthRE9tODN0TmNrSGt4SHJSbml1Q2N0byI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1637759973),
-('KGMS3op5uLiaJBtOevpS7lX98zbqG4t9bkNNpZWu', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiVnlRY1lHQzV6OTVCRG1qYU9kVkJaWW9nczVPd1FnT3p1MTRvb3NNUSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1637759970),
-('lIaZMx8IxmS1fMAeOn6rJVpRz5rXvg5qLq2wCtIU', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaVY1MG81TDVPWmJrTmplSElPcHVsWklhaGF6bkhFb0d4UmxiTFJrRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1637728280),
-('vt7UqVELYAssJNG1fnl2DBcE7bV30xfpKG1oqgGA', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQVEzS2NCRzcyZDdrRTloWFY4YzhVMVNsOWdnRk5STnE4empiNHM5NSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTc6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc3ViY2F0ZWdvcnkvcHJvZHVjdC80L2ZydWl0cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1637734577);
+('IGZ3JPaPl4hw8G0mVxuYEPMCzhn6L22ILZzoN2pn', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiM1ZvYm1YeFRQZWxpVmF3eHVyTnpDZ01WdHFQMHVJWUZ0NkhUZThqRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvbXljYXJ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMjoidXNlcl9kZXRhaWxzIjthOjY6e3M6NzoidXNlcl9pZCI7aTozO3M6NDoibmFtZSI7czoxNDoiS2lubGV5IFlhbmdkZW4iO3M6NToicGhvbmUiO3M6ODoiNzc0NDY5NjAiO3M6NToiZW1haWwiO3M6MTU6InphbWluQGdtYWlsLmNvbSI7czo3OiJyb2xlX2lkIjtpOjI7czo5OiJyb2xlX25hbWUiO3M6ODoiQ3VzdG9tZXIiO31zOjQ6ImNhcnQiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcQ29sbGVjdGlvbiI6MTp7czo4OiIAKgBpdGVtcyI7YToxOntzOjMyOiJiN2E0ODdjNGMyNWFjY2JjNWVlM2U1NDk4NjJhYjQ1NCI7TzozMjoiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0iOjEwOntzOjU6InJvd0lkIjtzOjMyOiJiN2E0ODdjNGMyNWFjY2JjNWVlM2U1NDk4NjJhYjQ1NCI7czoyOiJpZCI7czoyOiIxNSI7czozOiJxdHkiO2k6MztzOjQ6Im5hbWUiO3M6OToiUGVtYSBEZW1hIjtzOjU6InByaWNlIjtkOjI1MC43O3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjE6e3M6ODoiACoAaXRlbXMiO2E6MTp7czo1OiJpbWFnZSI7czo0NzoidXBsb2Fkcy9wcm9kdWN0cy90aHVtYm5haWwvMTcxNjU4NjkwNzQ4ODMwNC5qcGciO319czo3OiJ0YXhSYXRlIjtpOjA7czo0OToiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGFzc29jaWF0ZWRNb2RlbCI7TjtzOjQ2OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AZGlzY291bnRSYXRlIjtpOjA7fX19fXM6NjoiY291cG9uIjthOjQ6e3M6MTE6ImNvdXBvbl9uYW1lIjtzOjc6IkRSVUtTT04iO3M6MTU6ImNvdXBvbl9kaXNjb3VudCI7aToyNTtzOjE1OiJkaXNjb3VudF9hbW91bnQiO2Q6MTg4O3M6MTI6InRvdGFsX2Ftb3VudCI7ZDo1NjQ7fX0=', 1637849132);
 
 -- --------------------------------------------------------
 
@@ -716,6 +757,8 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `current_team_id` bigint(20) UNSIGNED DEFAULT NULL,
   `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role_id` int(3) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -724,11 +767,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Drukson', 'drukzim@gmail.com', '77364409', NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, '202111151103pea4.jpg', '2021-10-19 09:21:45', '2021-11-15 05:03:55'),
-(2, 'Rocky', 'rocky@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, '2021-10-20 04:41:31', '2021-10-20 04:41:31'),
-(3, 'Kinley Yangden', 'zamin@gmail.com', '77446960', NULL, '$2y$10$Rf5qlhrZcEGrzOIioJ26FOkNLiwqs5y5cPn7G86cfHzdW3uIxp6DG', NULL, NULL, 'TdLj93eSz95wS0uC7xtxENYaWBrFdATn9518iMohbRiGz8ReudZleOoZOslZ', NULL, '202110220626user-profile.png', '2021-10-21 09:53:28', '2021-10-22 00:26:14'),
-(5, 'Jigme Lhaden', 'jigme@gmail.com', '77446960', NULL, '$2y$10$eEI5aFHiTen225czdVQKvuvt9bBW7CRlp1m0zx6EZaNvnTppe73Ty', NULL, NULL, NULL, NULL, '202110220709jigme.png', '2021-10-22 01:08:09', '2021-10-22 02:25:04');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `role_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Drukson', 'admin@gmail.com', '77364409', NULL, '$2y$10$WMwTJw4bzd5Cf8fMw8jsIuxeIoQdCUXapAKm4MmBhJc.COviZTVCq', NULL, NULL, NULL, NULL, '202111151103pea4.jpg', 3, 1, '2021-10-19 09:21:45', '2021-11-25 02:35:24'),
+(2, 'Rocky', 'rocky@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, 1, 1, '2021-10-20 04:41:31', '2021-10-20 04:41:31'),
+(3, 'Kinley Yangden', 'zamin@gmail.com', '77446960', NULL, '$2y$10$WMwTJw4bzd5Cf8fMw8jsIuxeIoQdCUXapAKm4MmBhJc.COviZTVCq', NULL, NULL, 'TdLj93eSz95wS0uC7xtxENYaWBrFdATn9518iMohbRiGz8ReudZleOoZOslZ', NULL, '202110220626user-profile.png', 2, 1, '2021-10-21 09:53:28', '2021-11-25 02:37:08'),
+(5, 'Jigme Lhaden', 'jigme@gmail.com', '77446960', NULL, '$2y$10$eEI5aFHiTen225czdVQKvuvt9bBW7CRlp1m0zx6EZaNvnTppe73Ty', NULL, NULL, NULL, NULL, '202110220709jigme.png', 0, 1, '2021-10-22 01:08:09', '2021-10-22 02:25:04');
 
 -- --------------------------------------------------------
 
@@ -801,6 +844,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `dzongkhags`
 --
 ALTER TABLE `dzongkhags`
@@ -862,6 +911,12 @@ ALTER TABLE `personal_access_tokens`
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_master`
+--
+ALTER TABLE `role_master`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -957,6 +1012,12 @@ ALTER TABLE `categories`
   MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `dzongkhags`
 --
 ALTER TABLE `dzongkhags`
@@ -978,7 +1039,7 @@ ALTER TABLE `gewogs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
@@ -1009,6 +1070,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `role_master`
+--
+ALTER TABLE `role_master`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sellers`

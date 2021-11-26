@@ -16,7 +16,7 @@ class AllUserController extends Controller
 {
     public function MyOrders(){
         $user = User::where('id',Session::get('user_details')['user_id'])->first();
-        $orders = Order::where('user_id',Auth::id())->orderBy('id','DESC')->get();
+        $orders = Order::where('user_id',Session::get('user_details')['user_id'])->orderBy('id','DESC')->get();
         return view('frontend.user.order.order_view',compact('orders','user'));
     }
 
@@ -47,7 +47,7 @@ class AllUserController extends Controller
     //RETURNING ORDER
     public function ReturnOrder(Request $request,$order_id)
     {
-        
+
         Order::findOrFail($order_id)->update([
             'return_date' => Carbon::now()->format('d F Y'),
             'return_reason' => $request->return_reason,

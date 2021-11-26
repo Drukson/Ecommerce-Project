@@ -56,10 +56,8 @@
                             <a href="{{route('all.slider')}}"><i class="ti-more"></i>All Sliders</a></li>
                     </ul>
                 </li>
-            @endif
 
             {{--END SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
-
             <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -144,7 +142,41 @@
                 </ul>
             </li>
 
-            <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
+            {{--COUPON CODE--}}
+            <li class="treeview {{($route == 'manage-coupon') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Coupon Code</span>
+                    <span class="pull-right-container">
+          <i class="fa fa-angle-right pull-right"></i>
+        </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'manage-coupon') ? 'active':''}}">
+                        <a href="{{route('manage-coupon')}}"><i class="ti-more"></i>Add Coupon</a></li>
+
+                </ul>
+            </li>
+            {{--COUPON CODE--}}
+
+            {{-- //ALL USER REPORTS--}}
+            <li class="treeview {{($route == 'all.users') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>All Users</span>
+                    <span class="pull-right-container">
+          <i class="fa fa-angle-right pull-right"></i>
+        </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'all.users') ? 'active':''}}">
+                        <a href="{{route('all.users')}}"><i class="ti-more"></i>All Users</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- //END ALL USER REPORTS--}}
+            @endif
+
+                <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="file"></i>
                     <span>Product Details</span>
@@ -175,23 +207,6 @@
                 </ul>
             </li>
             {{--END MANAGE STOCKS--}}
-            {{--COUPON CODE--}}
-            <li class="treeview {{($route == 'manage-coupon') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="file"></i>
-                    <span>Coupon Code</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'manage-coupon') ? 'active':''}}">
-                        <a href="{{route('manage-coupon')}}"><i class="ti-more"></i>Add Coupon</a></li>
-
-                </ul>
-            </li>
-            {{--COUPON CODE--}}
-
 
             {{--ORDERS--}}
            <li class="treeview {{($route == 'pending-orders') ? 'active':''}}">
@@ -242,22 +257,6 @@
             </li>
            {{-- //END ADMIN REPORTS--}}
 
-            {{-- //ALL USER REPORTS--}}
-            <li class="treeview {{($route == 'all.users') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>All Users</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'all.users') ? 'active':''}}">
-                        <a href="{{route('all.users')}}"><i class="ti-more"></i>All Users</a>
-                    </li>
-                </ul>
-            </li>
-            {{-- //END ALL USER REPORTS--}}
-
             {{-- //RETURN PRODUCTS--}}
             <li class="treeview {{($route == 'return.request') ? 'active':''}}">
                 <a href="#">
@@ -293,42 +292,6 @@
                 </ul>
             </li>
             {{-- //REVIEWS--}}
-
-            <li class="header nav-small-cap">User Interface</li>
-            <li class="treeview">
-                <a href="#">
-                    <i data-feather="grid"></i>
-                    <span>Components</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-                    <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-                    <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-                    <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
-                    <li><a href="components_dropdown.html"><i class="ti-more"></i>Dropdown</a></li>
-                    <li><a href="components_modals.html"><i class="ti-more"></i>Modal</a></li>
-                    <li><a href="components_nestable.html"><i class="ti-more"></i>Nestable</a></li>
-                    <li><a href="components_progress_bars.html"><i class="ti-more"></i>Progress Bars</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i data-feather="credit-card"></i>
-                    <span>Cards</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="card_advanced.html"><i class="ti-more"></i>Advanced Cards</a></li>
-                    <li><a href="card_basic.html"><i class="ti-more"></i>Basic Cards</a></li>
-                    <li><a href="card_color.html"><i class="ti-more"></i>Cards Color</a></li>
-                </ul>
-            </li>
 
         </ul>
     </section>

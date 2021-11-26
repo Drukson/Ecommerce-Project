@@ -18,6 +18,10 @@ class CartController extends Controller
 {
     public function addToCart(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+
         $product = AgroProduct::find($id);
 
         if ($product->discount_price ==NULL){
@@ -92,7 +96,7 @@ class CartController extends Controller
     //CHECKOUT PAGE
     public function CheckoutCreate()
     {
-        if (Auth::check()) {
+        if (Session::get('user_details')['user_id']!=null && Session::get('user_details')['user_id']!= '') {
             if (Cart::total() > 0) {
                 $carts = Cart::content();
                 $cartQty = Cart::count();

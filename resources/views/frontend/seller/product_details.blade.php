@@ -5,7 +5,7 @@
 
 @endsection
 
-<div class="breadcrumb">
+{{--<div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
@@ -21,7 +21,7 @@
         <!-- /.breadcrumb-inner -->
     </div>
     <!-- /.container -->
-</div>
+</div>--}}
 <!-- /.breadcrumb -->
 <div class="body-content outer-top-xs">
     <div class='container'>
@@ -29,7 +29,6 @@
             <div class='col-md-3 sidebar'>
 
                 <!-- ================================== TOP NAVIGATION : END ================================== -->
-
 
                 <div class="side-menu animate-dropdown outer-bottom-xs">
                     <div class="head"><i class="icon fa fa-american-sign-language-interpreting"></i> Sellers</div>
@@ -41,54 +40,13 @@
                 </div>
 
 
-                <div class="sidebar-module-container">
-                    <div class="sidebar-filter">
-                        <!-- ======================= SIDEBAR CATEGORY ========================= -->
-                        <div class="sidebar-widget wow fadeInUp">
-                            <h3 class="section-title">shop by</h3>
-                            <div class="widget-header">
-                                <h4 class="widget-title">Category</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <div class="accordion">
-                                    @foreach($categories as $cat)
-                                        <div class="accordion-group">
-                                            <div class="accordion-heading"> <a href="#collapse{{$cat->id}}"
-                                                     data-toggle="collapse" class="accordion-toggle collapsed"> {{$cat->name}} </a> </div>
-                                            <!-- /.accordion-heading -->
-                                            @php
-                                                $subcategory = App\Models\SubCategory::where('category_id', $cat->id)->orderBy('name','ASC')->get();
-                                            @endphp
-                                            <div class="accordion-body collapse" id="collapse{{$cat->id}}" style="height: 0px;">
-                                                <div class="accordion-inner">
-                                                    @foreach($subcategory as $subcat)
-                                                        <ul>
-                                                            <li><a href="{{url('/subcategory/product/'. $subcat->id . '/'. $subcat->slug)}}">
-                                                                    {{$subcat->name}}
-                                                                </a></li>
-                                                        </ul>
-                                                    @endforeach
-                                                </div>
-                                                <!-- /.accordion-inner -->
-                                            </div>
-                                            <!-- /.accordion-body -->
-                                        </div>
-                                @endforeach
-                                <!-- /.accordion-group -->
-                                </div>
-                            </div>
-                            <!-- /.sidebar-widget-body -->
+                <div class="side-menu animate-dropdown outer-bottom-xs">
+                    <div class="head"><i class="icon fa fa-american-sign-language-interpreting"></i> Sellers</div>
+                    <div class="sidebar-module-container">
+                        <div class="sidebar-filter">
+                            @include('frontend.common.category')
                         </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
-                        <br>
-                        <!-- ======================== PRODUCT TAGS ========================= -->
-                    @include('frontend.common.product_tags')
-                    <!-- ======================== END PRODUCT TAGS ========================= -->
-                        <!-- /.sidebar-widget -->
-
                     </div>
-                    <!-- /.sidebar-filter -->
                 </div>
                 <!-- /.sidebar-module-container -->
             </div>
@@ -111,15 +69,15 @@
                         <!-- /.container-fluid -->
                     </div>
                 </div>
-                @foreach($breadsubcat as $item)
+                {{--@foreach($breadsubcat as $item)
                     <span class="badge badge-danger" style="background: #808080">{{ $item->category->name }} </span>
                 @endforeach
 
                 @foreach($breadsubcat as $item)
                     <span class="badge badge-danger" style="background: #FF0000">{{ $item->name }} </span>
 
-                @endforeach
-                <div class="clearfix filters-container m-t-10">
+                @endforeach--}}
+               {{-- <div class="clearfix filters-container m-t-10">
                     <div class="row">
                         <div class="col col-sm-6 col-md-2">
                             <div class="filter-tabs">
@@ -131,67 +89,20 @@
                             <!-- /.filter-tabs -->
                         </div>
                         <!-- /.col -->
-                        <div class="col col-sm-12 col-md-6">
-                            <div class="col col-sm-3 col-md-6 no-padding">
-                                <div class="lbl-cnt"> <span class="lbl">Sort by</span>
-                                    <div class="fld inline">
-                                        <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Position <span class="caret"></span> </button>
-                                            <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">position</a></li>
-                                                <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                                                <li role="presentation"><a href="#">Price:HIghest first</a></li>
-                                                <li role="presentation"><a href="#">Product Name:A to Z</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- /.fld -->
-                                </div>
-                                <!-- /.lbl-cnt -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col col-sm-3 col-md-6 no-padding">
-                                <div class="lbl-cnt"> <span class="lbl">Show</span>
-                                    <div class="fld inline">
-                                        <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1 <span class="caret"></span> </button>
-                                            <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">1</a></li>
-                                                <li role="presentation"><a href="#">2</a></li>
-                                                <li role="presentation"><a href="#">3</a></li>
-                                                <li role="presentation"><a href="#">4</a></li>
-                                                <li role="presentation"><a href="#">5</a></li>
-                                                <li role="presentation"><a href="#">6</a></li>
-                                                <li role="presentation"><a href="#">7</a></li>
-                                                <li role="presentation"><a href="#">8</a></li>
-                                                <li role="presentation"><a href="#">9</a></li>
-                                                <li role="presentation"><a href="#">10</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- /.fld -->
-                                </div>
-                                <!-- /.lbl-cnt -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
+
                         <!-- /.col -->
-                        <div class="col col-sm-6 col-md-4 text-right">
-                            <div class="pagination-container">
-                                <!-- /.list-inline -->
-                            </div>
-                            <!-- /.pagination-container --> </div>
+
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
-                </div>
+                </div>--}}
                 <!-- ================== GRID VIEW =================== -->
                 <div class="search-result-container ">
                     <div id="myTabContent" class="tab-content category-list">
                         <div class="tab-pane active " id="grid-container">
                             <div class="category-product">
                                 <div class="row">
-                                    @foreach($agros as $agro)
+                                    {{--@foreach($agros as $agro)
                                         <div class="col-sm-6 col-md-4 wow fadeInUp">
                                             <div class="products">
                                                 <div class="product">
@@ -239,16 +150,16 @@
                                                                         <i class="fa fa-shopping-cart"></i> </button>
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
-                                                                <li {{--class="lnk wishlist"--}}>
+                                                                <li --}}{{--class="lnk wishlist"--}}{{-->
                                                                     <button class="btn btn-primary icon"  type="button" title="Wishlist"
                                                                             id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
                                                                         <i class="fa fa-heart"></i>
                                                                     </button>
 
-                                                                    {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                                    --}}{{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
                                                                              id="{{ $product->id }}" onclick="addToWishlist(this.id)">
                                                                          <i class="fa fa-heart"></i>
-                                                                     </button>--}}
+                                                                     </button>--}}{{--
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -261,7 +172,7 @@
                                             </div>
                                             <!-- /.products -->
                                         </div>
-                                @endforeach
+                                @endforeach--}}
                                 <!-- /.item -->
 
                                 </div>
@@ -274,7 +185,7 @@
                         <!-- ================== END GRID VIEW =================== -->
 
                         <!-- ================== LIST VIEW =================== -->
-                        <div class="tab-pane "  id="list-container">
+                        {{--<div class="tab-pane "  id="list-container">
                             <div class="category-product">
                                 @foreach($agros as $agro)
                                     <div class="category-product-inner wow fadeInUp">
@@ -344,7 +255,7 @@
 
                             </div>
                             <!-- /.category-product -->
-                        </div>
+                        </div>--}}
                         <!-- /.tab-pane #list-container -->
                     </div>
                     <!-- ================== LIST VIEW END=================== -->
@@ -353,7 +264,7 @@
                         <div class="text-right">
                             <div class="pagination-container">
                                 <button type="button" class="btn btn-danger mb-5">
-                                   {{-- {{$agros->links()}}--}}</button>
+                                    {{--{{$agros->links()}}--}}</button>
 
                                 <!-- /.list-inline -->
                             </div>

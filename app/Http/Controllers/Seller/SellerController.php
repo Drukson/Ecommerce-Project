@@ -84,6 +84,7 @@ class SellerController extends Controller
                 'phone' => $userdet->phone,
                 'password' => $userdet->password,
                 'role_id' => $roleid->id,
+                'seller_id' => $userdet->id,
                 'status' => 1,
                 'created_at' => Carbon::now()
             ]);

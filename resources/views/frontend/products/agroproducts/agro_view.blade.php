@@ -26,8 +26,9 @@
                 <div class='col-md-3 sidebar'>
                     <div class="sidebar-module-container">
 
-                        @include('frontend.common.category')
+                        @include('frontend.common.seller_details')
 
+                        @include('frontend.common.category')
 
                         <!-- ============================================== NEWSLETTER ============================================== -->
                         <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
@@ -164,42 +165,27 @@
 
                                     <div class="price-container info-container m-t-20">
                                         <div class="row">
-
                                             <div class="col-sm-6">
                                                 <div class="price-box">
-                                                    @if($product->discount_price == NULL)
+                                                    <span class="price">Nu. {{$product->selling_price}}</span>
+                                                    {{--@if($product->discount_price == NULL)
                                                     <span class="price">Nu. {{$product->selling_price}}</span>
                                                     @else
                                                      <span class="price">Nu. {{$product->discount_price}}</span>
                                                     <span class="price-strike">Nu. {{$product->selling_price}}</span>
-                                                        @endif
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <div class="favorite-button m-t-10">
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
-                                                        <i class="fa fa-heart"></i>
-                                                    </a>
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
-                                                        <i class="fa fa-signal"></i>
-                                                    </a>
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </a>
+                                                        @endif--}}
                                                 </div>
                                             </div>
 
                                         </div><!-- /.row -->
                                     </div><!-- /.price-container -->
 
+                                    @if($product->category_id == 5)
                                     <div class="quantity-container info-container">
                                         <div class="row">
-
                                             <div class="col-sm-2">
                                                 <span class="label">Qty :</span>
                                             </div>
-
                                             <div class="col-sm-2">
                                                 <div class="cart-quantity">
                                                     <div class="quant-input">
@@ -215,12 +201,15 @@
                                             <div class="col-sm-7">
                                                 <button type="submit" onclick="addToCart()" class="btn btn-primary" ><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
                                             </div>
-
-
                                         </div><!-- /.row -->
                                     </div><!-- /.quantity-container -->
-
-
+                                @endif
+                                   @php
+                                    $seller = \App\Models\User::where('role_id', 1)->get();
+                                   @endphp
+                                    <h4>Seller: Dorji</h4>
+                                    <h4>Phone: 77446960</h4>
+                                    <h4>Location: Seller Location</h4>
                                 </div><!-- /.product-info -->
                             </div><!-- /.col-sm-7 -->
                         </div><!-- /.row -->
