@@ -222,9 +222,9 @@
                                    @php
                                     $seller = \App\Models\User::where('role_id', 1)->get();
                                    @endphp
-                                    <h4>Seller: Dorji</h4>
-                                    <h4>Phone: 77446960</h4>
-                                    <h4>Location: Seller Location</h4>
+                                    <h4>Seller: {{$product->seller_details->name}}</h4>
+                                    <h4>Phone: {{$product->seller_details->phone}}</h4>
+                                    <h4>Location: {{$product->seller_details->dzongkhag->dzongkhag_name}}</h4>
                                 </div><!-- /.product-info -->
                             </div><!-- /.col-sm-7 -->
                         </div><!-- /.row -->

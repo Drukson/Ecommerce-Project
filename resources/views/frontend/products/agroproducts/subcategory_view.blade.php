@@ -4,6 +4,7 @@
 @section('title')
 
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <div class="breadcrumb">
     <div class="container">
@@ -188,7 +189,7 @@
                     <div id="myTabContent" class="tab-content category-list">
                         <div class="tab-pane active " id="grid-container">
                             <div class="category-product">
-                                <div class="row">
+                                {{--<div class="row">
                                     @foreach($agros as $agro)
                                         <div class="col-sm-6 col-md-4 wow fadeInUp">
                                             <div class="products">
@@ -237,16 +238,16 @@
                                                                         <i class="fa fa-shopping-cart"></i> </button>
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
-                                                                <li {{--class="lnk wishlist"--}}>
+                                                                <li --}}{{--class="lnk wishlist"--}}{{-->
                                                                     <button class="btn btn-primary icon"  type="button" title="Wishlist"
                                                                             id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
                                                                         <i class="fa fa-heart"></i>
                                                                     </button>
 
-                                                                    {{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
+                                                                    --}}{{-- <button class="btn btn-primary icon"  type="button"  title="Wishlist"
                                                                              id="{{ $product->id }}" onclick="addToWishlist(this.id)">
                                                                          <i class="fa fa-heart"></i>
-                                                                     </button>--}}
+                                                                     </button>--}}{{--
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -259,8 +260,11 @@
                                             </div>
                                             <!-- /.products -->
                                         </div>
-                                @endforeach
-                                <!-- /.item -->
+                                @endforeach--}}
+
+                                <div class="row" id="grid_view_product">
+
+                                    @include('frontend.products.agroproducts.grid_view_product')
 
                                 </div>
                                 <!-- /.row -->
@@ -382,7 +386,7 @@
         <!-- ============================================== BRANDS CAROUSEL : END ============================================== --> </div>
     <!-- /.container -->
 
-</div>
+</div><br><br>
 <!-- /.body-content -->
 
 <script>
@@ -394,11 +398,23 @@
                 $('.ajax-loadmore-product').show();
             }
         })
+            .done(function(data){
+                if (data.grid_view == " " || data.list_view == " ") {
+                    return;
+                }
+                $('.ajax-loadmore-product').hide();
+                $('#grid_view_product').append(data.grid_view);
+                /*$('#list_view_product').append(data.list_view);*/
+            })
+            .fail(function(){
+                alert('Something Went Wrong');
+            })
     }
     var page = 1;
     $(window).scroll(function (){
         if ($(window).scrollTop() +$(window).height() >= $(document).height()){
             page ++;
+            loadmoreProduct(page);
         }
     });
 </script>

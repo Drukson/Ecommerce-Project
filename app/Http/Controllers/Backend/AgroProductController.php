@@ -28,7 +28,7 @@ class AgroProductController extends Controller
                 array_push($cat_ids,$cat);
             }
         }
-        
+
         $category = Category::wherein('id',$cat_ids)->get();
         // $category_skip = Category::skip(1)->first();
         $subcategory = SubCategory::latest()->get();

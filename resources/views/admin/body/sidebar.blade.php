@@ -176,132 +176,169 @@
             {{-- //END ALL USER REPORTS--}}
             @endif
 
+            @php
+            $seller_details = \App\Models\Seller::where('id', Session::get('user_details')['seller_id'])->first();
+
+            $cat_ids=[];
+            if($seller_details!=null && $seller_details!=""){
+                $cat=explode(', ',rtrim($seller_details->category_id,', '));
+                foreach($cat as $cat){
+                    array_push($cat_ids,$cat);
+                }
+            }
+            $product = \App\Models\Category::wherein('id',$cat_ids)->get();
+            $is_homestay = false;
+            $is_agroproducts = false;
+            foreach ($product as $pro){
+                if ($pro->name == 'Homestay' || $pro->name == 'Agro Products'){
+                    $is_homestay = true;
+                    $is_agroproducts = true;
+                }
+            }
+            @endphp
+
+
+            @if(strpos(strtolower(Session::get('user_details')['role_name']),'seller')!==false && $is_homestay || strpos(strtolower(Session::get('user_details')['role_name']),'seller')!==false && $is_agroproducts)
                 <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="file"></i>
-                    <span>Product Details</span>
-                    <span class="pull-right-container">
+                    <a href="#">
+                        <i data-feather="file"></i>
+                        <span>Product Details</span>
+                        <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'all.agroproducts') ? 'active':''}}">
-                        <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Products</a></li>
-                    <li class="{{($route == 'manage.agroproducts') ? 'active':''}}">
-                    <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
-                </ul>
-            </li>
-            {{--MANAGE STOCKS--}}
-            <li class="treeview {{($route == 'product.stock') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="file"></i>
-                    <span>Manage Stocks</span>
-                    <span class="pull-right-container">
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'all.agroproducts') ? 'active':''}}">
+                            <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Products</a></li>
+                        <li class="{{($route == 'manage.agroproducts') ? 'active':''}}">
+                        <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
+                    </ul>
+                </li>
+
+            @else
+                <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="file"></i>
+                        <span>Product Details</span>
+                        <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'product.stock') ? 'active':''}}">
-                        <a href="{{route('product.stock')}}"><i class="ti-more"></i>Stocks</a></li>
-
-                </ul>
-            </li>
-            {{--END MANAGE STOCKS--}}
-
-            {{--ORDERS--}}
-           <li class="treeview {{($route == 'pending-orders') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>All Orders</span>
-                    <span class="pull-right-container">
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'all.agroproducts') ? 'active':''}}">
+                            <a href="{{route('all.agroproducts')}}"><i class="ti-more"></i>Add Products</a></li>
+                        <li class="{{($route == 'manage.agroproducts') ? 'active':''}}">
+                        <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
+                    </ul>
+                </li>
+                {{--MANAGE STOCKS--}}
+                <li class="treeview {{($route == 'product.stock') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="file"></i>
+                        <span>Manage Stocks</span>
+                        <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'pending-orders') ? 'active':''}}">
-                        <a href="{{route('pending-orders')}}"><i class="ti-more"></i>Pending Orders</a>
-                    </li>
-                    <li class="{{ ($route == 'confirmed-orders')? 'active':'' }}">
-                        <a href="{{ route('confirmed-orders') }}"><i class="ti-more"></i>Confirmed Orders</a></li>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'product.stock') ? 'active':''}}">
+                            <a href="{{route('product.stock')}}"><i class="ti-more"></i>Stocks</a></li>
 
-                    <li class="{{ ($route == 'processing-orders')? 'active':'' }}">
-                        <a href="{{ route('processing-orders') }}"><i class="ti-more"></i>Processing Orders</a></li>
+                    </ul>
+                </li>
+                {{--END MANAGE STOCKS--}}
 
-                    <li class="{{ ($route == 'picked-orders')? 'active':'' }}">
-                        <a href="{{ route('picked-orders') }}"><i class="ti-more"></i> Picked Orders</a></li>
-
-                    <li class="{{ ($route == 'shipped-orders')? 'active':'' }}">
-                        <a href="{{ route('shipped-orders') }}"><i class="ti-more"></i> Shipped Orders</a></li>
-
-                    <li class="{{ ($route == 'delivered-orders')? 'active':'' }}">
-                        <a href="{{ route('delivered-orders') }}"><i class="ti-more"></i> Delivered Orders</a></li>
-
-                    <li class="{{ ($route == 'cancel-orders')? 'active':'' }}">
-                        <a href="{{ route('cancel-orders') }}"><i class="ti-more"></i> Cancel Orders</a></li>
-                </ul>
-            </li>
-
-           {{-- //ADMIN REPORTS--}}
-            <li class="treeview {{($route == 'all.reports') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>All Reports</span>
-                    <span class="pull-right-container">
+                {{--ORDERS--}}
+                <li class="treeview {{($route == 'pending-orders') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="mail"></i> <span>All Orders</span>
+                        <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'all.reports') ? 'active':''}}">
-                        <a href="{{route('all.reports')}}"><i class="ti-more"></i>All Reports</a>
-                    </li>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'pending-orders') ? 'active':''}}">
+                            <a href="{{route('pending-orders')}}"><i class="ti-more"></i>Pending Orders</a>
+                        </li>
+                        <li class="{{ ($route == 'confirmed-orders')? 'active':'' }}">
+                            <a href="{{ route('confirmed-orders') }}"><i class="ti-more"></i>Confirmed Orders</a></li>
 
-                </ul>
-            </li>
-           {{-- //END ADMIN REPORTS--}}
+                        <li class="{{ ($route == 'processing-orders')? 'active':'' }}">
+                            <a href="{{ route('processing-orders') }}"><i class="ti-more"></i>Processing Orders</a></li>
 
-            {{-- //RETURN PRODUCTS--}}
-            <li class="treeview {{($route == 'return.request') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>Return Orders</span>
-                    <span class="pull-right-container">
+                        <li class="{{ ($route == 'picked-orders')? 'active':'' }}">
+                            <a href="{{ route('picked-orders') }}"><i class="ti-more"></i> Picked Orders</a></li>
+
+                        <li class="{{ ($route == 'shipped-orders')? 'active':'' }}">
+                            <a href="{{ route('shipped-orders') }}"><i class="ti-more"></i> Shipped Orders</a></li>
+
+                        <li class="{{ ($route == 'delivered-orders')? 'active':'' }}">
+                            <a href="{{ route('delivered-orders') }}"><i class="ti-more"></i> Delivered Orders</a></li>
+
+                        <li class="{{ ($route == 'cancel-orders')? 'active':'' }}">
+                            <a href="{{ route('cancel-orders') }}"><i class="ti-more"></i> Cancel Orders</a></li>
+                    </ul>
+                </li>
+
+                {{-- //ADMIN REPORTS--}}
+                <li class="treeview {{($route == 'all.reports') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="mail"></i> <span>All Reports</span>
+                        <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'return.request') ? 'active':''}}">
-                        <a href="{{route('return.request')}}"><i class="ti-more"></i>Returned Orders</a>
-                    </li>
-                    <li class="{{ ($route == 'all.request')? 'active':'' }}"><a href="{{ route('all.request') }}">
-                            <i class="ti-more"></i>All Request</a></li>
-                </ul>
-            </li>
-            {{-- //END RETURN PRODUCTS--}}
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'all.reports') ? 'active':''}}">
+                            <a href="{{route('all.reports')}}"><i class="ti-more"></i>All Reports</a>
+                        </li>
 
-            {{-- //REVIEWS--}}
-            <li class="treeview {{($route == 'pending.review') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="mail"></i> <span>Manage Review</span>
-                    <span class="pull-right-container">
+                    </ul>
+                </li>
+                {{-- //END ADMIN REPORTS--}}
+
+                {{-- //RETURN PRODUCTS--}}
+                <li class="treeview {{($route == 'return.request') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="mail"></i> <span>Return Orders</span>
+                        <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ ($route == 'pending.review')? 'active':'' }}">
-                        <a href="{{ route('pending.review') }}"><i class="ti-more"></i>Pending Review</a></li>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'return.request') ? 'active':''}}">
+                            <a href="{{route('return.request')}}"><i class="ti-more"></i>Returned Orders</a>
+                        </li>
+                        <li class="{{ ($route == 'all.request')? 'active':'' }}"><a href="{{ route('all.request') }}">
+                                <i class="ti-more"></i>All Request</a></li>
+                    </ul>
+                </li>
+                {{-- //END RETURN PRODUCTS--}}
 
-                    <li class="{{ ($route == 'publish.review')? 'active':'' }}">
-                        <a href="{{ route('publish.review') }}"><i class="ti-more"></i>Publish Review</a></li>
-                </ul>
-            </li>
-            {{-- //REVIEWS--}}
+                {{-- //REVIEWS--}}
+                <li class="treeview {{($route == 'pending.review') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="mail"></i> <span>Manage Review</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ ($route == 'pending.review')? 'active':'' }}">
+                            <a href="{{ route('pending.review') }}"><i class="ti-more"></i>Pending Review</a></li>
+
+                        <li class="{{ ($route == 'publish.review')? 'active':'' }}">
+                            <a href="{{ route('publish.review') }}"><i class="ti-more"></i>Publish Review</a></li>
+                    </ul>
+                </li>
+                {{-- //REVIEWS--}}
+            @endif
+
+
+
 
         </ul>
     </section>
 
-    <div class="sidebar-footer">
-        <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-        <!-- item-->
-        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
-        <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
-    </div>
+
 </aside>
