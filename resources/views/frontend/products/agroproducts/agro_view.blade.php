@@ -26,9 +26,24 @@
                 <div class='col-md-3 sidebar'>
                     <div class="sidebar-module-container">
 
-                        @include('frontend.common.seller_details')
-
-                        @include('frontend.common.category')
+                        <div class="side-menu animate-dropdown outer-bottom-xs">
+                            <div class="head"><i class="icon fa fa-american-sign-language-interpreting"></i> Sellers</div>
+                            <div class="sidebar-module-container">
+                                <div class="sidebar-filter">
+                                    @include('frontend.common.seller_details')
+                                </div>
+                            </div>
+                            <!-- /.megamenu-horizontal -->
+                        </div>
+                        <div class="side-menu animate-dropdown outer-bottom-xs">
+                            <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+                            <div class="sidebar-module-container">
+                                <div class="sidebar-filter">
+                                    @include('frontend.common.category')
+                                </div>
+                            </div>
+                            <!-- /.megamenu-horizontal -->
+                        </div>
 
                         <!-- ============================================== NEWSLETTER ============================================== -->
                         <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">

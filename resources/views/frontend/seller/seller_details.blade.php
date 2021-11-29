@@ -48,39 +48,58 @@
                 <!-- =================== Product Tags ================= -->
                 @include('frontend.common.product_tags')
                 <!-- ==================== Product Tags: END ============== -->
-
                 </div>
             </div><!-- /.sidebar -->
-            <div class='col-md-9'>
-            <div class="container">
-             <div class="box">
-            <div class="box-body box-profile">
-                @foreach($seller as $seller)
-                <div class="row">
-                <div class="col-12">
-                    <div>
-                        <p>Email :<span class="text-gray pl-10"> {{$seller->email}}</span> </p>
-                        <p>Phone :<span class="text-gray pl-10"> {{$seller->phone}}</span></p>
-                        <p>Dzongkhag :<span class="text-gray pl-10"> {{$seller->dzongkhag_name}}</span></p>
-                        <p>Gewog: <span class="text-gray pl-10"> {{$seller->gewog_name}}</span></p>
-                    </div>
-                </div>
-                    <a href="{{url('/subcategory/product/'. $seller->id . '/seller')}}">
-                        <button type="button" class="btn btn-rounded btn-primary mb-5">View Products</button>
-                    </a>
-
-                @endforeach
 
 
+           {{-- <div class="detail-block">
+                <div class="row  wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+
+                    @foreach($seller as $seller)
+                        <div class="col-sm-6 col-md-3 wow fadeInUp">
+                            <div class="products">
+                                <div class="product">
+                                    <div>
+                                        <p>Email :<span class="text-gray pl-10"> {{$seller->email}}</span> </p>
+                                        <p>Phone :<span class="text-gray pl-10"> {{$seller->phone}}</span></p>
+                                        <p>Dzongkhag :<span class="text-gray pl-10"> {{$seller->dzongkhag_name}}</span></p>
+                                        <p>Gewog: <span class="text-gray pl-10"> {{$seller->gewog_name}}</span></p>
+                                    </div>
+                                    <a href="{{url('/subcategory/product/'. $seller->id . '/seller')}}">
+                                        <button type="button" class="btn btn-rounded btn-primary mb-5">View Products</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div><!-- /.row -->
+            </div>--}}
+
+
+            @foreach($seller as $seller)
+            <div class='col-md-3 sidebar'>
+                <div class="detail-block">
+                        <div class="products">
+                            <div class="product">
+                                <div>
+                                    <p>Email :<span class="text-gray pl-10"> {{$seller->email}}</span> </p>
+                                    <p>Phone :<span class="text-gray pl-10"> {{$seller->phone}}</span></p>
+                                    <p>Dzongkhag :<span class="text-gray pl-10"> {{$seller->dzongkhag_name}}</span></p>
+                                    <p>Gewog: <span class="text-gray pl-10"> {{$seller->gewog_name}}</span></p>
+                                </div><hr>
+                                <a href="{{url('/subcategory/product/'. $seller->id . '/seller')}}">
+                                    <button type="button" class="btn btn-rounded btn-primary mb-5">View Products</button>
+                                </a>
+                            </div>
+                        </div>
+                </div><br>
             </div>
+            @endforeach
+
+
         </div>
-        <!-- /.box-body -->
-    </div>
-</div>
-            </div><!-- /.col -->
-            <div class="clearfix"></div>
-        </div><!-- /.row -->
-    </div>
+    </div><br>
 
 
     <script src="{{asset('frontend/assets/js/bootstrap-hover-dropdown.min.js')}}"></script>

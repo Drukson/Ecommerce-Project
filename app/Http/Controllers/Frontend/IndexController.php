@@ -162,9 +162,9 @@ class IndexController extends Controller
         //  $categories = Category::orderBy('name', 'ASC')->get();
         $categories = Category::skip(1)->first();
 
-        // HANDICRAFT SUB CATEGORY
+        /*// HANDICRAFT SUB CATEGORY
         $handicraft = Handicraft::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
-        $category = Category::skip(2)->first();
+        $category = Category::skip(2)->first();*/
 
         return view('frontend.products.handicraft.subcategory_view',
           compact('agros', 'categories', 'handicraft', 'category'));

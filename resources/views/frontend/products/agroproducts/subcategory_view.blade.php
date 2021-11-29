@@ -30,7 +30,6 @@
 
                 <!-- ================================== TOP NAVIGATION : END ================================== -->
 
-
                 <div class="side-menu animate-dropdown outer-bottom-xs">
                     <div class="head"><i class="icon fa fa-american-sign-language-interpreting"></i> Sellers</div>
                     <div class="sidebar-module-container">
@@ -39,7 +38,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="sidebar-module-container">
                     <div class="sidebar-filter">
@@ -308,11 +306,14 @@
                                                                 <div class="action">
                                                                     <ul class="list-unstyled">
                                                                         <li class="add-cart-button btn-group">
-                                                                            <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                                            <button class="btn btn-primary icon"  type="button" title="Add to cart"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#exampleModal" id="{{ $agro->id }}"
+                                                                                    onclick="productView(this.id)">
+                                                                                <i class="fa fa-shopping-cart"></i> </button>
                                                                             <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                         </li>
-                                                                        <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
+
                                                                     </ul>
                                                                 </div>
                                                                 <!-- /.action -->
@@ -367,6 +368,11 @@
                 <!-- /.search-result-container -->
 
             </div>
+
+            <div class="ajax-loadmore-product text-center" style="display: none;">
+                <img src="{{ asset('frontend/assets/images/loader.svg') }}" style="width: 120px; height: 120px;">
+            </div>
+
             <!-- /.col -->
         </div>
         <!-- /.row -->
@@ -379,6 +385,22 @@
 </div>
 <!-- /.body-content -->
 
-
+<script>
+    function loadmoreProduct(page){
+        $.ajax({
+            type: "get",
+            url: "?page="+page,
+            beforeSend: function(response){
+                $('.ajax-loadmore-product').show();
+            }
+        })
+    }
+    var page = 1;
+    $(window).scroll(function (){
+        if ($(window).scrollTop() +$(window).height() >= $(document).height()){
+            page ++;
+        }
+    });
+</script>
 
 @endsection
