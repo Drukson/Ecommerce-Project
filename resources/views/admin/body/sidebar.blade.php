@@ -214,6 +214,23 @@
                         <li><a href="{{route('manage.agroproducts')}}"><i class="ti-more"></i>Manage Products</a></li>
                     </ul>
                 </li>
+                {{-- //REVIEWS--}}
+                <li class="treeview {{($route == 'pending.review') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="mail"></i> <span>Manage Review</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ ($route == 'pending.review')? 'active':'' }}">
+                            <a href="{{ route('pending.review') }}"><i class="ti-more"></i>Pending Review</a></li>
+
+                        <li class="{{ ($route == 'publish.review')? 'active':'' }}">
+                            <a href="{{ route('publish.review') }}"><i class="ti-more"></i>Publish Review</a></li>
+                    </ul>
+                </li>
+                {{-- //REVIEWS--}}
 
             @else
                 <li class="treeview {{($route == 'all.agroproducts') ? 'active':''}}">
@@ -253,8 +270,8 @@
                     <a href="#">
                         <i data-feather="mail"></i> <span>All Orders</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
+              <i class="fa fa-angle-right pull-right"></i></span>
+
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{($route == 'pending-orders') ? 'active':''}}">

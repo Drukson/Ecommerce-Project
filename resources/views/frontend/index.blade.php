@@ -395,12 +395,12 @@
                                         <div class="products">
                                             <div class="product">
                                                 <div class="product-image">
-                                                    <div class="image"> <a href="{{url('/product/homestay/details/'. $product->id.'/'. $product->product_slug)}}"><img  src="{{$product->product_thumbnail}}" alt=""></a> </div>
+                                                    <div class="image"> <a href="{{url('/product/agro/details/'. $product->id.'/'. $product->product_slug)}}"><img  src="{{$product->product_thumbnail}}" alt=""></a> </div>
                                                     <!-- /.image -->
                                                 </div>
                                                 <!-- /.product-image -->
                                                 <div class="product-info text-left">
-                                                    <h3 class="name"><a href="{{url('/product/homestay/details/'. $product->id.'/'. $agro->slug)}}">{{$product->product_name}}</a></h3>
+                                                    <h3 class="name"><a href="{{url('/product/agro/details/'. $product->id.'/'. $agro->slug)}}">{{$product->product_name}}</a></h3>
                                                     <div class="rating rateit-small"></div>
                                                     <div class="description"></div>
                                                     <div class="product-price"> <span class="price"> Nu. {{ $product->selling_price }}</span>

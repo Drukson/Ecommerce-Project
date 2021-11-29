@@ -125,10 +125,15 @@ class IndexController extends Controller
     {
         $product = AgroProduct::find($id);
         if ($product !== null && $product!=''){
-            $seller = Seller::where('id', $product->created_by)->first();
+            $user = User::where('id', $product->created_by)->first();
+            $seller = Seller::where('id', $user->seller_id)->first();
 
             if ($seller !== null && $seller!=''){
                 $product->seller_details = $seller;
+            }
+            $related_products = AgroProduct::where('created_by', $product->created_by)->get();
+            if ($related_products!== null && $related_products!=''){
+                $product->related_productlist = $related_products;
             }
         }
         $multiImg = MultiImg::where('product_id', $id)->get();

@@ -89,12 +89,12 @@ class AgroProductController extends Controller
     }
 
     public function ManageAgroProducts(){
-        $agroProducts = AgroProduct::latest()->get();
+        $agroProducts = AgroProduct::where('created_by',Session::get('user_details')['user_id'] )->latest()->get();
         return view('backend.products.agro.agro_products_view', compact('agroProducts'));
     }
 
-    public function EditAgroProducts($id){
-
+    public function EditAgroProducts($id)
+    {
         $multiImage = MultiImg::where('product_id', $id)->get();
 
         $agroProduct = AgroProduct::find($id);

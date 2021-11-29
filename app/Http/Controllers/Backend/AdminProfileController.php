@@ -15,17 +15,17 @@ use Illuminate\Support\Facades\Redirect;
 class AdminProfileController extends Controller
 {
     public function AdminProfile(){
-        $adminData = Admin::find(1);
+        $adminData = User::find(Session::get('user_details')['user_id']);
         return view('admin.admin_profile_view', compact('adminData'));
     }
 
     public function EditAdminProfile(){
-        $editAdminProfile = Admin::find(1);
+        $editAdminProfile = User::find(Session::get('user_details')['user_id']);
         return view('admin.admin_profile_edit', compact('editAdminProfile'));
     }
 
     public function AdminProfileStore(Request $request){
-        $data = Admin::find(1);
+        $data = User::find(Session::get('user_details')['user_id']);
         $data->name = $request->name;
         $data->email = $request->email;
 
