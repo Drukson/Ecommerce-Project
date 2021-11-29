@@ -149,7 +149,7 @@ class IndexController extends Controller
         $categories = Category::orderBy('name', 'ASC')->get();
          if ($slug == 'seller'){
              $agros = AgroProduct::where('status', 1)->where('seller_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
-            /* dd($agros, $subcat_id);*/
+             /*dd($agros, $subcat_id);*/
 
              $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
          }else{

@@ -24,7 +24,7 @@ class AllUserController extends Controller
     {
        // $order = Order::where('id',$order_id)->where('user_id',Auth::id())->first();
         $order = Order::with('division','district','user')
-            ->where('id',$order_id)->where('user_id',Auth::id())->first();
+            ->where('id',$order_id)->where('user_id', Session::get('user_details')['user_id'])->first();
         //$orderItem = OrderItem::where('order_id',$order_id)->orderBy('id','DESC')->get();
         $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
         return view('frontend.user.order.order_details',compact('order','orderItem'));
@@ -32,7 +32,7 @@ class AllUserController extends Controller
     } // end mehtod
 
     public function InvoiceDownload($order_id){
-        $order = Order::with('division','district','user')->where('id',$order_id)->where('user_id',Auth::id())->first();
+        $order = Order::with('division','district','user')->where('id',$order_id)->where('user_id',Session::get('user_details')['user_id'])->first();
         $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
         //return view('frontend.user.order.order_invoice',compact('order','orderItem'));
 
@@ -66,14 +66,14 @@ class AllUserController extends Controller
     public function ReturnOrderList()
     {
         $user = User::where('id',Session::get('user_details')['user_id'])->first();
-        $orders = Order::where('user_id',Auth::id())->where('return_reason','!=',NULL)->orderBy('id','DESC')->get();
+        $orders = Order::where('user_id',Session::get('user_details')['user_id'])->where('return_reason','!=',NULL)->orderBy('id','DESC')->get();
         return view('frontend.user.order.return_order_view',compact('orders','user'));
     } // end method
 
     public function CancelOrders()
     {
         $user = User::where('id',Session::get('user_details')['user_id'])->first();
-        $orders = Order::where('user_id',Auth::id())->where('status','cancel')->orderBy('id','DESC')->get();
+        $orders = Order::where('user_id',Session::get('user_details')['user_id'])->where('status','cancel')->orderBy('id','DESC')->get();
         return view('frontend.user.order.cancel_order_view',compact('orders','user'));
     }
 
