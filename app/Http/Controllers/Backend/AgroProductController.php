@@ -19,11 +19,19 @@ use Image;
 class AgroProductController extends Controller
 {
     public function AgroView(){
-        $category = Category::latest()->get();
+        $seller_id=Session::get('user_details')['seller_id'];
+        $seller=Seller::where('id',$seller_id)->first();
+        $cat_ids=[];
+        if($seller!=null && $seller!=""){
+            $cat=explode(', ',rtrim($seller->category_id,', '));
+            foreach($cat as $cat){
+                array_push($cat_ids,$cat);
+            }
+        }
+        
+        $category = Category::wherein('id',$cat_ids)->get();
         // $category_skip = Category::skip(1)->first();
-
         $subcategory = SubCategory::latest()->get();
-
         return view('backend.products.agro.agro_add', compact('category', 'subcategory'));
     }
 
