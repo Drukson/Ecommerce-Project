@@ -35,14 +35,21 @@
                     <!-- ================================== TOP NAVIGATION : END ================================== -->
 
                     <!-- ============================================== PRODUCT TAGS ============================================== -->
-
-                        @include('frontend.common.product_tags')
+                    <div class="side-menu animate-dropdown outer-bottom-xs">
+                        <div class="head"><i class="icon fa fa-tags"></i> Product Tags</div>
+                        <div class="sidebar-module-container">
+                            <div class="sidebar-filter">
+                                @include('frontend.common.product_tags')
+                            </div>
+                        </div>
+                        <!-- /.megamenu-horizontal -->
+                    </div>
 
                     <!-- /.sidebar-widget -->
                     <!-- ============================================== PRODUCT TAGS : END ============================================== -->
 
                     <!-- ============================================== NEWSLETTER ============================================== -->
-                    <br><br>
+                   {{-- <br><br>
                     <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
                         <h3 class="section-title">Newsletters</h3>
                         <div class="sidebar-widget-body outer-top-xs">
@@ -56,7 +63,7 @@
                             </form>
                         </div>
                         <!-- /.sidebar-widget-body -->
-                    </div>
+                    </div>--}}
                     <!-- /.sidebar-widget -->
                     <!-- ============================================== NEWSLETTER: END ============================================== -->
                 </div>
@@ -74,9 +81,9 @@
                                 <div class="container-fluid">
                                     <div class="caption bg-color vertical-center text-left">
 
-                                        <div class="big-text fadeInDown-1"> {{ $slides->title}}</div>
+                                        <div class="big-text fadeInDown-1" style="color: white"> {{ $slides->title}}</div>
                                         <div class="excerpt fadeInDown-2 hidden-xs"> <span>{{ $slides->description}}</span> </div>
-                                        <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
+                                        {{--<div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>--}}
                                     </div>
                                     <!-- /.caption -->
                                 </div>
@@ -176,19 +183,21 @@
 
                                                         <div class="product-info text-left">
                                                             <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->product_name}} </a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="description"></div>
-                                                            @if($agro->discount_price == NULL)
+                                                            {{--<div class="rating rateit-small"></div>
+                                                            <div class="description"></div>--}}
+                                                            <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
+                                                            {{--@if($agro->discount_price == NULL)
                                                                 <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
                                                             @else
                                                                 <div class="product-price"> <span class="price">Nu. {{$agro->discount_price}} </span>
                                                                 <span class="price-before-discount">Nu. {{$agro->selling_price}}</span> </div>
-                                                            @endif
+                                                            @endif--}}
                                                             <!-- /.product-price -->
 
                                                         </div>
                                                         <!-- /.product-info -->
                                                         <div class="cart clearfix animate-effect">
+                                                            @if($agro->category_id == 5)
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
@@ -207,6 +216,7 @@
                                                                     </li>--}}
                                                                 </ul>
                                                             </div>
+                                                        @endif
                                                             <!-- /.action -->
                                                         </div>
                                                         <!-- /.cart -->
@@ -256,20 +266,22 @@
 
                                                         <div class="product-info text-left">
                                                             <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->product_name}} </a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="description"></div>
-                                                            @if($agro->discount_price == NULL)
+                                                            {{--<div class="rating rateit-small"></div>
+                                                            <div class="description"></div>--}}
+                                                            <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
+                                                            {{--@if($agro->discount_price == NULL)
                                                                 <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
                                                             @else
                                                               <div class="product-price"> <span class="price">Nu. {{$agro->discount_price}} </span>
                                                                 <span class="price-before-discount">{{$agro->selling_price}}</span>
                                                               </div>
-                                                            @endif
+                                                            @endif--}}
                                                             <!-- /.product-price -->
 
                                                         </div>
                                                         <!-- /.product-info -->
                                                         <div class="cart clearfix animate-effect">
+                                                            @if($agro->category_id == 5)
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
@@ -288,6 +300,7 @@
                                                                     </li>--}}
                                                                 </ul>
                                                             </div>
+                                                        @endif
                                                             <!-- /.action -->
                                                         </div>
                                                         <!-- /.cart -->
@@ -401,34 +414,30 @@
                                                 <!-- /.product-image -->
                                                 <div class="product-info text-left">
                                                     <h3 class="name"><a href="{{url('/product/agro/details/'. $product->id.'/'. $agro->slug)}}">{{$product->product_name}}</a></h3>
-                                                    <div class="rating rateit-small"></div>
-                                                    <div class="description"></div>
-                                                    <div class="product-price"> <span class="price"> Nu. {{ $product->selling_price }}</span>
-                                                        <span class="price-before-discount">Nu. {{ $product->discount_price }}</span> </div>
+                                                    {{--<div class="rating rateit-small"></div>
+                                                    <div class="description"></div>--}}
+                                                    <div class="product-price"> <span class="price"> Nu. {{ $product->selling_price }}</span> </div>
+                                                        {{--<span class="price-before-discount">Nu. {{ $product->discount_price }}</span> </div>--}}
                                                     <!-- /.product-price -->
 
                                                 </div>
                                                 <!-- /.product-info -->
                                                 <div class="cart clearfix animate-effect">
+                                                    @if($product->category_id == 5)
                                                     <div class="action">
                                                         <ul class="list-unstyled">
                                                             <li class="add-cart-button btn-group">
                                                                 <button class="btn btn-primary icon"  type="button" title="Add to cart"
                                                                         data-toggle="modal"
-                                                                        data-target="#exampleModal" id="{{ $agro->id }}"
+                                                                        data-target="#exampleModal" id="{{ $product->id }}"
                                                                         onclick="productView(this.id)">
                                                                     <i class="fa fa-shopping-cart"></i> </button>
                                                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                             </li>
-                                                            {{--<li --}}{{--class="lnk wishlist"--}}{{-->
-                                                                <button class="btn btn-primary icon"  type="button" title="Wishlist"
-                                                                        id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
-                                                                    <i class="fa fa-heart"></i>
-                                                                </button>
-                                                            </li>--}}
                                                         </ul>
                                                     </div>
-                                                    <!-- /.action -->
+                                                   @endif
+                                                        <!-- /.action -->
                                                 </div>
                                                 <!-- /.cart -->
                                             </div>

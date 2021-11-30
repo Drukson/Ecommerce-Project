@@ -21,17 +21,10 @@
 
                 <div class="product-info text-left">
                     <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->name}}</a></h3>
-                    <div class="rating rateit-small"></div>
+                    {{--<div class="rating rateit-small"></div>--}}
                     {{--<div class="description">{{$agro->short_desc}}</div>--}}
 
                     <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
-                    {{--@if($agro->discount_price == NULL)
-                        <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
-                    @else
-                        <div class="product-price"> <span class="price">Nu. {{$agro->discount_price}} </span>
-                            <span class="price-before-discount">Nu. {{$agro->selling_price}}</span> </div>
-                @endif--}}
-                <!-- /.product-price -->
 
                 </div>
                 <!-- /.product-info -->

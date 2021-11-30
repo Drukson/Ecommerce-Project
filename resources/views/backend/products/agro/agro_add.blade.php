@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="product_unit">
                                             <div class="form-group">
                                                 <h5>Product Unit</h5>
                                                 <select class="form-control" name="product_unit" id="exampleFormControlSelect1">
@@ -230,7 +230,7 @@
                             </div>
                             </div>
                             <hr>
-                            <div class="row">
+                            {{--<div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="controls">
@@ -259,7 +259,7 @@
                                             <div class="help-block"></div></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
 
                             <div class="text-xs-right">
                                 <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Product" >                                </div>
@@ -282,21 +282,28 @@
             if($('#'+id).val()==1){
                 $('#sub_cat_seciton').hide();
                 $('#product_code').hide();
+                $('#product_unit').hide();
+
             }else{
                 $('#sub_cat_seciton').show();
                 $('#product_code').show();
+                $('#product_unit').show();
+
             }
 
             if($('#'+id).val()==4){
                 $('#available_from').hide();
                 $('#available_to').hide();
+
             }else{
                 $('#available_from').show();
                 $('#available_to').show();
+
             }
             if($('#'+id).val()==5){
                 $('#available_from').hide();
                 $('#available_to').hide();
+
             }else{
 
             }

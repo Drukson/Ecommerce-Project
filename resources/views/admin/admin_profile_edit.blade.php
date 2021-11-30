@@ -38,6 +38,23 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <h5>Phone <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="text" name="phone" class="form-control" value="{{Session::get('user_details')['phone']}}" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                            <div class="form-control-feedback"></div>
+                                        </div>
+                                    </div>
+                                    {{--<div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Dzongkhag <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="email" name="dzongkhag_id" value="{{Session::get('user_details')['dzongkhag_id']}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                        </div>
+                                    </div>--}}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <h5>File Input Field <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="file" name="profile_photo_path" id="image" class="form-control" ></div>

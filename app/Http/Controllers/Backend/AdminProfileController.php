@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Dzongkhag;
+use App\Models\Seller;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -21,6 +23,9 @@ class AdminProfileController extends Controller
 
     public function EditAdminProfile(){
         $editAdminProfile = User::find(Session::get('user_details')['user_id']);
+
+
+
         return view('admin.admin_profile_edit', compact('editAdminProfile'));
     }
 
@@ -28,6 +33,7 @@ class AdminProfileController extends Controller
         $data = User::find(Session::get('user_details')['user_id']);
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->phone = $request->phone;
 
         if ($request->file('profile_photo_path')){
             $file = $request->file('profile_photo_path');

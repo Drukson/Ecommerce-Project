@@ -41,7 +41,6 @@ class ReviewController extends Controller
     {
         $review = Review::where('status',0)->where('seller_id', Session::get('user_details')['seller_id'])->orderBy('id','DESC')->get();
         return view('backend.review.pending_review',compact('review'));
-
     }
 
     public function ReviewApprove($id){

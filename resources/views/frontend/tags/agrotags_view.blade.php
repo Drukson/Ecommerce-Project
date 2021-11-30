@@ -46,11 +46,16 @@
                             <!-- /.megamenu-horizontal -->
                         </div>
 
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
-
                         <!-- ======================== PRODUCT TAGS ========================= -->
-                        @include('frontend.common.product_tags')
+                        <div class="side-menu animate-dropdown outer-bottom-xs">
+                            <div class="head"><i class="icon fa fa-tag"></i> Product Tags</div>
+                            <div class="sidebar-module-container">
+                                <div class="sidebar-filter">
+                                    @include('frontend.common.product_tags')
+                                </div>
+                            </div>
+                            <!-- /.megamenu-horizontal -->
+                        </div>
                          <!-- ======================== END PRODUCT TAGS ========================= -->
                         <!-- /.sidebar-widget -->
                     </div>
@@ -78,72 +83,7 @@
                     </div>
                 </div>
 
-                <div class="clearfix filters-container m-t-10">
-                    <div class="row">
-                        <div class="col col-sm-6 col-md-2">
-                            <div class="filter-tabs">
-                                {{--<ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
-                                    <li class="active"> <a data-toggle="tab" href="#grid-container"><i class="icon fa fa-th-large"></i>Grid</a> </li>
-                                    <li><a data-toggle="tab" href="#list-container"><i class="icon fa fa-th-list"></i>List</a></li>
-                                </ul>--}}
-                            </div>
-                            <!-- /.filter-tabs -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-sm-12 col-md-6">
-                            <div class="col col-sm-3 col-md-6 no-padding">
-                                <div class="lbl-cnt"> <span class="lbl">Sort by</span>
-                                    <div class="fld inline">
-                                        <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Position <span class="caret"></span> </button>
-                                            <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">position</a></li>
-                                                <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                                                <li role="presentation"><a href="#">Price:HIghest first</a></li>
-                                                <li role="presentation"><a href="#">Product Name:A to Z</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- /.fld -->
-                                </div>
-                                <!-- /.lbl-cnt -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col col-sm-3 col-md-6 no-padding">
-                                <div class="lbl-cnt"> <span class="lbl">Show</span>
-                                    <div class="fld inline">
-                                        <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1 <span class="caret"></span> </button>
-                                            <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">1</a></li>
-                                                <li role="presentation"><a href="#">2</a></li>
-                                                <li role="presentation"><a href="#">3</a></li>
-                                                <li role="presentation"><a href="#">4</a></li>
-                                                <li role="presentation"><a href="#">5</a></li>
-                                                <li role="presentation"><a href="#">6</a></li>
-                                                <li role="presentation"><a href="#">7</a></li>
-                                                <li role="presentation"><a href="#">8</a></li>
-                                                <li role="presentation"><a href="#">9</a></li>
-                                                <li role="presentation"><a href="#">10</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- /.fld -->
-                                </div>
-                                <!-- /.lbl-cnt -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-sm-6 col-md-4 text-right">
-                            <div class="pagination-container">
-                                <!-- /.list-inline -->
-                            </div>
-                            <!-- /.pagination-container --> </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
+
                 <!-- ================== GRID VIEW =================== -->
                 <div class="search-result-container ">
                     <div id="myTabContent" class="tab-content category-list">
@@ -173,16 +113,16 @@
 
                                                 <div class="product-info text-left">
                                                     <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->product_name}}</a></h3>
-                                                    <div class="rating rateit-small"></div>
-                                                    <div class="description">{{$agro->short_desc}}</div>
+                                                    {{--<div class="rating rateit-small"></div>
+                                                    <div class="description">{{$agro->short_desc}}</div>--}}
+                                                    <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
 
-
-                                                    @if($agro->discount_price == NULL)
+                                                    {{--@if($agro->discount_price == NULL)
                                                         <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
                                                     @else
                                                         <div class="product-price"> <span class="price">Nu. {{$agro->discount_price}} </span>
                                                             <span class="price-before-discount">Nu. {{$agro->selling_price}}</span> </div>
-                                                    @endif
+                                                    @endif--}}
                                                     <!-- /.product-price -->
 
                                                 </div>
@@ -198,12 +138,6 @@
                                                                     <i class="fa fa-shopping-cart"></i> </button>
                                                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                             </li>
-                                                           {{-- <li --}}{{--class="lnk wishlist"--}}{{-->
-                                                                <button class="btn btn-primary icon"  type="button" title="Wishlist"
-                                                                        id="{{ $agro->id }}" onclick="addToWishlist(this.id)">
-                                                                    <i class="fa fa-heart"></i>
-                                                                </button>
-                                                            </li>--}}
                                                         </ul>
                                                     </div>
                                                     <!-- /.action -->

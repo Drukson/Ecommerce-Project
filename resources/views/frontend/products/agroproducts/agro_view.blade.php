@@ -45,6 +45,16 @@
                             <!-- /.megamenu-horizontal -->
                         </div>
 
+                        <div class="side-menu animate-dropdown outer-bottom-xs">
+                            <div class="head"><i class="icon fa fa-tag"></i> Product Tags</div>
+                            <div class="sidebar-module-container">
+                                <div class="sidebar-filter">
+                                    @include('frontend.common.product_tags')
+                                </div>
+                            </div>
+                            <!-- /.megamenu-horizontal -->
+                        </div>
+
                         <!-- ============================================== NEWSLETTER ============================================== -->
                         <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
                             <h3 class="section-title">Newsletters</h3>
@@ -63,7 +73,7 @@
 
                         <!-- ============================================== Product Tags ============================================== -->
 
-                        @include('frontend.common.product_tags')
+
 
                         <!-- ============================================== Product Tags: END ============================================== -->
 
@@ -112,10 +122,9 @@
                                 <div class="product-info">
                                     <h1 class="name" id="pname">{{$product->product_name}}</h1>
 
-                                    <div class="rating-reviews m-t-20">
+                                   {{-- <div class="rating-reviews m-t-20">
                                         <div class="row">
                                             <div class="col-sm-3">
-
                                                 @if($avarage == 0)
                                                     No Rating Yet
                                                 @elseif($avarage == 1 || $avarage < 2)
@@ -157,8 +166,8 @@
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
-                                    </div><!-- /.rating-reviews -->
-
+                                    </div>--}}<!-- /.rating-reviews -->
+                                    @if($product->category_id == 5 || $product->category_id == 4)
                                     <div class="stock-container info-container m-t-10">
                                         <div class="row">
                                             <div class="col-sm-2">
@@ -168,11 +177,38 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="stock-box">
-                                                    <span class="value">In Stock</span>
+                                                    @if($product->product_qty > 0)
+                                                    <span class="value">{{$product->product_qty}} Packets/Pieces</span>
+                                                    @else
+                                                        <span class="value">Out of Stock</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
                                     </div><!-- /.stock-container -->
+                                    @endif
+
+                                    {{--HOMESTAY DETAILS--}}
+                                    @if($product->category_id == 1)
+                                    <div class="stock-container info-container m-t-10">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                Available From: <button type="button" class="btn btn-rounded btn-info mb-5">
+                                                    {{$product->available_from}}</button>
+                                            </div>
+                                            <br><br>
+                                            <div class="col-sm-9">
+                                                Available To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-rounded btn-info mb-5">
+                                                    {{$product->available_to}}</button>
+                                            </div>
+                                            <br><br>
+                                            <div class="col-sm-9">
+                                                Total Rooms: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-rounded btn-info mb-5">
+                                                    {{$product->product_qty}}</button>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.END HOMESTAY-->
+                                    @endif
 
                                     <div class="description-container m-t-20">
                                         {{$product->short_desc}}
@@ -222,9 +258,9 @@
                                    @php
                                     $seller = \App\Models\User::where('role_id', 1)->get();
                                    @endphp
-                                    <h4>Seller: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->name : ''}}</h4>
-                                    <h4>Phone: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->phone: ''}}</h4>
-                                    <h4>Location: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->dzongkhag->dzongkhag_name :''}}</h4>
+                                    <h5>Seller: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->name : ''}}</h5>
+                                    <h5>Phone: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->phone: ''}}</h5>
+                                    <h5>Location: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->dzongkhag->dzongkhag_name :''}}</h5>
                                     <a data-toggle="tab" onclick="showreview()" href="#review"><button type="button" class="btn btn-dark mb-5">Review Seller</button></a>
 
 
@@ -403,27 +439,27 @@
 
                                         <div class="product-info text-left">
                                             <h3 class="name"><a href="#">{{$product->product_name}}</a></h3>
-                                            <div class="rating rateit-small"></div>
-                                            <div class="description"></div>
+                                            {{--<div class="rating rateit-small"></div>
+                                            <div class="description"></div>--}}
 
                                             <div class="product-price">
 				                                <span class="price">
-					                                $650.99
+					                                Nu. {{$product->selling_price}}
                                                 </span>
-                                                <span class="price-before-discount">$ 800</span>
 
                                             </div><!-- /.product-price -->
 
                                         </div><!-- /.product-info -->
                                         <div class="cart clearfix animate-effect">
-                                            <div class="action">
+
+                                            @if($product->category_id == 5)
+                                                <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
                                                     </li>
 
                                                     <li class="lnk wishlist">
@@ -439,6 +475,7 @@
                                                     </li>
                                                 </ul>
                                             </div><!-- /.action -->
+                                            @endif
                                         </div><!-- /.cart -->
                                     </div><!-- /.product -->
 
