@@ -3,7 +3,6 @@
 @endphp
 
 <div class="sidebar-widget wow fadeInUp">
-    <h3 class="section-title">Sellers</h3>
 
     <div class="sidebar-widget-body">
         <div class="accordion">

@@ -13,11 +13,11 @@
                         <li><a href="{{route('seller_registration')}}"><i class="icon fa fa-lock"></i>Seller Register</a></li>
                         <li><a href="" type="button" data-toggle="modal" data-target="#ordertraking"><i class="icon fa fa-check"></i>Order Tracking</a></li>
                         <li>
-                            @auth
-                                <a href="{{route('login')}}"><i class="icon fa fa-user"></i>My Account</a>
+                            @if(Session::get('user_details')!== null && Session::get('user_details')!=='')
+                                <a href="{{route('dashboard')}}"><i class="icon fa fa-user"></i>My Account</a>
                             @else
                                 <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login|Register</a>
-                            @endauth
+                            @endif
                         </li>
                     </ul>
                 </div>

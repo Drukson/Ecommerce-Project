@@ -7,6 +7,7 @@ use App\Models\Review;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ReviewController extends Controller
 {
@@ -21,7 +22,8 @@ class ReviewController extends Controller
         ]);
         Review::insert([
             'product_id' => $product,
-            'user_id' => Auth::id(),
+            'user_id' => Session::get('user_details')['user_id'],
+            'seller_id' => $request->seller_id,
             'comment' => $request->comment,
             'summary' => $request->summary,
             'rating' => $request->quality,
@@ -37,9 +39,8 @@ class ReviewController extends Controller
 
     public function PendingReview()
     {
-        $review = Review::where('status',0)->orderBy('id','DESC')->get();
+        $review = Review::where('status',0)->where('seller_id', Session::get('user_details')['seller_id'])->orderBy('id','DESC')->get();
         return view('backend.review.pending_review',compact('review'));
-
     }
 
     public function ReviewApprove($id){

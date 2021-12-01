@@ -23,7 +23,7 @@
                                         <div class="form-group">
                                             <h5>Full Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="name" class="form-control" value="{{$editAdminProfile->name}}" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                                <input type="text" name="name" class="form-control" value="{{Session::get('user_details')['name']}}" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                                             <div class="form-control-feedback"></div>
                                         </div>
                                     </div>
@@ -31,9 +31,26 @@
                                         <div class="form-group">
                                             <h5>Email Field <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="email" name="email" value="{{$editAdminProfile->email}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                                <input type="email" name="email" value="{{Session::get('user_details')['email']}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Phone <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="text" name="phone" class="form-control" value="{{Session::get('user_details')['phone']}}" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                            <div class="form-control-feedback"></div>
+                                        </div>
+                                    </div>
+                                    {{--<div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Dzongkhag <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="email" name="dzongkhag_id" value="{{Session::get('user_details')['dzongkhag_id']}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                        </div>
+                                    </div>--}}
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

@@ -23,7 +23,7 @@
                                         <th>Summary  </th>
                                         <th>Comment </th>
                                         <th>User </th>
-                                        <th>Product  </th>
+                                        {{--<th>Product  </th>--}}
                                         <th>Status </th>
                                         <th>Action</th>
                                     </tr>
@@ -33,8 +33,9 @@
                                         <tr>
                                             <td> {{ $item->summary }}  </td>
                                             <td> {{ $item->comment }}  </td>
-                                            <td>  {{ $item->user->name }}  </td>
-                                            <td> {{ $item->product->product_name }}  </td>
+                                            <td> {{ Session::get('user_details')['name'] }}  </td>
+                                            {{--<td>  {{ $item->user->name }}  </td>--}}
+                                            {{--<td> {{ $item->product->product_name }}  </td>--}}
                                             <td>
                                                 @if($item->status == 0)
                                                     <span class="badge badge-pill badge-primary">Pending </span>

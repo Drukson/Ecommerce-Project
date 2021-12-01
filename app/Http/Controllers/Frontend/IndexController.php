@@ -124,6 +124,18 @@ class IndexController extends Controller
     public function ProductDetails($id, $slug)
     {
         $product = AgroProduct::find($id);
+        if ($product !== null && $product!=''){
+            $user = User::where('id', $product->created_by)->first();
+            $seller = Seller::where('id', $user->seller_id)->first();
+
+            if ($seller !== null && $seller!=''){
+                $product->seller_details = $seller;
+            }
+            $related_products = AgroProduct::where('created_by', $product->created_by)->get();
+            if ($related_products!== null && $related_products!=''){
+                $product->related_productlist = $related_products;
+            }
+        }
         $multiImg = MultiImg::where('product_id', $id)->get();
         return view('frontend.products.agroproducts.agro_view', compact('product', 'multiImg'));
     }
@@ -136,21 +148,30 @@ class IndexController extends Controller
         return view('frontend.tags.agrotags_view', compact('agroProduct', 'categories'));
     }
 
-    public function SubCatProduct($subcat_id, $slug)
+    public function SubCatProduct(Request $request, $subcat_id, $slug)
     {
          /*dd($slug);*/
         $categories = Category::orderBy('name', 'ASC')->get();
          if ($slug == 'seller'){
-             $agros = AgroProduct::where('status', 1)->where('seller_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
-            /* dd($agros, $subcat_id);*/
+             $agros = AgroProduct::where('status', 1)->where('seller_id', $subcat_id)->orderBy('id', 'ASC')->paginate(6);
+             /*dd($agros, $subcat_id);*/
 
              $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
          }else{
-             $agros = AgroProduct::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
+             $agros = AgroProduct::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(6);
                 /*dd($agros);*/
              $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
          }
         //$agroProduct = AgroProduct::where('status', 1)->where('product_tag', $tag)->orderBy('id', 'DESC')->paginate(3);
+
+        ///  Load More Product with Ajax
+        if ($request->ajax()) {
+            $grid_view = view('frontend.products.agroproducts.grid_view_product',compact('agros'))->render();
+
+            return response()->json(['grid_view' => $grid_view,'list_view',$list_view]);
+
+        }
+        ///  End Load More Product with Ajax
 
         return view('frontend.products.agroproducts.subcategory_view',
             compact('agros', 'categories', 'breadsubcat'));
@@ -162,9 +183,9 @@ class IndexController extends Controller
         //  $categories = Category::orderBy('name', 'ASC')->get();
         $categories = Category::skip(1)->first();
 
-        // HANDICRAFT SUB CATEGORY
+        /*// HANDICRAFT SUB CATEGORY
         $handicraft = Handicraft::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'ASC')->paginate(3);
-        $category = Category::skip(2)->first();
+        $category = Category::skip(2)->first();*/
 
         return view('frontend.products.handicraft.subcategory_view',
           compact('agros', 'categories', 'handicraft', 'category'));

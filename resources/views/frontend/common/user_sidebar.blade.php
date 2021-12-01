@@ -1,6 +1,4 @@
-@php
-        $user =$user;
-@endphp
+
 
 <div class="col-md-2"><br>
     <img class="card-img-top" style="border-radius: 50%" src="{{(!empty($user->profile_photo_path))

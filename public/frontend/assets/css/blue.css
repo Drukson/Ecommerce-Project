@@ -52,7 +52,7 @@ a {
   color: #0f6cb2;
 }
 .header-style-1 .header-nav {
-  background: #0f6cb2;
+  background: #43439b;
 }
 .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li.active {
   background: #085b9a;
@@ -147,7 +147,8 @@ a {
 .product-tag .item.active,
 .product-tag .item:hover,
 .product-tag .item:focus {
-  background: #0f6cb2;
+  background: #333366;
+    border-radius: 10px;
 }
 .hot-deals .product-info .product-price .price {
   color: #0f6cb2;
@@ -417,7 +418,7 @@ a {
 }
 .mega-menu .dropdown-menu {
 width:100%;
-left:0px 
+left:0px
 }
 
 .navbar-nav>li>.dropdown-menu { box-shadow:0 4px 6px -1px rgba(0,0,0,0.4);}

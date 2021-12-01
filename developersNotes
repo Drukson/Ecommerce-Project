@@ -1,5 +1,5 @@
 2021-11-16
-- added role_id in the seller and user table 
+- added role_id in the seller and user table
 - added status in user table
 - CREATE TABLE `ecommerce`.`role_master` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -9,3 +9,6 @@
   PRIMARY KEY (`id`));
   INSERT INTO `ecommerce`.`role_master` (`id`, `name`, `code`, `status`) VALUES ('1', 'Seller', '0001', '1');
   INSERT INTO `ecommerce`.`role_master` (`id`, `name`, `code`, `status`) VALUES ('2', 'Customer', '0002', '1');
+
+Added by Drukson:
+In Users table added seller_id column.
