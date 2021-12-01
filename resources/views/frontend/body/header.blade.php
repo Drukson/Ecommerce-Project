@@ -128,8 +128,8 @@
                                     $category = \App\Models\Category::orderBy('name', 'ASC')->get();
                                 @endphp
                                 @foreach($category as $cat)
-                                <li class="dropdown yamm mega-menu"> <a href="{{ url('/') }}" data-hover="dropdown"
-                                                      class="dropdown-toggle" data-toggle="dropdown">{{$cat->name}}</a>
+                                <li class="dropdown yamm mega-menu"> <a href="{{url('/loadproducts/'. $cat->id )}}">
+                                        {{$cat->name}} </a>
                                     <ul class="dropdown-menu container">
                                         {{--<li>
                                             <div class="yamm-content ">

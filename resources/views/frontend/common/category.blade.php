@@ -6,6 +6,7 @@
     {{--<h3 class="section-title">Shop by Category</h3>--}}
 
     <div class="sidebar-widget-body">
+
         <div class="accordion">
             @foreach($categories as $cat)
                 <div class="accordion-group">

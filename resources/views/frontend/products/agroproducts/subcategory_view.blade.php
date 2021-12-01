@@ -270,8 +270,8 @@
                     <div class="clearfix filters-container">
                         <div class="text-right">
                             <div class="pagination-container">
-                                <button type="button" class="btn btn-danger mb-5">
-                                   {{$agros->links()}}</button>
+{{--                                <button type="button" class="btn btn-danger mb-5">--}}
+{{--                                   {{$agros->links()}}</button>--}}
 
                                 <!-- /.list-inline -->
                             </div>

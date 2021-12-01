@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <h5>Phone <span class="text-danger">*</span></h5>
                                             <div class="controls">
@@ -44,13 +44,27 @@
                                             <div class="form-control-feedback"></div>
                                         </div>
                                     </div>
-                                    {{--<div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <h5>Dzongkhag <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="email" name="dzongkhag_id" value="{{Session::get('user_details')['dzongkhag_id']}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                                <input type="text" name="dzongkhag_id" value="{{$editAdminProfile->dzongkhag->dzongkhag_name}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                                         </div>
-                                    </div>--}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <h5>Gewog <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="text" name="gewog_id" value="{{$editAdminProfile->gewog->gewog_name}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <h5>Village <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="text" name="village" value="{{$editAdminProfile->village->village_name}}" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

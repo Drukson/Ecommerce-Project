@@ -242,7 +242,36 @@ class IndexController extends Controller
         return view('frontend.seller.seller_details', compact('seller'));
     }
 
+    public  function loadproducts($cat_id = '')
+    {
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $breadsubcat = SubCategory::with(['category'])->where('category_id',$cat_id)->get();
+        $agros=[];
+        if($cat_id==1){
+            $product = AgroProduct::where('category_id', $cat_id)->get();
+            if($product!=null && $product!=""){
+                foreach ($product as $pro){
+                    array_push($agros, $pro);
+                }
+            }
+        }else{
+            $subcat = SubCategory::where('category_id', $cat_id)->get();
+            if ($subcat !== null && $subcat !=''){
+                foreach ($subcat as $cat){
+                    $product = AgroProduct::where('subcategory_id', $cat->id)->get();
+                    if($product!=null && $product!=""){
+                        foreach ($product as $pro){
+                            array_push($agros, $pro);
+                        }
+                    }
+                }
+            }
+        }
 
+
+        return view('frontend.products.agroproducts.subcategory_view',
+            compact('agros', 'categories', 'breadsubcat'));
+    }
 
 
 }

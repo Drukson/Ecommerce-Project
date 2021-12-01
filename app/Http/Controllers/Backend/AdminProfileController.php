@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Dzongkhag;
+use App\Models\Gewog;
 use App\Models\Seller;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +25,15 @@ class AdminProfileController extends Controller
 
     public function EditAdminProfile(){
         $editAdminProfile = User::find(Session::get('user_details')['user_id']);
-
-
-
+        if ($editAdminProfile !=null && $editAdminProfile!=''){
+            $seller_details = Seller::where('id', $editAdminProfile->seller_id)->first();
+            $seller_dzongkhag = Dzongkhag::where('id', $seller_details->dzongkhag_id)->first();
+            $seller_gewog = Gewog::where('id', $seller_details->gewog_id)->first();
+            $seller_village = Village::where('id', $seller_details->village_id)->first();
+            $editAdminProfile->dzongkhag = $seller_dzongkhag;
+            $editAdminProfile->gewog = $seller_gewog;
+            $editAdminProfile->village = $seller_village;
+        }
         return view('admin.admin_profile_edit', compact('editAdminProfile'));
     }
 
