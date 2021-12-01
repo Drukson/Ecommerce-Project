@@ -20,20 +20,28 @@ class ReviewController extends Controller
             'summary' => 'required',
             'comment' => 'required',
         ]);
-        Review::insert([
-            'product_id' => $product,
-            'user_id' => Session::get('user_details')['user_id'],
-            'seller_id' => $request->seller_id,
-            'comment' => $request->comment,
-            'summary' => $request->summary,
-            'rating' => $request->quality,
-            'created_at' => Carbon::now(),
-        ]);
-
-        $notification = array(
-            'message' => 'Review Will Approve By Admin',
-            'alert-type' => 'success'
-        );
+        $check_review=Review::where('user_id',Session::get('user_details')['user_id'])->where('seller_id',$request->seller_id)->first();
+        if($check_review!=null && $check_review!=""){
+            $notification = array(
+                'message' => 'You have already reviewed for this seller. Thank you',
+                'alert-type' => 'warning'
+            );
+        }else{
+            Review::insert([
+                'product_id' => $product,
+                'user_id' => Session::get('user_details')['user_id'],
+                'seller_id' => $request->seller_id,
+                'comment' => $request->comment,
+                'summary' => $request->summary,
+                'rating' => $request->quality,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array(
+                'message' => 'Review Will Approve By Admin',
+                'alert-type' => 'success'
+            );
+        }
+        
         return redirect()->back()->with($notification);
     }
 
