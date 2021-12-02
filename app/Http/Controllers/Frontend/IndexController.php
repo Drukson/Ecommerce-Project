@@ -268,7 +268,6 @@ class IndexController extends Controller
             }
         }
 
-
         return view('frontend.products.agroproducts.subcategory_view',
             compact('agros', 'categories', 'breadsubcat'));
     }

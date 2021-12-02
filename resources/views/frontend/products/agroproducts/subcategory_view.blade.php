@@ -6,7 +6,7 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<div class="breadcrumb">
+{{--<div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
@@ -22,7 +22,7 @@
         <!-- /.breadcrumb-inner -->
     </div>
     <!-- /.container -->
-</div>
+</div>--}}
 <!-- /.breadcrumb -->
 <div class="body-content outer-top-xs">
     <div class='container'>
@@ -65,29 +65,18 @@
             <div class='col-md-9'>
                 <!-- ================== SECTION – HERO =================== -->
 
-                <div id="category" class="category-carousel hidden-xs">
-                    <div class="item">
-                        <div class="image">
-                            <img src="{{asset('frontend/assets/images/banners/cat-banner-1.jpg')}}" alt="" class="img-responsive"> </div>
-                        <div class="container-fluid">
-                            <div class="caption vertical-top text-left">
-                                <div class="big-text"> Big Sale </div>
-                                <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
-                                {{--<div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>--}}
-                            </div>
-                            <!-- /.caption -->
-                        </div>
-                        <!-- /.container-fluid -->
-                    </div>
-                </div>
-                @foreach($breadsubcat as $item)
+                {{--SLIDER--}}
+                @include('frontend.common.slider')
+                <br>
+                {{--ENDSLIDER--}}
+                {{--BREADCUM--}}
+                {{--@foreach($breadsubcat as $item)
                     <span class="badge badge-danger" style="background: #808080">{{ $item->category->name }} </span>
                 @endforeach
 
                 @foreach($breadsubcat as $item)
                     <span class="badge badge-danger" style="background: #FF0000">{{ $item->name }} </span>
-
-                @endforeach
+                @endforeach--}}
                 <div class="clearfix filters-container m-t-10">
                     <div class="row">
                         {{--<div class="col col-sm-6 col-md-2">

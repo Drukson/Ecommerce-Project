@@ -123,7 +123,7 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}" >Home</a> </li>
                                 @php
                                     $category = \App\Models\Category::orderBy('name', 'ASC')->get();
                                 @endphp
