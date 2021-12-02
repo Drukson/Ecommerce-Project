@@ -13,9 +13,11 @@ use App\Models\HandicraftImage;
 use App\Models\Homestay;
 use App\Models\HomestayImage;
 use App\Models\MultiImg;
+use App\Models\Review;
 use App\Models\Seller;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use App\Models\Subscriber;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -224,6 +226,9 @@ class IndexController extends Controller
 
     public function SellerDetails($gewog_id = '')
     {
+
+
+
         $seller = Seller::where('gewog_id',$gewog_id)->where('status', 2)->get();
         if ($seller != null && $seller!='' && sizeof($seller)>0)
         {
@@ -270,6 +275,18 @@ class IndexController extends Controller
 
         return view('frontend.products.agroproducts.subcategory_view',
             compact('agros', 'categories', 'breadsubcat'));
+    }
+
+    public function StoreSubscribers(Request $request){
+        Subscriber::insert([
+            'email' => $request->email,
+            'name' => $request->name,
+        ]);
+        $notification = array(
+            'message' => 'Thank you for Subscribing',
+            'alert-type' => 'success'
+        );
+        return Redirect::route('/')->with($notification);
     }
 
 

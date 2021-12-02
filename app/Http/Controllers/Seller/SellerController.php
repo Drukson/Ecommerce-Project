@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgroProduct;
 use App\Models\Category;
 use App\Models\Dzongkhag;
 use App\Models\Gewog;
+use App\Models\Review;
 use App\Models\Seller;
 use App\Models\Role;
 use App\Models\User;
@@ -31,9 +33,10 @@ class SellerController extends Controller
             compact('dzongkhag', 'gewog', 'village', 'category'));
     }
 
-    /*DISPLAY YALL SELLER IN THE ADMIN*/
-    public function SellerDetails()
+    /*DISPLAY ALL SELLER IN THE ADMIN*/
+    public function SellerDetails($id)
     {
+
         $seller = Seller::where('status',1)->get();
         $dzongkhag = Dzongkhag::orderBy('dzongkhag_name', 'ASC')->get();
         $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();

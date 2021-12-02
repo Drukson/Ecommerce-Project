@@ -9,7 +9,7 @@
         color: orange;
     }
 </style>
-    <div class="breadcrumb">
+    {{--<div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
@@ -19,7 +19,7 @@
                 </ul>
             </div><!-- /.breadcrumb-inner -->
         </div><!-- /.container -->
-    </div><!-- /.breadcrumb -->
+    </div><!-- /.breadcrumb -->--}}
     <div class="body-content outer-top-xs">
         <div class='container'>
             <div class='row single-product'>
@@ -60,10 +60,14 @@
                             <h3 class="section-title">Newsletters</h3>
                             <div class="sidebar-widget-body outer-top-xs">
                                 <p>Sign Up for Our Newsletter!</p>
-                                <form>
+                                <form action="{{route('addSubscribers')}}" method="POST">
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail1">Phone</label>
+                                        <input type="text" name="phone" class="form-control" placeholder="Phone number">
                                     </div>
                                     <button class="btn btn-primary">Subscribe</button>
                                 </form>
@@ -113,16 +117,11 @@
                                 </div><!-- /.single-product-gallery -->
                             </div><!-- /.gallery-holder -->
 
-                            @php
-                                $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
-                                $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
-                            @endphp
-
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
                                     <h1 class="name" id="pname">{{$product->product_name}}</h1>
 
-                                   {{-- <div class="rating-reviews m-t-20">
+                                    {{--<div class="rating-reviews m-t-20">
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 @if($avarage == 0)
@@ -166,7 +165,7 @@
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
-                                    </div>--}}<!-- /.rating-reviews -->
+                                    </div><!-- /.rating-reviews -->--}}
                                     @if($product->category_id == 5 || $product->category_id == 4)
                                     <div class="stock-container info-container m-t-10">
                                         <div class="row">
@@ -261,6 +260,62 @@
                                     <h5>Seller: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->name : ''}}</h5>
                                     <h5>Phone: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->phone: ''}}</h5>
                                     <h5>Location: {{$product->seller_details!=null && $product->seller_details!="" ? $product->seller_details->dzongkhag->dzongkhag_name :''}}</h5>
+                                    @if($product->seller_details!=null && $product->seller_details!="")
+
+
+                                    @php
+
+                                        $reviewcount = App\Models\Review::where('seller_id',$product->seller_details->id)->where('status',1)->latest()->get();
+                                        $avarage = App\Models\Review::where('seller_id',$product->seller_details->id)->where('status',1)->avg('rating');
+
+                                    @endphp
+
+                                    <div class="rating-reviews m-t-20">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                @if($avarage == 0)
+                                                    No Rating Yet
+                                                @elseif($avarage == 1 || $avarage < 2)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avarage == 2 || $avarage < 3)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avarage == 3 || $avarage < 4)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+
+                                                @elseif($avarage == 4 || $avarage < 5)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                @elseif($avarage == 5 || $avarage < 5)
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                @endif
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="reviews">
+                                                    <a data-toggle="tab" onclick="showreview1()" href="#review">({{ count($reviewcount) }} Reviews)</a>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><br><!-- /.rating-reviews -->
+                                    @endif
                                     <a data-toggle="tab" onclick="showreview()" href="#review"><button type="button" class="btn btn-dark mb-5">Review Seller</button></a>
 
 
@@ -289,9 +344,12 @@
                                         <div class="product-tab">
                                             <div class="product-reviews">
                                                 <h4 class="title">Customer Reviews</h4>
-                                                @php
-                                                    $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
-                                                @endphp
+                                                @if($product->seller_details!=null && $product->seller_details!="")
+
+                                                    @php
+                                                        $reviews = App\Models\Review::where('seller_id',$product->seller_details->id)->where('status',1)->latest()->get();
+
+                                                    @endphp
 
                                                 <div class="reviews">
 
@@ -351,6 +409,7 @@
                                                         @endif
                                                     @endforeach
                                                 </div><!-- /.reviews -->
+                                                @endif
                                             </div><!-- /.product-reviews -->
                                             <div class="product-add-review">
                                                 <h4 class="title">Write your own review</h4>
@@ -507,6 +566,13 @@
 
         <script type="text/javascript">
             function showreview(){
+                $('#descbtn').removeClass('active');
+                $('#reviewbtn').addClass('active');
+            }
+        </script>
+
+        <script type="text/javascript">
+            function showreview1(){
                 $('#descbtn').removeClass('active');
                 $('#reviewbtn').addClass('active');
             }

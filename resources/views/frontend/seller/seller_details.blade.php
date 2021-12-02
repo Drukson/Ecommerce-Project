@@ -91,13 +91,63 @@
                                 <a href="{{url('/subcategory/product/'. $seller->id . '/seller')}}">
                                     <button type="button" class="btn btn-rounded btn-primary mb-5">View Products</button>
                                 </a>
+                                @php
+                                    $reviewcount = App\Models\Review::where('seller_id',$seller->id)->where('status',1)->latest()->get();
+                                    $avarage = App\Models\Review::where('seller_id',$seller->id)->where('status',1)->avg('rating');
+
+                                @endphp
+
+                                <div class="rating-reviews m-t-20">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            @if($avarage == 0)
+                                                No Rating Yet
+                                            @elseif($avarage == 1 || $avarage < 2)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            @elseif($avarage == 2 || $avarage < 3)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            @elseif($avarage == 3 || $avarage < 4)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+
+                                            @elseif($avarage == 4 || $avarage < 5)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                            @elseif($avarage == 5 || $avarage < 5)
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            @endif
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="reviews">
+                                                <a href="#" class="lnk">({{ count($reviewcount) }} Reviews)</a>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.row -->
+                                </div>
+
                             </div>
                         </div>
                 </div><br>
             </div>
             @endforeach
-
-
         </div>
     </div><br>
 

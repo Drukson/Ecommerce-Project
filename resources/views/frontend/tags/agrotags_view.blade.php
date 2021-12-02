@@ -5,7 +5,7 @@
 
 @endsection
 
-<div class="breadcrumb">
+{{--<div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
@@ -16,7 +16,7 @@
         <!-- /.breadcrumb-inner -->
     </div>
     <!-- /.container -->
-</div>
+</div>--}}
 <!-- /.breadcrumb -->
 <div class="body-content outer-top-xs">
     <div class='container'>
@@ -67,21 +67,10 @@
             <div class='col-md-9'>
                 <!-- ================== SECTION – HERO =================== -->
 
-                <div id="category" class="category-carousel hidden-xs">
-                    <div class="item">
-                        <div class="image">
-                            <img src="{{asset('frontend/assets/images/banners/cat-banner-1.jpg')}}" alt="" class="img-responsive"> </div>
-                        <div class="container-fluid">
-                            <div class="caption vertical-top text-left">
-                                <div class="big-text"> Big Sale </div>
-                                <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
-                                <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
-                            </div>
-                            <!-- /.caption -->
-                        </div>
-                        <!-- /.container-fluid -->
-                    </div>
-                </div>
+                {{--SLIDER--}}
+                @include('frontend.common.slider')
+                <br>
+            {{--ENDSLIDER--}}
 
 
                 <!-- ================== GRID VIEW =================== -->
@@ -128,6 +117,7 @@
                                                 </div>
                                                 <!-- /.product-info -->
                                                 <div class="cart clearfix animate-effect">
+                                                    @if($agro->category_id == 5)
                                                     <div class="action">
                                                         <ul class="list-unstyled">
                                                             <li class="add-cart-button btn-group">
@@ -140,6 +130,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
+                                                    @endif
                                                     <!-- /.action -->
                                                 </div>
                                                 <!-- /.cart -->

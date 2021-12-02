@@ -129,8 +129,8 @@
 
                                                     <div class="product-info text-left">
                                                         <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->product_name}}</a></h3>
-                                                        {{--<div class="rating rateit-small"></div>
-                                                        <div class="description">{{$agro->short_desc}}</div>--}}
+                                                        {{--<div class="rating rateit-small"></div>--}}
+                                                        <div class="description">{!! Str::words("$agro->short_desc", 15, ' ...') !!}</div>
                                                         <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
 
                                                         {{--@if($agro->discount_price == NULL)
@@ -144,6 +144,7 @@
                                                     </div>
                                                     <!-- /.product-info -->
                                                     <div class="cart clearfix animate-effect">
+                                                        @if($agro->category_id == 5)
                                                         <div class="action">
                                                             <ul class="list-unstyled">
                                                                 <li class="add-cart-button btn-group">
@@ -154,9 +155,9 @@
                                                                         <i class="fa fa-shopping-cart"></i> </button>
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
-
                                                             </ul>
                                                         </div>
+                                                        @endif
                                                         <!-- /.action -->
                                                     </div>
                                                     <!-- /.cart -->

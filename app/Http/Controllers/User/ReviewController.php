@@ -41,13 +41,14 @@ class ReviewController extends Controller
                 'alert-type' => 'success'
             );
         }
-        
+
         return redirect()->back()->with($notification);
     }
 
     public function PendingReview()
     {
         $review = Review::where('status',0)->where('seller_id', Session::get('user_details')['seller_id'])->orderBy('id','DESC')->get();
+        //$review = Review::where('status',0)->where('seller_id', Session::get('user_details')['seller_id'])->orderBy('id','DESC')->get();
         return view('backend.review.pending_review',compact('review'));
     }
 
@@ -65,7 +66,8 @@ class ReviewController extends Controller
 
     public function PublishReview()
     {
-        $review = Review::where('status',1)->orderBy('id','DESC')->get();
+        //$review = Review::where('status',1)->where('seller_id', Session::get('user_details')['user_id'])->orderBy('id','DESC')->get();
+      $review = Review::where('status',1)->orderBy('id','DESC')->get();
         return view('backend.review.publish_review',compact('review'));
     }
 

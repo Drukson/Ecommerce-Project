@@ -38,7 +38,7 @@ class AgroProductController extends Controller
     public function AddAgroProduct(Request $request){
         $img = $request->file('product_thumbnail');
         $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-        Image::make($img)->resize(800,900)->save('uploads/products/thumbnail/' . $imgName);
+        Image::make($img)->resize(500,500)->save('uploads/products/thumbnail/' . $imgName);
         $filePath = 'uploads/products/thumbnail/' . $imgName;
        $product_id = AgroProduct::insertGetId([
             'category_id' => $request->category_id,
@@ -71,7 +71,7 @@ class AgroProductController extends Controller
         $multiImg = $request->file('multi_img');
         foreach ($multiImg as $images){
             $multiImgName = hexdec(uniqid()).'.'.$images->getClientOriginalExtension();
-            Image::make($images)->resize(800,900)->save('uploads/products/multiimage/' . $multiImgName);
+            Image::make($images)->resize(500,500)->save('uploads/products/multiimage/' . $multiImgName);
             $uploadPath = 'uploads/products/multiimage/' . $multiImgName;
 
             MultiImg::insert([
@@ -89,7 +89,7 @@ class AgroProductController extends Controller
     }
 
     public function ManageAgroProducts(){
-        $agroProducts = AgroProduct::where('created_by',Session::get('user_details')['user_id'] )->latest()->get();
+        $agroProducts = AgroProduct::where('created_by',Session::get('user_details')['user_id'])->latest()->get();
         return view('backend.products.agro.agro_products_view', compact('agroProducts'));
     }
 
@@ -147,7 +147,7 @@ class AgroProductController extends Controller
             unlink($imgDel->photo_name);
 
             $genName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(800,900)->save('uploads/products/multiimage/' . $genName);
+            Image::make($img)->resize(500,500)->save('uploads/products/multiimage/' . $genName);
             $ImgPath = 'uploads/products/multiimage/' . $genName;
 
             MultiImg::where('id', $id)->update([
@@ -167,7 +167,7 @@ class AgroProductController extends Controller
         $imgDel = AgroProduct::find($id);
 
             $genName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(800,900)->save('uploads/products/thumbnail/' . $genName);
+            Image::make($image)->resize(500,500)->save('uploads/products/thumbnail/' . $genName);
             $ImgPath = 'uploads/products/thumbnail/' . $genName;
 
             unlink($imgDel->product_thumbnail);
