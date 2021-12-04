@@ -87,25 +87,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                @php
-                                    if(isset($editAdminProfile->seller)){
-                                @endphp
-                                <script>
-
-                                    if('{{$editAdminProfile->seller->dzongkhag_id}}'!=null && '{{$editAdminProfile->seller->dzongkhag_id}}'!=''){
-                                        $('#dzongkhag_id').val('{{$editAdminProfile->seller->dzongkhag_id}}');
-                                    }
-
-                                    getgeowg({{$editAdminProfile->seller->dzongkhag_id}},{{$editAdminProfile->seller->gewog_id}});
-                                    getvillage('{{$editAdminProfile->seller->gewog_id}}','{{$editAdminProfile->seller->village_id}}');
-
-                                </script>
-                                @php
-                                    }
-                                @endphp
                                 <script>
                                     function getgeowg(dzoId,gewogId){
-                                        alert(dzoId+gewogId);
                                         if(dzoId=="dzongkhag_id"){
                                             dzoId=$('#dzongkhag_id').val();
                                         }
@@ -147,6 +130,16 @@
                                         });
                                     }
                                 </script>
+                                @if ($editAdminProfile->seller!=null && $editAdminProfile->seller!="")
+                                    <script>
+                                        if('{{$editAdminProfile->seller->dzongkhag_id}}'!=null && '{{$editAdminProfile->seller->dzongkhag_id}}'!=''){
+                                            $('#dzongkhag_id').val('{{$editAdminProfile->seller->dzongkhag_id}}');
+                                        }
+                                        getgeowg('{{$editAdminProfile->seller->dzongkhag_id}}','{{$editAdminProfile->seller->gewog_id}}');
+                                        getvillage('{{$editAdminProfile->seller->gewog_id}}','{{$editAdminProfile->seller->village_id}}');
+                                    </script>
+                                @endif
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
