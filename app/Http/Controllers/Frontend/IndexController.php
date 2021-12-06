@@ -18,6 +18,7 @@ use App\Models\Seller;
 use App\Models\Slider;
 use App\Models\SubCategory;
 use App\Models\Subscriber;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -227,8 +228,6 @@ class IndexController extends Controller
     public function SellerDetails($gewog_id = '')
     {
 
-
-
         $seller = Seller::where('gewog_id',$gewog_id)->where('status', 2)->get();
         if ($seller != null && $seller!='' && sizeof($seller)>0)
         {
@@ -278,15 +277,19 @@ class IndexController extends Controller
     }
 
     public function StoreSubscribers(Request $request){
-        Subscriber::insert([
+        $det = Subscriber::insert([
             'email' => $request->email,
-            'name' => $request->name,
+            'phone' => $request->phone,
+            'created_at' => Carbon::now()
         ]);
+
+
         $notification = array(
-            'message' => 'Thank you for Subscribing',
+            'message' => 'Thank you for your subscription',
             'alert-type' => 'success'
         );
-        return Redirect::route('/')->with($notification);
+
+        return Redirect::back()->with($notification);
     }
 
 

@@ -59,6 +59,19 @@
                     <!-- /.megamenu-horizontal -->
                 </div>
 
+                <!-- ========================= NEWSLETTER ================================= -->
+                <div class="side-menu animate-dropdown outer-bottom-xs">
+                    <div class="head"><i class="fa fa-newspaper-o"></i> NEWSLETTERS</div>
+                    <div class="sidebar-module-container">
+                        <div class="sidebar-filter">
+                            @include('frontend.common.subscription')
+                        </div>
+                    </div>
+                    <!-- /.megamenu-horizontal -->
+                </div>
+
+            <!-- ================================= NEWSLETTER: END ========================= -->
+
                 <!-- /.sidebar-module-container -->
             </div>
             <!-- /.sidebar -->

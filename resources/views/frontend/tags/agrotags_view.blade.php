@@ -56,6 +56,16 @@
                             </div>
                             <!-- /.megamenu-horizontal -->
                         </div>
+
+                        <div class="side-menu animate-dropdown outer-bottom-xs">
+                            <div class="head"><i class="fa fa-newspaper-o"></i> NEWSLETTERS</div>
+                            <div class="sidebar-module-container">
+                                <div class="sidebar-filter">
+                                    @include('frontend.common.subscription')
+                                </div>
+                            </div>
+                            <!-- /.megamenu-horizontal -->
+                        </div>
                          <!-- ======================== END PRODUCT TAGS ========================= -->
                         <!-- /.sidebar-widget -->
                     </div>
@@ -104,6 +114,7 @@
                                                     <h3 class="name"><a href="{{url('/product/agro/details/'. $agro->id.'/'. $agro->product_slug)}}">{{$agro->product_name}}</a></h3>
                                                     {{--<div class="rating rateit-small"></div>
                                                     <div class="description">{{$agro->short_desc}}</div>--}}
+                                                    <div class="description">{!! Str::words("$agro->short_desc", 15, ' ...') !!}</div>
                                                     <div class="product-price"> <span class="price">Nu. {{$agro->selling_price}} </span></div>
 
                                                     {{--@if($agro->discount_price == NULL)

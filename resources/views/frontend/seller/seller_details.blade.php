@@ -9,17 +9,17 @@
         color: orange;
     }
 </style>
-<div class="breadcrumb">
+{{--<div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="#">Agro</a></li>
-               {{-- <li class='active'>{{$product->product_name}}</li>--}}
+               --}}{{-- <li class='active'>{{$product->product_name}}</li>--}}{{--
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+</div><!-- /.breadcrumb -->--}}
 <div class="body-content outer-top-xs">
     <div class='container'>
         <div class='row single-product'>
@@ -99,9 +99,9 @@
 
                                 <div class="rating-reviews m-t-20">
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-5">
                                             @if($avarage == 0)
-                                                No Rating Yet
+                                                No Rating
                                             @elseif($avarage == 1 || $avarage < 2)
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star"></span>

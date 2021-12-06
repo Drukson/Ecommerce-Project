@@ -56,30 +56,8 @@
                         </div>
 
                         <!-- ============================================== NEWSLETTER ============================================== -->
-                        <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
-                            <h3 class="section-title">Newsletters</h3>
-                            <div class="sidebar-widget-body outer-top-xs">
-                                <p>Sign Up for Our Newsletter!</p>
-                                <form action="{{route('addSubscribers')}}" method="POST">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="exampleInputEmail1">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="exampleInputEmail1">Phone</label>
-                                        <input type="text" name="phone" class="form-control" placeholder="Phone number">
-                                    </div>
-                                    <button class="btn btn-primary">Subscribe</button>
-                                </form>
-                            </div><!-- /.sidebar-widget-body -->
-                        </div><!-- /.sidebar-widget -->
+                        @include('frontend.common.subscription')
                         <!-- ============================================== NEWSLETTER: END ============================================== -->
-
-                        <!-- ============================================== Product Tags ============================================== -->
-
-
-
-                        <!-- ============================================== Product Tags: END ============================================== -->
 
                     </div>
                 </div><!-- /.sidebar -->
@@ -498,8 +476,8 @@
 
                                         <div class="product-info text-left">
                                             <h3 class="name"><a href="#">{{$product->product_name}}</a></h3>
-                                            {{--<div class="rating rateit-small"></div>
-                                            <div class="description"></div>--}}
+                                            {{--<div class="rating rateit-small"></div>--}}
+                                            <div class="description">{!! Str::words("$product->short_desc", 15, ' ...') !!}</div>
 
                                             <div class="product-price">
 				                                <span class="price">
