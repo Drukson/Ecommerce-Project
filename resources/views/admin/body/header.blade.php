@@ -14,16 +14,7 @@
                     <i class="nav-link-icon mdi mdi-crop-free"></i>
                 </a>
             </li>
-            <li class="btn-group nav-item d-none d-xl-inline-block">
-                <a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
-                    <i class="ti-check-box"></i>
-                </a>
-            </li>
-            <li class="btn-group nav-item d-none d-xl-inline-block">
-                <a href="calendar.html" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
-                    <i class="ti-calendar"></i>
-                </a>
-            </li>
+
         </ul>
     </div>
 
@@ -36,7 +27,7 @@
                 </div>
             </li>
             <!-- Notifications -->
-            <li class="dropdown notifications-menu">
+            {{--<li class="dropdown notifications-menu">
                 <a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown" title="Notifications">
                     <i class="ti-bell"></i>
                 </a>
@@ -99,7 +90,7 @@
                         <a href="#">View all</a>
                     </li>
                 </ul>
-            </li>
+            </li>--}}
             @php
             $adminData = \App\Models\Admin::find(1);
             @endphp
@@ -119,11 +110,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
-                    <i class="ti-settings"></i>
-                </a>
-            </li>
+
 
         </ul>
     </div>

@@ -356,3 +356,4 @@ Route::get('/loadproducts/{cat_id}', [\App\Http\Controllers\Frontend\IndexContro
 
 //SUBSCRIBERS ROUTE
 Route::post('/subscribe', [\App\Http\Controllers\Frontend\IndexController::class, 'StoreSubscribers'])->name('addSubscribers');
+Route::get('/subscribers', [\App\Http\Controllers\Frontend\IndexController::class, 'ViewSubscribers'])->name('viewSubscribers');

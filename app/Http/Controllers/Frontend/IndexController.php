@@ -170,9 +170,7 @@ class IndexController extends Controller
         ///  Load More Product with Ajax
         if ($request->ajax()) {
             $grid_view = view('frontend.products.agroproducts.grid_view_product',compact('agros'))->render();
-
             return response()->json(['grid_view' => $grid_view,'list_view',$list_view]);
-
         }
         ///  End Load More Product with Ajax
 
@@ -192,7 +190,6 @@ class IndexController extends Controller
 
         return view('frontend.products.handicraft.subcategory_view',
           compact('agros', 'categories', 'handicraft', 'category'));
-
     }
 
     // PRODUCT VIEW WITH MODEL
@@ -240,7 +237,6 @@ class IndexController extends Controller
                 if ($gewog != null && $gewog!=''){
                     $sell->gewog_name = $gewog->gewog_name;
                 }
-
             }
         }
         return view('frontend.seller.seller_details', compact('seller'));
@@ -271,7 +267,6 @@ class IndexController extends Controller
                 }
             }
         }
-
         return view('frontend.products.agroproducts.subcategory_view',
             compact('agros', 'categories', 'breadsubcat'));
     }
@@ -282,15 +277,17 @@ class IndexController extends Controller
             'phone' => $request->phone,
             'created_at' => Carbon::now()
         ]);
-
-
         $notification = array(
             'message' => 'Thank you for your subscription',
             'alert-type' => 'success'
         );
-
         return Redirect::back()->with($notification);
     }
 
+    public function ViewSubscribers()
+    {
+        $subscriber = Subscriber::orderBy('id', 'DESC')->get();
+        return view('backend.subscriber.subscriber_view', compact('subscriber'));
+    }
 
 }

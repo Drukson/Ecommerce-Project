@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 12:22 PM
+-- Generation Time: Dec 08, 2021 at 06:49 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -94,7 +94,8 @@ INSERT INTO `agro_products` (`id`, `product_unit`, `category_id`, `subcategory_i
 (27, 'Grams', 1, NULL, 'Chimi Homestay', 'chimi-homestay', NULL, 4, 'homestay', 2000, NULL, 'asdasd', '<p>asdasd</p>', 'uploads/products/thumbnail/1717827735013247.jpg', NULL, NULL, NULL, NULL, 1, '2021-12-03', '2021-12-05', NULL, 12, '2021-11-29 22:56:31', 7, NULL),
 (28, 'Kg', 4, 1, 'Chilly', 'chilly', 'Chily1', 10, 'vegetables', 150, NULL, 'Fresh organic Chilly', '<p>Fresh organic Chilly</p>', 'uploads/products/thumbnail/1717832157366851.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 14, '2021-11-30 00:06:48', 9, NULL),
 (29, 'Grams', 4, 4, 'Grapes', 'grapes', 'Grap1', 10, 'Fruits', 150, NULL, 'Local Grapes', '<p><em>Grape</em>, genus of about 60 to 80 species of vining plants in the family Vitaceae, native to the north temperate zone. Some species are eaten as table fruit.</p>', 'uploads/products/thumbnail/1717832646976220.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 14, '2021-11-30 00:14:35', 9, NULL),
-(30, 'Grams', 1, NULL, 'Pema Homestay', 'pema-homestay', NULL, 4, 'homestay', 2500, NULL, 'Stay in the heart of Dagana.', '<p>1.9 km from Dagana, It is located in Dagana&nbsp;and provides free WiFi, a tour desk and a ticket service. The property is set 2 km from Dagana town. The guest house features family rooms.</p>', 'uploads/products/thumbnail/1717848570788923.jpg', NULL, NULL, NULL, NULL, 1, '2021-12-03', '2021-12-06', NULL, 13, '2021-11-30 04:27:42', 8, NULL);
+(30, 'Grams', 1, NULL, 'Pema Homestay', 'pema-homestay', NULL, 4, 'homestay', 2500, NULL, 'Stay in the heart of Dagana.', '<p>1.9 km from Dagana, It is located in Dagana&nbsp;and provides free WiFi, a tour desk and a ticket service. The property is set 2 km from Dagana town. The guest house features family rooms.</p>', 'uploads/products/thumbnail/1717848570788923.jpg', NULL, NULL, NULL, NULL, 1, '2021-12-03', '2021-12-06', NULL, 13, '2021-11-30 04:27:42', 8, NULL),
+(31, 'Kg', 4, 4, 'Papaya', 'papaya', 'Pa1', 10, 'fruits', 250, NULL, 'Papayas contain high levels of antioxidants vitamin A, vitamin C, and vitamin E.', '<p>Organic Fruits</p>', 'uploads/products/thumbnail/1717940494873130.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 16, '2021-12-01 04:48:49', 11, '2021-12-02 00:24:24');
 
 -- --------------------------------------------------------
 
@@ -289,7 +290,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2021_11_15_062621_create_orders_table', 20),
 (31, '2021_11_15_062656_create_order_items_table', 20),
 (32, '2021_11_17_095653_create_site_settings_table', 21),
-(33, '2021_11_25_070752_create_coupons_table', 22);
+(33, '2021_11_25_070752_create_coupons_table', 22),
+(34, '2021_12_02_064314_create_subscribers_table', 23);
 
 -- --------------------------------------------------------
 
@@ -361,7 +363,8 @@ INSERT INTO `multi_imgs` (`id`, `product_id`, `photo_name`, `created_at`, `updat
 (71, 29, 'uploads/products/multiimage/1717832647357899.jpg', '2021-11-30 00:14:35', NULL),
 (72, 29, 'uploads/products/multiimage/1717832647709511.jpg', '2021-11-30 00:14:36', NULL),
 (73, 30, 'uploads/products/multiimage/1717848571828526.jpg', '2021-11-30 04:27:42', NULL),
-(74, 30, 'uploads/products/multiimage/1717848572068144.jpg', '2021-11-30 04:27:42', NULL);
+(74, 30, 'uploads/products/multiimage/1717848572068144.jpg', '2021-11-30 04:27:42', NULL),
+(75, 31, 'uploads/products/multiimage/1717940497148123.jpg', '2021-12-01 04:48:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -506,7 +509,10 @@ CREATE TABLE `reviews` (
 
 INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `seller_id`, `comment`, `summary`, `rating`, `status`, `created_at`, `updated_at`) VALUES
 (6, 26, 7, 14, 'nice product', 'Hello', 3, '0', '2021-11-29 07:52:34', NULL),
-(7, 26, 3, 14, 'NIce', 'Hello', 3, '1', '2021-11-29 07:53:37', '2021-11-29 07:56:45');
+(7, 26, 3, 14, 'NIce', 'Hello', 3, '1', '2021-11-29 07:53:37', '2021-11-29 07:56:45'),
+(8, 24, 3, 12, 'Nice Products', 'Hello', 2, '0', '2021-11-30 23:18:45', NULL),
+(9, 31, 3, 16, 'Good Quality', 'Good', 4, '1', '2021-12-01 23:15:56', '2021-12-02 03:17:06'),
+(10, 26, 11, 14, 'Nice Product', 'Nice Product', 4, '1', '2021-12-02 03:16:53', '2021-12-02 03:18:27');
 
 -- --------------------------------------------------------
 
@@ -571,7 +577,8 @@ INSERT INTO `sellers` (`id`, `name`, `email`, `phone`, `dzongkhag_id`, `gewog_id
 (12, 'Mike', 'hello@gmail.com', 121212, 1, 1, 1, '5, 1, ', '$2y$10$cqcCPYT0ORNXD2me9ZdJjef5zoZN1Q83GLZVajxn.m3lpaSGd8Gsu', 2, NULL, 'sdasd', NULL, NULL, '2021-11-26 09:27:33', '2021-11-26 09:28:00'),
 (13, 'Kinley', 'kin@gmail.com', 564646, 1, 1, 1, '5, 1, ', '$2y$10$wfuxH0Fuih3WC/ku729bUu8guCQ4aZlURGWpNeXygM.JlHmqUNyWS', 2, NULL, NULL, NULL, NULL, '2021-11-27 06:46:00', '2021-11-27 06:46:28'),
 (14, 'Kitu', 'kitu@gmail.com', 324234234, 1, 1, 1, '4, ', '$2y$10$JlFlzFxHstWWXTXJdX83yOG8NJKuDKKKhSO/fqN./7TZgeU/R3Sv6', 2, NULL, NULL, NULL, NULL, '2021-11-27 06:47:06', '2021-11-27 06:48:12'),
-(15, 'Rock', 'rocki@gmail.com', 123123, 1, 1, 1, '4, ', '$2y$10$Y5zzvEyBV3V0sdbL8iwNhO9gShamwxO7a5J0PmMs/ok.eRjqF6Lxm', 2, NULL, '123', NULL, NULL, '2021-11-27 06:47:57', '2021-11-27 06:48:17');
+(15, 'Rock', 'rocki@gmail.com', 123123, 1, 1, 1, '4, ', '$2y$10$Y5zzvEyBV3V0sdbL8iwNhO9gShamwxO7a5J0PmMs/ok.eRjqF6Lxm', 2, NULL, '123', NULL, NULL, '2021-11-27 06:47:57', '2021-11-27 06:48:17'),
+(16, 'rock', 'rii@gmail.com', 1233423423, 1, 1, 3, '4, 1, ', '$2y$10$p./swk1JnogLFQFFFGl8WuHkbzbJjWT2QlzAhnNOQjJ5HkRYXXC.q', 2, NULL, NULL, NULL, 'Done', '2021-12-01 04:45:53', '2021-12-01 04:46:26');
 
 -- --------------------------------------------------------
 
@@ -593,7 +600,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('xKzaNGQHvKWIRAxMH3PsG9jlJsHHTT7hraZX2Quk', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV2FQQWVtRG5paXExOE1BQVE1SDlITGh5MWNPb3lneUNwckVoeHg0OCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcHJvZHVjdC9hZ3JvL2RldGFpbHMvMjQvYnVkZGhhLXN0YXR1ZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTI6InVzZXJfZGV0YWlscyI7YTo3OntzOjc6InVzZXJfaWQiO2k6ODtzOjk6InNlbGxlcl9pZCI7aToxMztzOjQ6Im5hbWUiO3M6NjoiS2lubGV5IjtzOjU6InBob25lIjtzOjY6IjU2NDY0NiI7czo1OiJlbWFpbCI7czoxMzoia2luQGdtYWlsLmNvbSI7czo3OiJyb2xlX2lkIjtpOjE7czo5OiJyb2xlX25hbWUiO3M6NjoiU2VsbGVyIjt9czo0OiJjYXJ0IjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XENvbGxlY3Rpb24iOjE6e3M6ODoiACoAaXRlbXMiO2E6MDp7fX19fQ==', 1638271039);
+('qtqyya9H2nTmD9lCHCP9bfwptC3XlL2kbxNB42Qd', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVmc5VXFJQ0J6NTFSeklYSXI3aDNjY0pURUJEYkJ1ZEY3d2tiUFdmbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjEyOiJ1c2VyX2RldGFpbHMiO2E6Nzp7czo3OiJ1c2VyX2lkIjtpOjE7czo5OiJzZWxsZXJfaWQiO047czo0OiJuYW1lIjtzOjc6IkRydWtzb24iO3M6NToicGhvbmUiO3M6ODoiNzczNjQ0MDkiO3M6NToiZW1haWwiO3M6MTU6ImFkbWluQGdtYWlsLmNvbSI7czo3OiJyb2xlX2lkIjtpOjM7czo5OiJyb2xlX25hbWUiO3M6NToiQWRtaW4iO319', 1638861368);
 
 -- --------------------------------------------------------
 
@@ -742,6 +749,27 @@ INSERT INTO `sponsors` (`id`, `name`, `slug`, `image`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subscribers`
+--
+
+CREATE TABLE `subscribers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subscribers`
+--
+
+INSERT INTO `subscribers` (`id`, `email`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 'drukzim@gmail.com', '77364409', '2021-12-06 00:40:39', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sub_categories`
 --
 
@@ -784,6 +812,7 @@ CREATE TABLE `users` (
   `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `current_team_id` bigint(20) UNSIGNED DEFAULT NULL,
   `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_id` int(3) NOT NULL,
@@ -797,16 +826,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `role_id`, `seller_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Drukson', 'admin@gmail.com', '77364409', NULL, '$2y$10$WMwTJw4bzd5Cf8fMw8jsIuxeIoQdCUXapAKm4MmBhJc.COviZTVCq', NULL, NULL, NULL, NULL, '202111151103pea4.jpg', 3, NULL, 1, '2021-10-19 09:21:45', '2021-11-25 02:35:24'),
-(2, 'Rocky', 'rocky@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, '2021-10-20 04:41:31', '2021-10-20 04:41:31'),
-(3, 'Kinley Yangden', 'zamin@gmail.com', '77446960', NULL, '$2y$10$WMwTJw4bzd5Cf8fMw8jsIuxeIoQdCUXapAKm4MmBhJc.COviZTVCq', NULL, NULL, 'TdLj93eSz95wS0uC7xtxENYaWBrFdATn9518iMohbRiGz8ReudZleOoZOslZ', NULL, '202110220626user-profile.png', 2, NULL, 1, '2021-10-21 09:53:28', '2021-11-25 02:37:08'),
-(5, 'Jigme Lhaden', 'jigme@gmail.com', '77446960', NULL, '$2y$10$eEI5aFHiTen225czdVQKvuvt9bBW7CRlp1m0zx6EZaNvnTppe73Ty', NULL, NULL, NULL, NULL, '202110220709jigme.png', 0, NULL, 1, '2021-10-22 01:08:09', '2021-10-22 02:25:04'),
-(6, 'Tashi', 'tashi@gmail.com', '12345678', NULL, '$2y$10$70wMa5wKpoP.1WuP/zt3WOkSkq0ag34xqpBMogeZm.Ju7PXiPxV06', NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, '2021-11-26 07:33:08', NULL),
-(7, 'Mike Tyson', 'hello@gmail.com', '121212', NULL, '$2y$10$cqcCPYT0ORNXD2me9ZdJjef5zoZN1Q83GLZVajxn.m3lpaSGd8Gsu', NULL, NULL, NULL, NULL, NULL, 1, 12, 1, '2021-11-26 09:28:00', '2021-11-29 23:24:29'),
-(8, 'Kinley', 'kin@gmail.com', '564646', NULL, '$2y$10$wfuxH0Fuih3WC/ku729bUu8guCQ4aZlURGWpNeXygM.JlHmqUNyWS', NULL, NULL, NULL, NULL, NULL, 1, 13, 1, '2021-11-27 06:46:28', NULL),
-(9, 'Kitu', 'kitu@gmail.com', '324234234', NULL, '$2y$10$JlFlzFxHstWWXTXJdX83yOG8NJKuDKKKhSO/fqN./7TZgeU/R3Sv6', NULL, NULL, NULL, NULL, NULL, 1, 14, 1, '2021-11-27 06:48:12', NULL),
-(10, 'Rock', 'rocki@gmail.com', '123123', NULL, '$2y$10$Y5zzvEyBV3V0sdbL8iwNhO9gShamwxO7a5J0PmMs/ok.eRjqF6Lxm', NULL, NULL, NULL, NULL, NULL, 1, 15, 1, '2021-11-27 06:48:17', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `token`, `current_team_id`, `profile_photo_path`, `role_id`, `seller_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Drukson', 'admin@gmail.com', '77364409', NULL, '$2y$10$WMwTJw4bzd5Cf8fMw8jsIuxeIoQdCUXapAKm4MmBhJc.COviZTVCq', NULL, NULL, NULL, NULL, NULL, '202111151103pea4.jpg', 3, NULL, 1, '2021-10-19 09:21:45', '2021-11-25 02:35:24'),
+(2, 'Rocky', 'rocky@gmail.com', NULL, NULL, '$2y$10$MVX.C87cVx8FKSIZlAbhqeQ0ZA6O3HzzXPZbtGRO70AcPxsaDA4Am', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, '2021-10-20 04:41:31', '2021-10-20 04:41:31'),
+(3, 'Kinley Yangden', 'zamin@gmail.com', '77446960', NULL, '$2y$10$WMwTJw4bzd5Cf8fMw8jsIuxeIoQdCUXapAKm4MmBhJc.COviZTVCq', NULL, NULL, 'TdLj93eSz95wS0uC7xtxENYaWBrFdATn9518iMohbRiGz8ReudZleOoZOslZ', NULL, NULL, '202110220626user-profile.png', 2, NULL, 1, '2021-10-21 09:53:28', '2021-11-25 02:37:08'),
+(5, 'Jigme Lhaden', 'jigme@gmail.com', '77446960', NULL, '$2y$10$eEI5aFHiTen225czdVQKvuvt9bBW7CRlp1m0zx6EZaNvnTppe73Ty', NULL, NULL, NULL, NULL, NULL, '202110220709jigme.png', 0, NULL, 1, '2021-10-22 01:08:09', '2021-10-22 02:25:04'),
+(6, 'Tashi', 'tashi@gmail.com', '12345678', NULL, '$2y$10$70wMa5wKpoP.1WuP/zt3WOkSkq0ag34xqpBMogeZm.Ju7PXiPxV06', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, '2021-11-26 07:33:08', NULL),
+(7, 'Mike Tyson', 'hello@gmail.com', '7744696012', NULL, '$2y$10$cqcCPYT0ORNXD2me9ZdJjef5zoZN1Q83GLZVajxn.m3lpaSGd8Gsu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 12, 1, '2021-11-26 09:28:00', '2021-12-01 01:43:58'),
+(8, 'Kinley', 'kin@gmail.com', '564646', NULL, '$2y$10$wfuxH0Fuih3WC/ku729bUu8guCQ4aZlURGWpNeXygM.JlHmqUNyWS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 13, 1, '2021-11-27 06:46:28', NULL),
+(9, 'Kitu', 'kitu@gmail.com', '324234234', NULL, '$2y$10$JlFlzFxHstWWXTXJdX83yOG8NJKuDKKKhSO/fqN./7TZgeU/R3Sv6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 14, 1, '2021-11-27 06:48:12', NULL),
+(10, 'Rock', 'rocki@gmail.com', '123123', NULL, '$2y$10$Y5zzvEyBV3V0sdbL8iwNhO9gShamwxO7a5J0PmMs/ok.eRjqF6Lxm', NULL, NULL, NULL, NULL, NULL, NULL, 1, 15, 1, '2021-11-27 06:48:17', NULL),
+(11, 'rock', 'rii@gmail.com', '1233423423', NULL, '$2y$10$p./swk1JnogLFQFFFGl8WuHkbzbJjWT2QlzAhnNOQjJ5HkRYXXC.q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 16, 1, '2021-12-01 04:46:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -1000,6 +1030,12 @@ ALTER TABLE `sponsors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subscribers`
+--
+ALTER TABLE `subscribers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
@@ -1038,7 +1074,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `agro_products`
 --
 ALTER TABLE `agro_products`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1074,13 +1110,13 @@ ALTER TABLE `gewogs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
 --
 ALTER TABLE `multi_imgs`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -1104,7 +1140,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `role_master`
@@ -1116,7 +1152,7 @@ ALTER TABLE `role_master`
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `ship_districts`
@@ -1149,16 +1185,22 @@ ALTER TABLE `sponsors`
   MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `subscribers`
+--
+ALTER TABLE `subscribers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `villages`

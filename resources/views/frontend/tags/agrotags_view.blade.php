@@ -82,7 +82,6 @@
                 <br>
             {{--ENDSLIDER--}}
 
-
                 <!-- ================== GRID VIEW =================== -->
                 <div class="search-result-container ">
                     <div id="myTabContent" class="tab-content category-list">
@@ -250,10 +249,8 @@
                             </div>
                             <!-- /.pagination-container --> </div>
                         <!-- /.text-right -->
-
                     </div>
                     <!-- /.filters-container -->
-
                 </div>
                 <!-- /.search-result-container -->
 
@@ -269,7 +266,6 @@
 
 </div>
 <!-- /.body-content -->
-
 
 
 @endsection

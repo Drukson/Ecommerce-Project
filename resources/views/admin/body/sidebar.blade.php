@@ -25,6 +25,21 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            {{--COUPON CODE--}}
+            <li class="treeview {{($route == 'viewSubscribers') ? 'active':''}}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>All Subscribers</span>
+                    <span class="pull-right-container">
+          <i class="fa fa-angle-right pull-right"></i>
+        </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{($route == 'viewSubscribers') ? 'active':''}}">
+                        <a href="{{route('viewSubscribers')}}"><i class="ti-more"></i>Subscribers</a></li>
+                </ul>
+            </li>
+            {{--COUPON CODE--}}
 
             {{--SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
             @if(strpos(strtolower(Session::get('user_details')['role_name']),'admin')!==false)
@@ -154,7 +169,6 @@
                 <ul class="treeview-menu">
                     <li class="{{($route == 'manage-coupon') ? 'active':''}}">
                         <a href="{{route('manage-coupon')}}"><i class="ti-more"></i>Add Coupon</a></li>
-
                 </ul>
             </li>
             {{--COUPON CODE--}}
