@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 06:49 AM
+-- Generation Time: Dec 11, 2021 at 05:52 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -95,7 +95,8 @@ INSERT INTO `agro_products` (`id`, `product_unit`, `category_id`, `subcategory_i
 (28, 'Kg', 4, 1, 'Chilly', 'chilly', 'Chily1', 10, 'vegetables', 150, NULL, 'Fresh organic Chilly', '<p>Fresh organic Chilly</p>', 'uploads/products/thumbnail/1717832157366851.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 14, '2021-11-30 00:06:48', 9, NULL),
 (29, 'Grams', 4, 4, 'Grapes', 'grapes', 'Grap1', 10, 'Fruits', 150, NULL, 'Local Grapes', '<p><em>Grape</em>, genus of about 60 to 80 species of vining plants in the family Vitaceae, native to the north temperate zone. Some species are eaten as table fruit.</p>', 'uploads/products/thumbnail/1717832646976220.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 14, '2021-11-30 00:14:35', 9, NULL),
 (30, 'Grams', 1, NULL, 'Pema Homestay', 'pema-homestay', NULL, 4, 'homestay', 2500, NULL, 'Stay in the heart of Dagana.', '<p>1.9 km from Dagana, It is located in Dagana&nbsp;and provides free WiFi, a tour desk and a ticket service. The property is set 2 km from Dagana town. The guest house features family rooms.</p>', 'uploads/products/thumbnail/1717848570788923.jpg', NULL, NULL, NULL, NULL, 1, '2021-12-03', '2021-12-06', NULL, 13, '2021-11-30 04:27:42', 8, NULL),
-(31, 'Kg', 4, 4, 'Papaya', 'papaya', 'Pa1', 10, 'fruits', 250, NULL, 'Papayas contain high levels of antioxidants vitamin A, vitamin C, and vitamin E.', '<p>Organic Fruits</p>', 'uploads/products/thumbnail/1717940494873130.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 16, '2021-12-01 04:48:49', 11, '2021-12-02 00:24:24');
+(31, 'Kg', 4, 4, 'Papaya', 'papaya', 'Pa1', 10, 'fruits', 250, NULL, 'Papayas contain high levels of antioxidants vitamin A, vitamin C, and vitamin E.', '<p>Organic Fruits</p>', 'uploads/products/thumbnail/1717940494873130.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 16, '2021-12-01 04:48:49', 11, '2021-12-02 00:24:24'),
+(32, 'Kg', 4, 4, 'Apple', 'apple', 'App1', 100, 'Fruits', 200, NULL, 'Fresh Apple from Paro.', '<p>Fresh Apple from Paro.</p>', 'uploads/products/thumbnail/1718645017126112.jpg', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 16, '2021-12-08 23:26:51', 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -364,7 +365,10 @@ INSERT INTO `multi_imgs` (`id`, `product_id`, `photo_name`, `created_at`, `updat
 (72, 29, 'uploads/products/multiimage/1717832647709511.jpg', '2021-11-30 00:14:36', NULL),
 (73, 30, 'uploads/products/multiimage/1717848571828526.jpg', '2021-11-30 04:27:42', NULL),
 (74, 30, 'uploads/products/multiimage/1717848572068144.jpg', '2021-11-30 04:27:42', NULL),
-(75, 31, 'uploads/products/multiimage/1717940497148123.jpg', '2021-12-01 04:48:49', NULL);
+(75, 31, 'uploads/products/multiimage/1717940497148123.jpg', '2021-12-01 04:48:49', NULL),
+(76, 32, 'uploads/products/multiimage/1718645017313932.jpg', '2021-12-08 23:26:52', NULL),
+(77, 32, 'uploads/products/multiimage/1718645017594875.jpg', '2021-12-08 23:26:52', NULL),
+(78, 32, 'uploads/products/multiimage/1718645017758468.jpg', '2021-12-08 23:26:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -600,7 +604,17 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('qtqyya9H2nTmD9lCHCP9bfwptC3XlL2kbxNB42Qd', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVmc5VXFJQ0J6NTFSeklYSXI3aDNjY0pURUJEYkJ1ZEY3d2tiUFdmbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjEyOiJ1c2VyX2RldGFpbHMiO2E6Nzp7czo3OiJ1c2VyX2lkIjtpOjE7czo5OiJzZWxsZXJfaWQiO047czo0OiJuYW1lIjtzOjc6IkRydWtzb24iO3M6NToicGhvbmUiO3M6ODoiNzczNjQ0MDkiO3M6NToiZW1haWwiO3M6MTU6ImFkbWluQGdtYWlsLmNvbSI7czo3OiJyb2xlX2lkIjtpOjM7czo5OiJyb2xlX25hbWUiO3M6NToiQWRtaW4iO319', 1638861368);
+('A1fU4xETkWzwg7IcQN05sOC2M9Kbpn7kTN2hNMdS', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibWh4VmhRd2VJNUtmMVJaRUMxSUpwaGxhYmV4RWlLVHh4a0hmRXhIRCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzE2Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1639043346),
+('EU1IIqqWuMi7Zw7PQJe1FZ6SMXJVoxrYOWHsXvYl', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibng1cnFtaHJXSGpBVDRVTE9Eb2ZhQzduMGJPc285aE1lU01oY3R0RiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcHJvZHVjdC9hZ3JvL2RldGFpbHMvMzIvYXBwbGUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjEyOiJ1c2VyX2RldGFpbHMiO2E6Nzp7czo3OiJ1c2VyX2lkIjtpOjE7czo5OiJzZWxsZXJfaWQiO047czo0OiJuYW1lIjtzOjc6IkRydWtzb24iO3M6NToicGhvbmUiO3M6ODoiNzczNjQ0MDkiO3M6NToiZW1haWwiO3M6MTU6ImFkbWluQGdtYWlsLmNvbSI7czo3OiJyb2xlX2lkIjtpOjM7czo5OiJyb2xlX25hbWUiO3M6NToiQWRtaW4iO31zOjQ6ImNhcnQiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcQ29sbGVjdGlvbiI6MTp7czo4OiIAKgBpdGVtcyI7YTowOnt9fX19', 1639131028),
+('GcsDiZqutVAcBDnGB4gff4SJTMb4uBYoncs8vd6g', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOUhFNndlcWtYSUQ3T3RQY2JCWHN0N3ZlaU9ETzdrZG5RUzhmdWczTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639043346),
+('Gnj10cipauWWvTO8LP9fVDVNmfBlJNMMLXw7G58t', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRnY4NkloSzllcDdXYWxGRVVlM2RMNUtSZ3hCdkhabHZGdGxQalpkNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639043346),
+('JfhHAdCIvhxcSV9AkbYsKK1gmrHLmJb1qs5YF3R4', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQUFNSVNLQ2d0aWhkRjlmZWFoQWJhcTEwS3Uxamp0TWpiTTZWT0pQZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639043346),
+('kTPQvizw3j2fM22aXen65SE7JCicxw4OupThjTrT', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSEJSTDZ6UHBsZHgxN2p6Zmh4SnNOVEROT3JKSWxWVld4cjQ1ajB5SSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639043346),
+('N9bt05Fie741ukbA3LuVBX3kVn9V0I2Vub0i5kwJ', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQU4ySnRUbFBRekcwMzNwTkpXNE96dFZmR09xRHoyazM2cHdXeW44NiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTY6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvcHJvZHVjdC9hZ3JvL3RhZy9oYW5kaWNyYWZ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMjoidXNlcl9kZXRhaWxzIjthOjc6e3M6NzoidXNlcl9pZCI7aToxO3M6OToic2VsbGVyX2lkIjtOO3M6NDoibmFtZSI7czo3OiJEcnVrc29uIjtzOjU6InBob25lIjtzOjg6Ijc3MzY0NDA5IjtzOjU6ImVtYWlsIjtzOjE1OiJhZG1pbkBnbWFpbC5jb20iO3M6Nzoicm9sZV9pZCI7aTozO3M6OToicm9sZV9uYW1lIjtzOjU6IkFkbWluIjt9fQ==', 1639029010),
+('p4jYbpYyNahmB2hgoea9V50IVIfBzAqq776MyBtu', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQllNa1AyZW92dXNNNWdOSGp1bUNpeWhBTno0bkNPUno5WVlnQzFsbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639062925),
+('RovFUa6YMwBi3r9GEoOjSK1k5QvGrv3EUSopo1R3', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicTJEQ25ycXpWa1EycjNldmNaU0Vhd3BUYUhtYUgxRTBuZW54SXpSYyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvc2VsbGVyL3NlbGxlci1kZXRhaWxzLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639043346),
+('uv4EGjIaVEXKQeTkkQ7S3ChkbgZVsoHsvdQhX79I', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWVl1UGtETEJqcjRpM2xsQUx6NHBicjZPMzRZS0EyV1laWE9XbTNKbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMvYWxsL3NlbGxlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639044520),
+('YDhiyxlO06JmdI5lKDWAUaZJR0MeTvZWNS1voUV3', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoic0Z2MlRHTU1yeHhhRVpOVDBTaVdZbXc1cWcxZ2xwMHFGNkJOYzVrRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3QvZWNvbS9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1639130875);
 
 -- --------------------------------------------------------
 
@@ -695,7 +709,7 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`id`, `logo`, `phone_one`, `phone_two`, `email`, `company_name`, `company_address`, `facebook`, `twitter`, `linkedin`, `youtube`, `created_at`, `updated_at`) VALUES
-(1, 'uploads/logo/1716670278016673.png', '+975 – 02-338089', '+975 – 02-338089', 'shine@grat.at', 'Shine', 'SHINE Project Office Above Memorial Chorten Chorten Lam, Thimphu, Bhutan', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://twitter.com/SHINEProject3', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://www.youtube.com/channel/UCCNTFsPeh0FYCPiTi4AHr5Q/featured', NULL, '2021-11-17 04:26:43');
+(1, 'uploads/logo/1718559590379831.png', '+975 – 02-338089', '+975 – 02-338089', 'shine@grat.at', 'Shine', 'SHINE Project Office Above Memorial Chorten Chorten Lam, Thimphu, Bhutan', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://twitter.com/SHINEProject3', 'https://www.facebook.com/profile.php?id=100068372110012', 'https://www.youtube.com/channel/UCCNTFsPeh0FYCPiTi4AHr5Q/featured', NULL, '2021-12-08 00:49:02');
 
 -- --------------------------------------------------------
 
@@ -718,9 +732,9 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `slider_image`, `title`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(3, 'uploads/slider/1714947006591145.jpg', 'BIG SAES', 'Save up to 49% off', 1, '2021-10-29 00:19:34', '2021-10-29 03:54:13'),
-(4, 'uploads/slider/1714947400297764.jpg', 'Hello Bhutan', 'New Collection', 1, '2021-10-29 03:49:03', '2021-10-29 03:54:50'),
-(5, 'uploads/slider/1714947815604644.jpg', 'Fresh Organic', 'Contains Folic acid, Vitamin C and Amino acid .Vitamin C acts as a powerful antioxidant and also helps formation of collagen that is responsible for skin and hair health.', 1, '2021-10-29 04:01:25', NULL);
+(3, 'uploads/slider/1718642903407529.jpg', NULL, NULL, 0, '2021-10-29 00:19:34', '2021-12-08 22:54:59'),
+(5, 'uploads/slider/1718642791924558.jpg', NULL, NULL, 0, '2021-10-29 04:01:25', '2021-12-08 22:54:58'),
+(6, 'uploads/slider/1718642996382730.jpg', 'http://localhost/ecom/public/product/agro/details/32/apple', NULL, 1, '2021-12-08 22:54:44', '2021-12-08 23:28:08');
 
 -- --------------------------------------------------------
 
@@ -1074,7 +1088,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `agro_products`
 --
 ALTER TABLE `agro_products`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1116,7 +1130,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `multi_imgs`
 --
 ALTER TABLE `multi_imgs`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -1176,7 +1190,7 @@ ALTER TABLE `site_settings`
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sponsors`

@@ -19,7 +19,7 @@
                                     <tr>
                                         <th>Sl</th>
                                         <th>Image</th>
-                                        <th>Title</th>
+                                        <th>Link</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -78,19 +78,19 @@
                                 <form action="{{route('add.slider')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <h5>Title <span class="text-danger">*</span></h5>
+                                        <h5>Link <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" id="title" name="title"
                                                    class="form-control" data-validation-required-message="This field is required">
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    {{--<div class="form-group">
                                         <h5>Description <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input id="description" name="description" type="text"
                                                    class="form-control" data-validation-required-message="This field is required">
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <div class="form-group">
                                         <h5>Image <span class="text-danger">*</span></h5>
                                         <div class="controls">

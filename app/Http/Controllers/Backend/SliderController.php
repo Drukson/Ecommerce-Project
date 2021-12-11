@@ -25,7 +25,7 @@ class SliderController extends Controller
 
         $sliderImg = $request->file('slider_image');
         $imgName = hexdec(uniqid()). '.'. $sliderImg->getClientOriginalExtension();
-        Image::make($sliderImg)->resize(1000,500)->save('uploads/slider/' . $imgName);
+        Image::make($sliderImg)->resize(848,370)->save('uploads/slider/' . $imgName);
         $filePath = 'uploads/slider/' . $imgName;
 
         Slider::insert([
@@ -52,7 +52,7 @@ class SliderController extends Controller
         $img = $request->file('slider_image');
         if ($img){
             $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(1000,500)->save('uploads/slider/'. $imgName);
+            Image::make($img)->resize(848,370)->save('uploads/slider/'. $imgName);
             $imagePath = 'uploads/slider/'.$imgName;
             unlink($oldImage->slider_image);
 

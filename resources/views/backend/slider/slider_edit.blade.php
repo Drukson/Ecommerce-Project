@@ -10,7 +10,7 @@
                 <div class="col-4">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Slider</h3>
+                            <h3 class="box-title">Update Slider</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -19,19 +19,19 @@
                                     @csrf
                                     <input type="hidden" name="oldImage" value="{{$slider->slider_image}}">
                                     <div class="form-group">
-                                        <h5>Title <span class="text-danger">*</span></h5>
+                                        <h5>Link <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" id="title" name="title" value="{{$slider->title}}"
                                                    class="form-control" data-validation-required-message="This field is required">
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    {{--<div class="form-group">
                                         <h5>Description <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input id="description" name="description" type="text" value="{{$slider->description}}"
                                                    class="form-control" data-validation-required-message="This field is required">
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <div class="form-group">
                                         <h5>Image <span class="text-danger">*</span></h5>
                                         <div class="controls">
