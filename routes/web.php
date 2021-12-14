@@ -289,6 +289,7 @@ Route::prefix('reports')->group(function(){
 // Admin Get All User Routes
 Route::prefix('alluser')->group(function(){
   Route::get('/view', [\App\Http\Controllers\Backend\AdminProfileController::class, 'AllUsers'])->name('all.users');
+  Route::get('/delete/{id}', [\App\Http\Controllers\Backend\AdminProfileController::class, 'DeleteUsers'])->name('delete.users');
 });
 
 // Admin Site Setting Routes

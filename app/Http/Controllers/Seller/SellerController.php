@@ -36,8 +36,7 @@ class SellerController extends Controller
     /*DISPLAY ALL SELLER IN THE ADMIN*/
     public function SellerDetails()
     {
-
-        $seller = Seller::where('status',2)->get();
+        $seller = Seller::where('status',1)->get();
         $dzongkhag = Dzongkhag::orderBy('dzongkhag_name', 'ASC')->get();
         $gewog = Gewog::orderBy('gewog_name', 'ASC')->get();
         $village = Village::orderBy('village_name', 'ASC')->get();

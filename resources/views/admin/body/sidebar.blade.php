@@ -50,7 +50,7 @@
                         <i data-feather="file"></i>
                         <span>All Subscribers</span>
                         <span class="pull-right-container">
-                <i class="fa fa-angle-right pull-right"></i>
+            <i class="fa fa-angle-right pull-right"></i>
                 </span>
                     </a>
                     <ul class="treeview-menu">
@@ -78,7 +78,7 @@
             <li class="treeview {{($route == 'all_sellers') ? 'active':''}}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
-                    <span>Sellers</span>
+                    <span>New Sellers</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -348,7 +348,7 @@
                 </li>
                 {{-- //END RETURN PRODUCTS--}}
 
-                {{-- //REVIEWS--}}
+                {{-- //REVIEWS--}}{{--
                 <li class="treeview {{($route == 'pending.review') ? 'active':''}}">
                     <a href="#">
                         <i data-feather="mail"></i> <span>Manage Review</span>
@@ -364,7 +364,7 @@
                             <a href="{{ route('publish.review') }}"><i class="ti-more"></i>Publish Review</a></li>
                     </ul>
                 </li>
-                {{-- //REVIEWS--}}
+                --}}{{-- //REVIEWS--}}
             @endif
 
 

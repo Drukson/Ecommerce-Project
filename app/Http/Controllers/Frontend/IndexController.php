@@ -134,7 +134,7 @@ class IndexController extends Controller
             if ($seller !== null && $seller!=''){
                 $product->seller_details = $seller;
             }
-            $related_products = AgroProduct::where('created_by', $product->created_by)->get();
+            $related_products = AgroProduct::where('status', 1)->where('created_by', $product->created_by)->get();
             if ($related_products!== null && $related_products!=''){
                 $product->related_productlist = $related_products;
             }

@@ -189,7 +189,7 @@
                                 <div class="product-slider">
                                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
                                     @php
-                                    $catdata = \App\Models\AgroProduct::where('category_id', $cat->id)->orderBy('id','DESC')->get();
+                                    $catdata = \App\Models\AgroProduct::where('status', 1)->where('category_id', $cat->id)->orderBy('id','DESC')->get();
                                     @endphp
 
                                         @forelse($catdata as $agro)
@@ -362,7 +362,7 @@
                                                 </div>
                                                 <!-- /.product-image -->
                                                 <div class="product-info text-left">
-                                                    <h3 class="name"><a href="{{url('/product/agro/details/'. $product->id.'/'. $agro->slug)}}">{{$product->product_name}}</a></h3>
+                                                    <h3 class="name"><a href="{{url('/product/agro/details/'. $product->id.'/'. $product->product_slug)}}">{{$product->product_name}}</a></h3>
                                                     {{--<div class="rating rateit-small"></div>
                                                     <div class="description"></div>--}}
                                                     <div class="product-price"> <span class="price"> Nu. {{ $product->selling_price }}</span> </div>

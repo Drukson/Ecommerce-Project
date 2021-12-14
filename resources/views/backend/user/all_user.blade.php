@@ -42,8 +42,8 @@
                                             <td> <span class="badge badge-pill badge-success">Active Now</span></td>
 
                                             <td>
-                                                <a href=" " class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i> </a>
-                                                <a href=" " class="btn btn-danger" title="Delete Data" id="delete">
+
+                                                <a href="{{route('delete.users', $user->id)}} " class="btn btn-danger" title="Delete Data" id="delete">
                                                     <i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>

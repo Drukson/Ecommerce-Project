@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Dzongkhag;
 use App\Models\Gewog;
+use App\Models\MultiImg;
 use App\Models\Seller;
 use App\Models\User;
 use App\Models\Role;
@@ -117,5 +118,18 @@ class AdminProfileController extends Controller
         }
         return view('backend.user.all_user',compact('users'));
     }
+
+    public function DeleteUsers($id){
+        $deleteUser = User::find($id);
+        $deleteUser->delete();
+
+        $notification = array(
+            'message' => 'User Deleted',
+            'alert-type' => 'success'
+        );
+        return Redirect::back()->with($notification);
+    }
+
+
 
 }
