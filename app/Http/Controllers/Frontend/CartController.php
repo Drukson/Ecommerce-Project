@@ -123,7 +123,6 @@ class CartController extends Controller
             return redirect()->to('/login')->with($notification);
         }
 
-
     }
 
     // DISPLAYING AUTOLOAD DISTRICT DETAILS
