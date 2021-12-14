@@ -97,7 +97,7 @@ class CartController extends Controller
     public function CheckoutCreate()
     {
 
-        if (Session::get('user_details')['user_id']!==null && Session::get('user_details')['user_id']!== '') {
+        if (Session::get('user_details')!=null && Session::get('user_details')['user_id']!==null && Session::get('user_details')['user_id']!== '') {
             if (Cart::total() > 0) {
                 $carts = Cart::content();
                 $cartQty = Cart::count();
