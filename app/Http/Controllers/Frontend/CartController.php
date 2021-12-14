@@ -96,7 +96,8 @@ class CartController extends Controller
     //CHECKOUT PAGE
     public function CheckoutCreate()
     {
-        if (Session::get('user_details')['user_id']!=null && Session::get('user_details')['user_id']!= '') {
+
+        if (Session::get('user_details')['user_id']!==null && Session::get('user_details')['user_id']!== '') {
             if (Cart::total() > 0) {
                 $carts = Cart::content();
                 $cartQty = Cart::count();
@@ -119,8 +120,9 @@ class CartController extends Controller
                 'message' => 'You Need to Login First',
                 'alert-type' => 'error'
             );
-            return redirect()->route('login')->with($notification);
+            return redirect()->to('/login')->with($notification);
         }
+
 
     }
 

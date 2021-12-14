@@ -37,7 +37,7 @@ class IndexController extends Controller
         $category_list = Category::get();
         if($category_list!=null && $category_list!="" && sizeof($category_list)>0){
             foreach ($category_list as $cat){
-                $cat->product_details = AgroProduct::where('category_id', $cat->id)->orderBy('id', 'DESC')->limit(6)->get();
+                $cat->product_details = AgroProduct::where('status', 1)->where('category_id', $cat->id)->orderBy('id', 'DESC')->limit(6)->get();
             }
         }
         $handicraft = AgroProduct::where('category_id', 5)->orderBy('id', 'DESC')->limit(6)->get();
@@ -248,7 +248,7 @@ class IndexController extends Controller
         $breadsubcat = SubCategory::with(['category'])->where('category_id',$cat_id)->get();
         $agros=[];
         if($cat_id==1){
-            $product = AgroProduct::where('category_id', $cat_id)->get();
+            $product = AgroProduct::where('status', 1)->where('category_id', $cat_id)->get();
             if($product!=null && $product!=""){
                 foreach ($product as $pro){
                     array_push($agros, $pro);
@@ -258,7 +258,7 @@ class IndexController extends Controller
             $subcat = SubCategory::where('category_id', $cat_id)->get();
             if ($subcat !== null && $subcat !=''){
                 foreach ($subcat as $cat){
-                    $product = AgroProduct::where('subcategory_id', $cat->id)->get();
+                    $product = AgroProduct::where('status', 1)->where('subcategory_id', $cat->id)->get();
                     if($product!=null && $product!=""){
                         foreach ($product as $pro){
                             array_push($agros, $pro);

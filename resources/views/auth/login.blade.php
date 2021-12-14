@@ -26,7 +26,7 @@
                     @if(isset($message) && $message!=null && $message!="")
                     <span class="text-danger">{{$message}}</span>
                     @endif
-                    
+
                    {{-- <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">--}}
                     <form method="POST" action="{{url('/user_login')}}">
                         @csrf
@@ -38,7 +38,7 @@
                             <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
                             <input type="password" name="password" required autocomplete="current-password"  class="form-control unicase-form-control text-input" >
                         </div>
-                        
+
                         <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
                         <div class="radio outer-xs">
                             <label>
@@ -121,7 +121,7 @@
                 <!-- create a new account -->			</div><!-- /.row -->
         </div><!-- /.sigin-in-->
         <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-        @include('frontend.body.brands')
+        <br><br>
         <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
 </div><!-- /.body-content -->
 <script>

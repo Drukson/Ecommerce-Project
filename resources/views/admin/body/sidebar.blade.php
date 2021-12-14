@@ -25,21 +25,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            {{--COUPON CODE--}}
-            <li class="treeview {{($route == 'viewSubscribers') ? 'active':''}}">
-                <a href="#">
-                    <i data-feather="file"></i>
-                    <span>All Subscribers</span>
-                    <span class="pull-right-container">
-          <i class="fa fa-angle-right pull-right"></i>
-        </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{($route == 'viewSubscribers') ? 'active':''}}">
-                        <a href="{{route('viewSubscribers')}}"><i class="ti-more"></i>Subscribers</a></li>
-                </ul>
-            </li>
-            {{--COUPON CODE--}}
+
 
             {{--SITE SETTINGS LIKE LOGO UPDATES, FOOTER ETC--}}
             @if(strpos(strtolower(Session::get('user_details')['role_name']),'admin')!==false)
@@ -57,6 +43,22 @@
                             <a href="{{route('all_settings')}}"><i class="ti-more"></i>All Settings</a></li>
                     </ul>
                 </li>
+
+                {{----}}
+                <li class="treeview {{($route == 'viewSubscribers') ? 'active':''}}">
+                    <a href="#">
+                        <i data-feather="file"></i>
+                        <span>All Subscribers</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{($route == 'viewSubscribers') ? 'active':''}}">
+                            <a href="{{route('viewSubscribers')}}"><i class="ti-more"></i>Subscribers</a></li>
+                    </ul>
+                </li>
+                {{--END SUBSCRIBERS--}}
 
                 <li class="treeview {{($route == 'all.slider') ? 'active':''}}">
                     <a href="#">
