@@ -31,9 +31,9 @@ class IndexController extends Controller
     public function index(){
 
         $slider = Slider::where('status', 1)->orderBy('id', 'DESC')->get();
-        $agroProduct = AgroProduct::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        $agroProduct = AgroProduct::where('status', 1)->orderBy('id', 'ASC')->limit(5)->get();
         $featured = AgroProduct::where('featured_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
-        $category = Category::orderBy('name','DESC')->get();
+        $category = Category::orderBy('name','ASC')->get();
         $category_list = Category::get();
         if($category_list!=null && $category_list!="" && sizeof($category_list)>0){
             foreach ($category_list as $cat){
@@ -222,7 +222,7 @@ class IndexController extends Controller
         return view('frontend.products.agroproducts.search_product',compact('products'));
     }
 
-    public function SellerDetails($gewog_id = '')
+    public function SellerDetails($gewog_id = '', $count='')
     {
 
         $seller = Seller::where('gewog_id',$gewog_id)->where('status', 2)->get();
@@ -239,7 +239,7 @@ class IndexController extends Controller
                 }
             }
         }
-        return view('frontend.seller.seller_details', compact('seller'));
+        return view('frontend.seller.seller_details', compact('seller', 'count'));
     }
 
     public  function loadproducts($cat_id = '')

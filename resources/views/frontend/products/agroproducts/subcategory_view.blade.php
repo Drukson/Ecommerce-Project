@@ -157,7 +157,7 @@
                                                     </div>
                                                     <!-- /.product-info -->
                                                     <div class="cart clearfix animate-effect">
-                                                        @if($agro->category_id == 5)
+                                                        @if($agro->category_id == 2)
                                                         <div class="action">
                                                             <ul class="list-unstyled">
                                                                 <li class="add-cart-button btn-group">
@@ -273,8 +273,8 @@
                     <div class="clearfix filters-container">
                         <div class="text-right">
                             <div class="pagination-container">
-{{--                                <button type="button" class="btn btn-danger mb-5">--}}
-{{--                                   {{$agros->links()}}</button>--}}
+                                <button type="button" class="btn btn-round mb-5">
+                                   {{$agros->links()}}</button>
 
                                 <!-- /.list-inline -->
                             </div>

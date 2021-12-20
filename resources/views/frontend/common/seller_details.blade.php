@@ -6,7 +6,7 @@
 
     <div class="sidebar-widget-body">
         <div class="accordion">
-            @foreach($categories as $cat)
+            @foreach($categories as $counter=>$cat)
                 <div class="accordion-group">
                     <div class="accordion-heading"> <a href="#dzongkhag{{$cat->id}}"
                               data-toggle="collapse" class="accordion-toggle collapsed"> {{$cat->dzongkhag_name}} </a> </div>
@@ -17,9 +17,9 @@
                     @endphp
                     <div class="accordion-body collapse" id="dzongkhag{{$cat->id}}" style="height: 0px;">
                         <div class="accordion-inner">
-                            @foreach($subcategory as $subcat)
+                            @foreach($subcategory as $index=> $subcat)
                                 <ul>
-                                    <li><a href="{{url('/seller/seller-details/'. $subcat->id )}}">
+                                    <li id="sidebar{{$counter}}_{{$index}}"><a href="{{url('/seller/seller-details/'. $subcat->id. '/'.$counter.'_'.$index )}}">
                                             {{$subcat->gewog_name}}
                                         </a></li>
                                 </ul>
@@ -36,3 +36,12 @@
     </div>
     <!-- /.sidebar-widget-body -->
 </div>
+@if(isset($count))
+    <script type="text/javascript">
+        alert('#sidebar'+{{$count}});
+        $('#sidebar'+{{$count}}).addClass('bg-info')
+    </script>
+    @endif
+
+
+

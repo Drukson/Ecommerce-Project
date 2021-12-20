@@ -208,7 +208,7 @@
                                         </div><!-- /.row -->
                                     </div><!-- /.price-container -->
 
-                                    @if($product->category_id == 5)
+                                    @if($product->category_id == 2)
                                     <div class="quantity-container info-container">
                                         <div class="row">
                                             <div class="col-sm-2">
@@ -473,7 +473,7 @@
                                                 <a href="{{url('/product/agro/details/'. $product->id.'/'. $product->product_slug)}}"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a>
                                             </div><!-- /.image -->
 
-                                            <div class="tag sale"><span>sale</span></div>
+                                            {{--<div class="tag sale"><span>sale</span></div>--}}
                                         </div><!-- /.product-image -->
 
                                         <div class="product-info text-left">
@@ -491,8 +491,8 @@
                                         </div><!-- /.product-info -->
                                         <div class="cart clearfix animate-effect">
 
-                                            @if($product->category_id == 5)
-                                                <div class="action">
+                                            @if($product->category_id == 2)
+                                                {{--<div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
@@ -513,7 +513,7 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div><!-- /.action -->
+                                            </div><!-- /.action -->--}}
                                             @endif
                                         </div><!-- /.cart -->
                                     </div><!-- /.product -->

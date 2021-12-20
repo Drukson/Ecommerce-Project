@@ -348,7 +348,7 @@ Route::get('/coupon-calculation', [\App\Http\Controllers\Frontend\CartController
 Route::get('/coupon-remove', [\App\Http\Controllers\Frontend\CartController::class, 'CouponRemove']);
 
 //Display Seller Details
-Route::get('/seller/seller-details/{gewog_id}', [\App\Http\Controllers\Frontend\IndexController::class, 'SellerDetails']);
+Route::get('/seller/seller-details/{gewog_id}/{count}', [\App\Http\Controllers\Frontend\IndexController::class, 'SellerDetails']);
 
 //Display Category Page
 Route::get('/loadproducts/{cat_id}', [\App\Http\Controllers\Frontend\IndexController::class, 'loadproducts'])->name('loadproducts');

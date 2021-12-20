@@ -38,23 +38,23 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-   {{-- PAYMENT STRIPE script--}}
+    {{-- PAYMENT STRIPE script--}}
     <script src="https://js.stripe.com/v3/"></script>
     {{--END PAYMENT STRIPE script--}}
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->
 
-    @include('frontend.body.header')
+@include('frontend.body.header')
 
 <!-- ============================================== HEADER : END ============================================== -->
 <!-- BODY CONTENT  -->
-    @yield('content')
+@yield('content')
 
 <!-- /#top-banner-and-menu -->
 
 <!-- ============================================================= FOOTER ============================================================= -->
-    @include('frontend.body.footer')
+@include('frontend.body.footer')
 <!-- ============================================================= FOOTER : END============================================================= -->
 
 <!-- For demo purposes – can be removed on production -->
@@ -125,13 +125,13 @@
                     <div class="col-md-4">
                         <ul class="list-group">
                             <li class="list-group-item">Product Price: <strong class="text-danger"
-                               Nu.<span id="pprice"> </span>  </strong>
+                                                                               Nu.<span id="pprice"> </span>  </strong>
                                 <del id="oldprice"></del>
                             </li>
                             <li class="list-group-item">Product Code: <strong id="ppcode"></strong></li>
                             <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
                             <li class="list-group-item">Stock
-                            <span class="badge badge-pill badge-success" id="available" style="background: green;
+                                <span class="badge badge-pill badge-success" id="available" style="background: green;
                             color: whitesmoke;"></span>
                                 <span class="badge badge-pill badge-danger" id="stockout" style="background: red;
                             color: whitesmoke;"></span>
@@ -144,7 +144,7 @@
                             <input type="number" class="form-control" value="1" min="1" id="qty" placeholder="Example input placeholder">
                         </div>
 
-                         {{--PASSING HIDDEN FIELD VALUE PRODUCT_ID --}}
+                        {{--PASSING HIDDEN FIELD VALUE PRODUCT_ID --}}
                         <input type="hidden" id="product_id">
                         <input class="btn btn-primary" type="submit" value="Add to Cart" onclick="addToCart()">
                     </div>
@@ -235,7 +235,7 @@
                 // STOCK DETAILS
                 if (data.product.product_qty > 0)
                 {   $('#available').text('');
-                   $('#stockout').text('');
+                    $('#stockout').text('');
                     $('#available').text('Available');
                 } else {
                     $('#available').text('');
@@ -290,20 +290,20 @@
 </script>
 
 <!-- MINI CART FUNCTION -->
-    <script type="text/javascript">
-        function miniCart(){
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost/ecom/public/product/mini/cart',
-                dataType:'json',
-                success:function(response){
-                  //  console.log(response)
+<script type="text/javascript">
+    function miniCart(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost/ecom/public/product/mini/cart',
+            dataType:'json',
+            success:function(response){
+                //  console.log(response)
 
-                    $('span[id="cartSubTotal"]').text(response.cartTotal);
-                    $('#cartQty').text(response.cartQty);
-                    var miniCart = ""
-                    $.each(response.carts, function(key,value){
-                        miniCart += `<div class="cart-item product-summary">
+                $('span[id="cartSubTotal"]').text(response.cartTotal);
+                $('#cartQty').text(response.cartQty);
+                var miniCart = ""
+                $.each(response.carts, function(key,value){
+                    miniCart += `<div class="cart-item product-summary">
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div class="image"> <a href="detail.html"><img src="http://localhost/ecom/public/${value.options.image}" alt=""></a> </div>
@@ -321,47 +321,47 @@
                             <!-- /.cart-item -->
                             <div class="clearfix"></div>
                             <hr>`
-                    });
+                });
 
-                    $('#miniCart').html(miniCart);
-                }
-            })
-        }
-        miniCart();
+                $('#miniCart').html(miniCart);
+            }
+        })
+    }
+    miniCart();
 
-        /// mini cart remove Start
-        function miniCartRemove(rowId){
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost/ecom/public/minicart/product-remove/'+rowId,
-                dataType:'json',
-                success:function(data){
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 3000
+    /// mini cart remove Start
+    function miniCartRemove(rowId){
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost/ecom/public/minicart/product-remove/'+rowId,
+            dataType:'json',
+            success:function(data){
+                miniCart();
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
                     })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            type: 'success',
-                            title: data.success
-                        })
-                    }else{
-                        Toast.fire({
-                            type: 'error',
-                            title: data.error
-                        })
-                    }
-                    // End Message
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
                 }
-            });
-        }
-        //  end mini cart remove
-    </script>
+                // End Message
+            }
+        });
+    }
+    //  end mini cart remove
+</script>
 
 
 {{--// START WISHLIST PAGE--}}
@@ -585,7 +585,7 @@ onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
             url: "http://localhost/ecom/public/cart-decrement/"+rowId,
             dataType:'json',
             success:function(data){
-               couponCalculation();
+                couponCalculation();
                 cart();
                 miniCart();
             }
@@ -655,17 +655,17 @@ onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
                         `<tr>
         <th>
             <div class="cart-sub-total">
-                Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                Subtotal<span class="inner-left-md">Nu ${data.subtotal}</span>
             </div>
             <div class="cart-sub-total">
-                Coupon<span class="inner-left-md">$ ${data.coupon_name}</span>
+                Coupon<span class="inner-left-md">Nu ${data.coupon_name}</span>
                 <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
             </div>
              <div class="cart-sub-total">
-                Discount Amount<span class="inner-left-md">$ ${data.discount_amount}</span>
+                Discount Amount<span class="inner-left-md">Nu ${data.discount_amount}</span>
             </div>
             <div class="cart-grand-total">
-                Grand Total<span class="inner-left-md">$ ${data.total_amount}</span>
+                Grand Total<span class="inner-left-md">Nu ${data.total_amount}</span>
             </div>
         </th>
             </tr>`
@@ -673,7 +673,7 @@ onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
                 }
             }
 
-    });
+        });
     }
     couponCalculation();
 </script>

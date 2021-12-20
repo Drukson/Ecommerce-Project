@@ -127,7 +127,7 @@
                                                 </div>
                                                 <!-- /.product-info -->
                                                 <div class="cart clearfix animate-effect">
-                                                    @if($agro->category_id == 5)
+                                                    @if($agro->category_id == 2)
                                                     <div class="action">
                                                         <ul class="list-unstyled">
                                                             <li class="add-cart-button btn-group">

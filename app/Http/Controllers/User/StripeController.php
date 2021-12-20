@@ -22,14 +22,16 @@ class StripeController extends Controller
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
             /*$total_amount = round(Cart::total());*/
-            $total_amount = round(Cart::total());
+
+            $total_amount = Cart::total();
+
         }
 
         \Stripe\Stripe::setApiKey('sk_test_51JvyFwBc8CCIWLpy2Rsz630bvowCJzxU8RdPSGW7TajmzN0r1Gn3PSvcl1j4btfno5LriZNlERQkmFPlp9WpVBIw00vgDKtSuO');
 
         $token = $_POST['stripeToken'];
         $charge = \Stripe\Charge::create([
-            'amount' => $total_amount*100,
+            'amount' => $total_amount * 100,
             'currency' => 'usd',
             'description' => 'Easy Online Store',
             'source' => $token,
